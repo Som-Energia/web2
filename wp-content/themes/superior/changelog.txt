@@ -1,0 +1,249 @@
+<a href="http://apollo13.eu/docs/superior/#!/installation_update_update_theme">How to update</a>
+
+
+1.9.1(17.06.2014)
+Fixed:
+-"I recommend this" action on Works and Galleries list
+-Typo in shortcode that could make fatal error and "blank" site(thanks AlexNavas).
+
+Updated:
+-Revolution Slider to version 4.5.4
+-Visual composer to version 4.2.3
+
+----------------
+
+1.9.0(05.06.2014)
+Changed:
+-Switched off theme and update notices if current user is not admin
+-No need for Apollo Shortcodes plugin anymore.
+
+Updated:
+-Revolution Slider to version 4.3.8
+-Font awesome to version 4.1.0
+-Apollo13 Shortcodes to version 1.0.7
+-Visual composer to version 4.2.2
+
+Removed:
+-Unnecessary plugin from theme installation process - This is only for cleaning, plugins still works the same:-)
+-Bonus align parameter in single image shortcode from builder
+
+----------------
+1.8.1(22.04.2014)
+Updated:
+-Visual composer to version 4.1.1.1(it is important as it fixes many things)
+-Apollo13 Shortcodes to version 1.0.6
+
+-Fixed:
+-Settings for row element
+-Settings for separator and Text separator
+
+
+----------------
+
+
+1.8.0
+Fixed:
+-Styling for Testimonials
+-Responsive columns from builder
+
+Added:
+-Compatibility for Wordpress 3.9
+
+Updated:
+-Visual composer to version 4.1.1
+-Revolution slider to version 4.3.6
+-Go Responsive Pricing & Compare Tables to version 2.4.1
+(you may need to click to save on General Settings plugin page, to recreate plugin CSS file)
+
+----------------
+1.7.2
+
+Updated:
+-Apollo13 Shortcodes to version 1.0.5
+-Revolution slider to version 4.3.2
+-Go Responsive Pricing & Compare Tables to version 2.4
+
+Fixed:
+-Incompatibility of new visual composer styles with theme
+
+----------------
+1.7.1
+
+Updated:
+-Visual composer to version 4.0.3(<a href="http://apollo13.eu/docs/superior/#!/activate_builder_options">you may need to activate new elements</a>)
+-Apollo13 Shortcodes to version 1.0.4
+
+Fixed:
+-Incompatibility of child theme with new page builder
+
+----------------
+1.7.0
+
+Changed
+-Contact widgets accepts HTML in content field
+
+Updated:
+-Visual composer to version 4.0.2(<a href="http://apollo13.eu/docs/superior/#!/activate_builder_options">you may need to activate new elements</a>)
+-LayerSlider to version 5.1.1
+-Revolution slider to version 4.3.0
+-Go Responsive Pricing & Compare Tables to version 2.3
+
+Fixed:
+-Issue that could occur on some images if woocommerce was installed
+
+Removed:
+-Author meta tag(from document head) that was pointing to Apollo13.eu - it was showing up while sharing on FB
+
+----------------
+1.6.3
+
+Updated:
+-Plugin Apollo13 Shortcodes to version 1.0.2 so it won't produce critical error on installing theme
+
+----------------
+1.6.2
+
+Fixed:
+-Localization of plugin installer strings broken in version 1.6.0
+
+----------------
+
+1.6.1
+
+Fixed:
+-Minor(add 'a' char) but critical fix
+
+----------------
+
+1.6.0
+Added:
+-Alternative link option for single post/work
+-Side padding for rows in builder
+-Bottom margin for rows in builder
+-Font color for rows in builder
+-Footer Widget title font color
+
+Changed:
+-Selecting media from uploader - when you upload audio video you see only these media files, not images
+-Visual composer is now installed as plugin with theme(instead of being included in theme core)
+
+Fixed:
+-Logo resizing on High DPI mobiles
+
+Updated:
+-Font awesome to version 4.0.3
+-Visual composer to version 3.7.4
+
+----------------
+
+1.5.1
+Added:
+
+Changed:
+-Initial image sizes for woocommerce
+
+Fixed:
+-styles for reviews in single product view
+
+----------------
+
+1.5
+Added:
+-<strong>Woocommerce support</strong>
+-Custom look of select input
+-Bonus check for new theme versions(if first fails on some installations)
+-Settings for menu button(CTA button) - text/bg color/hover color
+-Setting for menu button(CTA button) to disable it for screen width under 680px
+-Settings for other buttons - text/bg color/hover color
+-Setting for submenu links - color and hover
+
+Changed:
+-Default color of "go to top" button
+
+Fixed:
+-Custom CSS filed breaking some CSS
+-styling issues in mega menu
+-localization of admin area
+
+Updated:
+-<strong>Child theme to version 1.0.1(if you use it, then you need to update it manually)</strong>
+-LayerSlider to version 5.0.2
+
+----------------
+1.4
+Added:
+-custom(unlimited) sidebars
+
+Fixed:
+-showing of children pages in admin
+
+Updated:
+-LayerSlider to version 5.0.1
+
+----------------
+1.3
+Added:
+-Mega menu option
+-HD logo option
+
+Removed:
+-Showing whole links in printed document
+
+Fixed:
+-not fixed header behaviour
+-small header issues while resizing window
+
+
+Updated:
+-Revolution slider to version 4.1.4
+-LayerSlider to version 5.0.0
+
+----------------
+1.2
+Added:
+-narrow layout style
+-centered header layout (only for wider resolutions)
+-WP 3.8 support:
+--admin bar in front end
+--responsive theme settings
+
+Fixed:
+-link post format type
+
+Updated:
+-Revolution slider to version 4.1.2
+
+----------------
+1.1.1
+Fixed:
+-Margin of builder elements got overwritten
+
+Changed:
+- header "Call to action button" reposition in responsive layout
+
+----------------
+1.1
+
+Added:
+-Pricing tables via "Go - Responsive Pricing & Compare Tables" plugin
+-Support of pricing tables in builder(updaters - remember to <a href="http://apollo13.eu/docs/superior/#activate_builder_options">activate it in builder options</a>)
+-Custom cursor options
+-Info/contact bar in header with option for social icons
+-Search form option to header
+-HIGH DPI Theme Social icons
+
+
+Fixed:
+-Z-index of layer slider and theme header
+-In theme documentation links
+-FitVids Script conflict with Layer Slider and Revolution Slider
+-Self hosted video added by wordpress editor - responsive and stretchy
+-Issue with recent post shortcode(thanks jesskupferman)
+
+Changed:
+-Menu ancestor selector - more bulletproof
+-size and hover off Theme Social icons
+-responsive layout tweaks
+
+Updated:
+-Revolution slider to version 4.1

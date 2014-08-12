@@ -1,0 +1,84 @@
+/* fix autocomplete */
+.wp-admin .vc-ui-front {
+    z-index: 10520 !important;
+}
+
+/* Icons in select area */
+
+.wpb_bootstrap_modals i.icon-go-pricing{
+    background: url("../images/admin/builder/pricing_tables_32x32.png") 0 0 no-repeat;
+}
+
+.wpb_a13_hellotext > .wpb_element_wrapper,
+.wpb_a13_heading_color > .wpb_element_wrapper,
+.wpb_a13_title_with_icon > .wpb_element_wrapper,
+.wpb_a13_cta_button > .wpb_element_wrapper,
+.wpb_a13_button > .wpb_element_wrapper,
+.wpb_a13_progress_bar > .wpb_element_wrapper,
+.wpb_woothemes_testimonials > .wpb_element_wrapper,
+.wpb_go_pricing > .wpb_element_wrapper{
+    background-image: none !important;
+    position: relative;
+    height: auto !important;
+}
+.wpb_a13_button > .wpb_element_wrapper{
+    padding: 10px !important;
+}
+.wpb_a13_hellotext > .wpb_element_wrapper:before,
+.wpb_a13_heading_color > .wpb_element_wrapper:before{
+    content: "";
+    background: url("../../../plugins/js_composer/assets/vc/elements_icons/sprite.png") 0 -144px no-repeat;
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    top: 18px;
+    left: 18px;
+}
+.wpb_a13_cta_button > .wpb_element_wrapper:before,
+.wpb_a13_progress_bar > .wpb_element_wrapper:before,
+.wpb_woothemes_testimonials > .wpb_element_wrapper:before,
+.wpb_a13_recent_works > .wpb_element_wrapper:before,
+.wpb_a13_recent_galleries > .wpb_element_wrapper:before,
+.wpb_a13_recent_posts > .wpb_element_wrapper:before,
+.wpb_go_pricing > .wpb_element_wrapper:before{
+    content: "";
+    background: url("../../../plugins/js_composer/assets/vc/elements_icons/cta_align_right.png") 0 0 no-repeat;
+    height: 32px;
+    width: 32px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+.wpb_a13_recent_works > .wpb_element_wrapper:before,
+.wpb_a13_recent_galleries > .wpb_element_wrapper:before,
+.wpb_a13_recent_posts > .wpb_element_wrapper:before{
+    background-image: url("../../../plugins/js_composer/assets/vc/elements_icons/teaser_grid.png");
+}
+.wpb_a13_progress_bar > .wpb_element_wrapper:before{
+    background-image: url("../../../plugins/js_composer/assets/vc/elements_icons/graph.png");
+}
+.wpb_woothemes_testimonials > .wpb_element_wrapper:before{
+    background-image: url("../../../plugins/js_composer/assets/vc/elements_icons/cta_align_bottom.png");
+}
+.wpb_a13_separator > .wpb_element_wrapper{
+    background: #fff url("../../../plugins/js_composer/assets/vc/separator.gif") 50% 50% repeat-x !important;
+    padding: 0 !important;
+}
+.wpb_go_pricing > .wpb_element_wrapper:before{
+    background-image: url("../images/admin/builder/pricing_tables_32x32.png");
+}
+
+
+/* In container styling */
+.wpb_a13_hellotext .upper_text{
+    font-weight: bold;
+    font-size: 1.5em;
+    margin: 1em 0 0.25em;
+}
+.wpb_a13_hellotext .lower_text{
+    margin-bottom: 1em;
+}
+.wpb_a13_button .wpb_element_title,
+.wpb_a13_separator .wpb_element_title{
+    display: none;
+}

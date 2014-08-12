@@ -1,0 +1,339 @@
+
+/* ==================
+   GLOBAL
+   ==================*/
+body{
+    background-image: url(http://superior.devo.apollo13.eu/wp-content/uploads/sites/5/2013/04/pattern3.jpg);
+    background-attachment: scroll;
+    cursor: url("http://superior.devo.apollo13.eu/wp-content/themes/superior/images/cursors/empty_black_white.png"), default;
+}
+body,
+.widget .title > span,
+.wp-paginate .title,
+.wp-paginate .gap,
+.navigation a,
+.widget-title span,
+.title-and-nav .title span,
+.title-and-nav nav,
+#reply-title span,
+#cancel-comment-reply-link{
+	
+}
+.post-media.item-image:after{
+    border-top-color: ;
+}
+.variant_2 .post-media.item-image:after,
+.variant_masonry .post-media.item-image:after,
+.in_post_widget .post-media.item-image:after{
+    border-bottom-color: ;
+}
+.variant_short_list .post-media.item-image:after{
+    border-right-color: ;
+}
+a{
+    
+}
+a:hover{
+    
+}
+h1,h2,h3,h4,h5,h6,
+h1 a,h2 a,h3 a,h4 a,h5 a, h6 a,
+.page-title,
+.widget .title{
+    
+    font-family: Lato, sans-serif;
+    font-weight: bold;
+    text-transform: none;
+}
+h1 a:hover,h2 a:hover,h3 a:hover,h4 a:hover,h5 a:hover,h6 a:hover,
+.post .post-title a:hover, .post a.post-title:hover{
+    
+}
+
+input[type="submit"],
+a.a13-button,
+a.more-link,
+a.project-site,
+a.dot-irecommendthis:hover,
+a.dot-irecommendthis.active,
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button,
+.woocommerce #respond input#submit,
+.woocommerce #content input.button{
+    
+    
+}
+input[type="submit"]:hover,
+a.a13-button:hover,
+a.more-link:hover,
+a.project-site:hover,
+.woocommerce a.button:hover,
+.woocommerce button.button:hover,
+.woocommerce input.button:hover,
+.woocommerce #respond input#submit:hover,
+.woocommerce #content input.button:hover{
+    
+    
+}
+
+
+/* ==================
+   FONTS
+   ==================*/
+/* All things font(menu, interactive elements, labels).
+ * Not used for content text and titles
+ */
+body,
+.a13-button,
+input[type="submit"]{
+	font-family: Open Sans, sans-serif;
+}
+
+/* Text content font */
+.real-content,
+.foot-text,
+.post-meta,
+.navigation,
+.widget .post-title,
+.widget .content,
+div.textwidget,
+div.widget_rss li,
+div.about-author,
+div.comments-area,
+.contact-form,
+input[type="text"],
+input[type="search"],
+input[type="password"],
+input[type="email"],
+input[type="url"],
+input[type="tel"],
+input[type="number"],
+input[type="range"],
+input[type="date"],
+textarea,
+select{
+    font-family: Lato, sans-serif;
+}
+
+
+/* ==================
+   HEADER
+   ==================*/
+#header,
+#access.touch .menu-container{
+    
+}
+#logo{
+	color: #ff4e0d;
+    font-size: 26px;
+}
+#access h3.assistive-text{
+    color: #585858;
+    font-size: 13px;
+}
+#access.touch .top-menu > li a,
+.mega-menu > ul > li{
+    
+}
+#access.touch .top-menu{
+    
+}
+.top-menu li a,
+.top-menu .mega-menu span.title,
+.top-menu .mega-menu > ul > li > a{
+    font-size: 13px;
+}
+.top-menu li a{
+    color: #585858;
+    font-weight: bold;
+    text-transform: none;
+}
+.top-menu li:hover > a,
+.top-menu li.hovered > a,
+.top-menu li.current-menu-item > a,
+.top-menu li.current-menu-ancestor  > a{
+    
+}
+.top-menu li li a{
+    
+    font-size: 12px;
+    
+}
+.top-menu li li:hover > a,
+.top-menu li li.hovered > a,
+.top-menu li li.current-menu-item > a,
+.top-menu li li.current-menu-ancestor > a{
+    
+}
+.top-menu li:hover,
+.top-menu li.hovered,
+.top-menu li.current-menu-item,
+.top-menu li.current-menu-ancestor,
+.top-menu ul{
+    
+}
+.top-menu li li:hover > a,
+.top-menu li li.hovered > a,
+.top-menu li li.current-menu-item > a,
+.top-menu li li.current-menu-ancestor > a{
+    
+}
+
+.menu-button-container a.a13-button{
+    
+    
+}
+.menu-button-container a.a13-button:hover{
+    
+    
+}
+
+
+/* ==================
+   FOOTER
+   ==================*/
+#footer{
+    
+}
+#footer .widget h3.title, #footer .widget h3.title a {
+    
+}
+.footer-items{
+    font-size: 12px;
+    color: #666666;
+}
+#footer a{
+    color: #999999;
+}
+#footer a:hover{
+    color: #ffffff;
+}
+
+
+/* ==================
+   GALLERIES LIST
+   ==================*/
+.variant_image #a13-galleries{
+     padding-top: 6px;
+     padding-left: 3.000000px;
+     padding-right: 3.000000px;
+}
+.variant_image #a13-galleries .g-item{
+     margin-bottom: 6px;
+     margin-right: 3.000000px;
+     margin-left: 3.000000px;
+     height: 320px;
+     width: 420px;
+}
+.variant_image #a13-galleries .g-link i{
+    height: 320px;
+}
+.variant_image #a13-galleries .g-link .cov span{
+    
+}
+
+
+/* ==================
+   SINGLE GALLERY
+   ==================*/
+#a13-gallery{
+     padding-top: 4px;
+     padding-left: 2.000000px;
+     padding-right: 2.000000px;
+}
+#a13-gallery .g-link{
+     margin-bottom: 4px;
+     margin-right: 2.000000px;
+     margin-left: 2.000000px;
+     height: auto;
+     width: 340px;
+}
+#a13-gallery .g-link i{
+    
+}
+.single-gallery #a13-slider-caption{
+    
+}
+.single-gallery #slide-list{
+    
+}
+.single-gallery .in-post-slider{
+    height: 640px;
+}
+
+
+/* ==================
+   WORKS LIST
+   ==================*/
+.variant_image #a13-works{
+     padding-top: 0px;
+     padding-left: 0.000000px;
+     padding-right: 0.000000px;
+}
+.variant_image #a13-works .g-item{
+     margin-bottom: 0px;
+     margin-right: 0.000000px;
+     margin-left: 0.000000px;
+     height: 320px;
+     width: 420px;
+}
+.variant_image #a13-works .g-link i{
+    height: 320px;
+}
+.variant_image #a13-works .g-link .cov span{
+    
+}
+
+
+/* ==================
+   SINGLE WORK
+   ==================*/
+.single-work #a13-scroll-pan{
+    height: 540px;
+}
+.single-work .in-post-slider{
+    height: 540px;
+}
+.single-work #a13-slider-caption{
+    
+}
+.single-work #slide-list{
+    
+}
+
+   
+/* ==================
+   BLOG
+   ==================*/
+.variant_masonry #only-posts-here{
+    padding-left: 15.000000px;
+    padding-right: 15.000000px;
+}
+.variant_masonry .archive-item{
+    width: 480px;
+    margin-bottom: 30px;
+    margin-right: 15.000000px;
+    margin-left: 15.000000px;
+}
+
+
+/* ==================
+   RESPONSIVE
+   ==================*/
+@media only screen and (max-width: 680px) {
+    .menu-button-container{
+        
+        display: none;
+    }
+}
+/*@media print,
+(-o-min-device-pixel-ratio: 5/4),
+(-webkit-min-device-pixel-ratio: 1.25),
+(min-resolution: 120dpi) {
+}*/
+
+/* ==================
+   CUSTOM CSS
+   ==================*/
+

@@ -1,0 +1,459 @@
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+/**** MAIN STYLES ****/
+/* LOGO */
+#a13-logo{
+    vertical-align: -5px;
+    margin-right: 10px;
+}
+
+/* save button */
+.apollo13-settings .save-opts{
+	margin-bottom: 20px;
+}
+/* title of settings subgroup */
+.apollo13-settings .postbox h3{
+    border-bottom-width: 0;
+    cursor: pointer;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+/* setting subgroup parent container */
+.apollo13-settings .postbox .inside{
+	margin: 0;
+    padding: 0;
+}
+.apollo13-settings .postbox.closed .inside{
+	display: none;
+}
+/* help info fo subgroup settings */
+.help-info{
+    background-color: #beffa6;
+    display: block;
+    padding: 10px;
+    text-align: center;
+}
+/* help info under main title */
+.apollo-help p span:first-child{
+    color: #ff0000;
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 5px;
+    position: relative;
+    bottom: -3px;
+}
+
+/*---------------
+ * zebra styling */
+.apollo13-settings div.input-parent,
+fieldset.added > div{
+	padding: 10px;
+	border-top: 1px solid #DFDFDF;
+}
+.apollo13-options div.input-parent:nth-child(even),
+.apollo13-metas div.fieldset > div.input-parent:nth-child(even),
+.apollo13-metas div.switch:nth-child(even) > div.input-parent,
+.apollo13-metas div.switch:nth-child(even) div.switch-group div.input-parent:nth-child(even),
+/*.apollo13-metas div.switch:nth-child(odd) div.switch-group div.input-parent:nth-child(odd),*/ /* "breaks" thumbs list*/
+div.fieldset.additive:nth-child(even),
+fieldset.added > div:nth-child(even){
+	background-color: #fff;
+}
+.apollo13-settings div.input-parent:hover,
+.apollo13-metas div.switch:hover > div.input-parent,
+fieldset.added > div:hover{
+	background-color: #ffff99 !important;
+}
+div.fieldset.additive div.input-parent:first-child{
+    border-top: none;
+}
+/*---------------
+ * END zebra styling */
+
+/* labels of each setting (settings & meta) */
+.apollo13-settings label,
+.apollo13-settings span.label-like,
+.apollo13-settings label .label-name{
+	color: #000;
+	float: left;
+	font-size: 13px;
+	font-weight: bold;
+	line-height: 26px;
+	width: 260px;
+}
+/* input + description parent container */
+.apollo13-settings .input-desc{
+	margin-left: 265px;
+}
+/* descriptions to inputs */
+p.desc{
+    color: #999;
+    font-size: 10px;
+    line-height: 1.6em;
+    margin: 10px 0 0;
+    padding-bottom: 5px;
+}
+.empty-type{
+    line-height: 26px;
+}
+
+/*---------------
+ * inputs styling */
+.apollo13-settings .input-desc input[type="text"]{
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.apollo13-settings button{
+    font-family: inherit;
+}
+.apollo13-settings .slider-place{
+    margin-top: 15px;
+    width: 300px;
+}
+.apollo13-settings .hidden-input{
+    height: 0;
+    visibility: hidden;
+    padding: 0 !important; /* no need any padding here */
+}
+.apollo13-settings .radio-input label{
+	float: none;
+	font-weight: normal;
+	margin-right: 20px;
+	width: auto;
+}
+.apollo13-settings .radio-input label input{
+	margin-right: 5px;
+}
+.apollo13-settings .textarea-input textarea{
+	height: 200px;
+    padding: 5px;
+    width: 95%;
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+div.mover{
+    display: none;
+}
+/* Placeholders */
+::-webkit-input-placeholder{
+    color: #a9a9a9 !important;
+}
+:-moz-placeholder{ /* Firefox 18- */
+    color: #a9a9a9 !important;
+}
+::-moz-placeholder{  /* Firefox 19+ */
+    color: #a9a9a9 !important;
+}
+:-ms-input-placeholder{
+    color: #a9a9a9 !important;
+}
+/*---------------
+ * END inputs styling */
+
+
+
+/*---------------
+ * Fonts selector */
+input.sample-text{
+    display: none; /* dbclick shows it */
+    width: 100%;
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+span.sample-view{
+    background-color: #FFFFFF;
+    border: 1px solid #DFDFDF;
+    border-radius: 3px;
+    display: block;
+    font-size: 18px;
+    padding: 5px;
+    margin: 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+span.sample-view + p{
+    margin: 5px 0 10px;
+}
+select.fonts-choose{
+    float: left;
+    margin-right: 20px;
+}
+.font-info{
+    float: left;
+    width: 300px;
+}
+.font-info h4{
+    margin-top: 0;
+}
+.font-info > div{
+    float: left;
+    width: 50%;
+}
+.font-info label{
+    display: block;
+    float: none;
+    width: auto;
+}
+.font-info input{
+    margin-right: 10px;
+}
+/*---------------
+ * END Fonts selector */
+
+
+/*---------------
+ * Sortable Thumbs */
+#images_n_videos{/* textarea for multi upload items */
+    display: none;
+}
+.thumb-info{
+    border-top: 1px solid #DFDFDF;
+    cursor: move;
+    min-height: 36px;
+    position: relative;
+    width: 100%;
+    /*overflow: hidden;*/ /* dunno if that is needed */
+}
+.thumb-info:before {
+    content: counter(items-in-mu);
+    float: left;
+    line-height: 36px;
+    padding: 0 10px;
+    min-width: 20px;
+}
+img.info-thumb{
+    float: left;
+    margin: 2px 2px 0;
+    max-height: 32px;
+    max-width: 40px;
+}
+img.info-thumb:hover{
+    position: absolute;
+    z-index: 500;
+    /*top: -75px;*/
+    max-height: 150px;
+    max-width: 150px;
+    bottom: 2px;
+}
+.thumb-info .thumb-title{
+    display: block;
+    line-height: 16px;
+    overflow: hidden;
+    padding: 10px 10px;
+}
+.thumb-show-fields{
+    color: #21759B;
+    cursor: pointer;
+    display: block;
+    float: right;
+    line-height: 36px;
+    margin-right: 15px;
+    margin-left: 20px;
+    text-decoration: underline;
+}
+.thumb-show-fields:hover, .thumb-show-fields:focus{
+    color: #d54e21;
+}
+.thumb-fields{
+    border-bottom: 1px solid #DFDFDF;
+    padding: 10px 0 30px;
+}
+/*---------------
+ * END Sortable Thumbs */
+/**********************************************/
+
+
+
+/*---------------
+ * END Added field sets */
+
+/*---------------
+ * Add more button */
+.add-more-fields span{
+	color: #ff0000;
+	font-size: 14px;
+	font-weight: bold;
+	margin-right: 5px;
+}
+div.add-more-parent,
+.apollo13-metas > div.add-more-parent,
+div.buttons-parent{
+	border-bottom: 1px solid #DFDFDF;
+	border-top: 1px solid #DFDFDF;
+	padding: 20px;
+	text-align: center;
+}
+/*---------------
+ * END Add more button */
+
+.apollo13-metas{
+    counter-reset: items-in-mu;
+	margin: 0 -10px;
+}
+.apollo13-metas > div{
+    border-top: none;
+    padding: 0;
+}
+.apollo13-metas .fieldset{
+	padding: 0;
+}
+.fieldset.additive{
+    counter-increment: items-in-mu;
+	position: relative;
+    padding: 0;
+}
+.fieldset.prototype{
+	display: none;
+}
+span.remove-fieldset{
+	float: right;
+    margin: 6px 10px 0 !important;
+}
+
+.apollo13-metas img.thumb{
+    height: auto;
+    max-height: 150px;
+    max-width: 150px;
+    width: auto;
+}
+
+/* Multi upload area styles */
+.a13-mu-container{
+    text-align: center;
+    padding: 10px;
+}
+.a13-mu-container .button{
+    text-align: center;
+    padding: 10px;
+}
+.ui-sortable .thumb img {
+    cursor: pointer;
+}
+/* ==========================================================================
+   MEGA MENU OPTIONS
+   ========================================================================== */
+#menu-to-edit .a13-megamenu-options{
+    margin: 20px 10px 10px 0;
+    padding: 0 10px;
+    border: 1px solid #E5E5E5;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    display: none;
+}
+#menu-to-edit .menu-item-depth-1 .level-0,
+#menu-to-edit .level-1,
+#menu-to-edit .menu-item-depth-0 .if-mm-enabled{
+    display: none;
+}
+#menu-to-edit .menu-item-depth-0 .a13-megamenu-options,
+#menu-to-edit .menu-item-depth-0.mega-menu-enabled .if-mm-enabled,
+#menu-to-edit .menu-item-depth-1.mega-menu-enabled .a13-megamenu-options,
+#menu-to-edit .menu-item-depth-1 .level-1{
+    display: block;
+}
+
+
+/* ==========================================================================
+   SOCIAL ICONS
+   ========================================================================== */
+#sortable-socials div.input-parent{
+    line-height: 50px;
+    padding: 0;
+}
+label.social_icon{
+    background: transparent url(../images/socials_black.png) no-repeat;
+    padding-left: 50px;
+    min-height: 50px;
+    line-height: 50px;
+}
+label.a13_soc-500px{ background-position: 0 0; }
+label.a13_soc-aim{ background-position: 0 -50px; }
+label.a13_soc-behance{ background-position: 0 -100px; }
+label.a13_soc-blogger{ background-position: 0 -150px; }
+label.a13_soc-delicious{ background-position: 0 -200px; }
+label.a13_soc-deviantart{ background-position: 0 -250px; }
+label.a13_soc-digg{ background-position: 0 -300px; }
+label.a13_soc-dribbble{ background-position: 0 -350px; }
+label.a13_soc-evernote{ background-position: 0 -400px; }
+label.a13_soc-facebook{ background-position: 0 -450px; }
+label.a13_soc-flickr{ background-position: 0 -500px; }
+label.a13_soc-forrst{ background-position: 0 -550px; }
+label.a13_soc-foursquare{ background-position: 0 -600px; }
+label.a13_soc-github{ background-position: 0 -650px; }
+label.a13_soc-googleplus{ background-position: 0 -700px; }
+label.a13_soc-instagram{ background-position: 0 -750px; }
+label.a13_soc-lastfm{ background-position: 0 -800px; }
+label.a13_soc-linkedin{ background-position: 0 -850px; }
+label.a13_soc-paypal{ background-position: 0 -900px; }
+label.a13_soc-pinterest{ background-position: 0 -950px; }
+label.a13_soc-quora{ background-position: 0 -1000px; }
+label.a13_soc-rss{ background-position: 0 -1050px; }
+label.a13_soc-sharethis{ background-position: 0 -1100px; }
+label.a13_soc-skype{ background-position: 0 -1150px; }
+label.a13_soc-stumbleupon{ background-position: 0 -1200px; }
+label.a13_soc-tumblr{ background-position: 0 -1250px; }
+label.a13_soc-twitter{ background-position: 0 -1300px; }
+label.a13_soc-vimeo{ background-position: 0 -1350px; }
+label.a13_soc-wordpress{ background-position: 0 -1400px; }
+label.a13_soc-yahoo{ background-position: 0 -1450px; }
+label.a13_soc-youtube{ background-position: 0 -1500px; }
+
+
+/* HOVERS ON LIGHT BACKGROUND */
+label.a13_soc-aim:hover{ background-color: #ebb52e!important; }
+label.a13_soc-behance:hover{ background-color: #3ab0ed!important; }
+label.a13_soc-delicious:hover{ background-color: #729cd8!important; }
+label.a13_soc-deviantart:hover{ background-color: #a8b7b3 !important; }
+label.a13_soc-digg:hover{ background-color: #6dbde9!important; }
+label.a13_soc-dribbble:hover{ background-color: #ed6e9e!important; }
+label.a13_soc-evernote:hover{ background-color: #7bcd4d!important; }
+label.a13_soc-facebook:hover{ background-color: #7393cf!important; }
+label.a13_soc-flickr:hover{ background-color: #ff70b8!important; }
+label.a13_soc-forrst:hover{ background-color: #7bc48b!important; }
+label.a13_soc-github:hover{ background-color: #949494!important; }
+label.a13_soc-googleplus:hover{ background-color: #e65738!important; }
+label.a13_soc-lastfm:hover{ background-color: #ef5149!important; }
+label.a13_soc-linkedin:hover{ background-color: #55abd4!important; }
+label.a13_soc-paypal:hover{ background-color: #4487c8!important; }
+label.a13_soc-pinterest:hover{ background-color: #ea565c!important; }
+label.a13_soc-quora:hover{ background-color: #d86546!important; }
+label.a13_soc-sharethis:hover{ background-color: #28a84d!important; }
+label.a13_soc-stumbleupon:hover{ background-color: #ff6b49!important; }
+label.a13_soc-tumblr:hover{ background-color: #719cce!important; }
+label.a13_soc-wordpress:hover{ background-color: #3997d9!important; }
+label.a13_soc-yahoo:hover{ background-color: #b27ed8!important; }
+label.a13_soc-youtube:hover{ background-color: #e7706b!important; }
+
+
+@media only screen and (max-width: 850px) {
+    .apollo13-settings label, .apollo13-settings span.label-like, .apollo13-settings label .label-name{
+        float: none;
+        display: block;
+        width: auto;
+    }
+    .apollo13-settings .input-desc{
+        margin-left: 0;
+    }
+}@media only screen and (max-width: 600px) {
+
+    .apollo13-settings textarea,
+    .apollo13-settings input[type="text"],
+    .apollo13-settings input[type="password"],
+    .apollo13-settings input[type="email"],
+    .apollo13-settings input[type="number"],
+    .apollo13-settings input[type="search"],
+    .apollo13-settings input[type="tel"],
+    .apollo13-settings input[type="url"],
+    .apollo13-settings .titlewrap input,
+    .apollo13-settings select{
+        width: 100%;
+    }
+}

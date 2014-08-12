@@ -1,0 +1,2339 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Backend Superior\n"
+"POT-Creation-Date: 2014-06-05 00:28+0100\n"
+"PO-Revision-Date: 2014-06-05 00:28+0100\n"
+"Last-Translator: Apollo13 <info@apollo13.eu>\n"
+"Language-Team: Apollo13 <info@apollo13.eu>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Poedit-KeywordsList: __be;_be\n"
+"X-Poedit-Basepath: D:\\workspace\\Superior\\superior\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: advance/admin/admin.php:59
+msgid "General"
+msgstr ""
+
+#: advance/admin/admin.php:60
+msgid "Layout"
+msgstr ""
+
+#: advance/admin/admin.php:61
+msgid "Typography"
+msgstr ""
+
+#: advance/admin/admin.php:62 advance/options.php:37
+msgid "Blog"
+msgstr ""
+
+#: advance/admin/admin.php:63
+msgid "Works(Portfolio)"
+msgstr ""
+
+#: advance/admin/admin.php:64 advance/cpt_gallery.php:11
+msgid "Galleries"
+msgstr ""
+
+#: advance/admin/admin.php:65
+msgid "Sidebars"
+msgstr ""
+
+#: advance/admin/admin.php:66
+msgid "Socials"
+msgstr ""
+
+#: advance/admin/admin.php:67
+msgid "Contact"
+msgstr ""
+
+#: advance/admin/admin.php:68
+msgid "Advanced"
+msgstr ""
+
+#: advance/admin/admin.php:69 advance/options.php:2155
+#: advance/options.php:2162
+msgid "Custom CSS"
+msgstr ""
+
+#: advance/admin/admin.php:79
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: advance/admin/admin.php:93
+#, php-format
+msgid ""
+"If you need any help check <a href=\"%s\" target=\"_blank\">documentation</"
+"a> or <a href=\"%s\" target=\"_blank\">visit our support forum</a>"
+msgstr ""
+
+#: advance/admin/admin.php:99
+#, php-format
+msgid ""
+"Template updated. <a href=\"%s\">Visit your site</a> to see how it looks."
+msgstr ""
+
+#: advance/admin/metaboxes.php:9
+msgid "Blog post details"
+msgstr ""
+
+#: advance/admin/metaboxes.php:18
+msgid "Page details"
+msgstr ""
+
+#: advance/admin/metaboxes.php:27
+msgid "Work details"
+msgstr ""
+
+#: advance/admin/metaboxes.php:36
+msgid "Work media - Add images/videos"
+msgstr ""
+
+#: advance/admin/metaboxes.php:45
+msgid "Gallery details"
+msgstr ""
+
+#: advance/admin/metaboxes.php:54
+msgid "Gallery media - Add images/videos"
+msgstr ""
+
+#: advance/admin/metaboxes.php:133
+msgid "Hide"
+msgstr ""
+
+#: advance/admin/metaboxes.php:133
+msgid "Show"
+msgstr ""
+
+#: advance/admin/metaboxes.php:134
+msgid "Remove item"
+msgstr ""
+
+#: advance/admin/metaboxes.php:164
+msgid "Select/Upload many images"
+msgstr ""
+
+#: advance/admin/metaboxes.php:165
+msgid ""
+"To mark more items in Media Library hold <code>Ctrl</code> or <code>Cmd</"
+"code> key while selecting them."
+msgstr ""
+
+#: advance/admin/print_options.php:22 advance/admin/print_options.php:89
+msgid "Save Changes"
+msgstr ""
+
+#: advance/admin/print_options.php:46
+#, php-format
+msgid ""
+"If you need help with these settings <a href=\"%s\">check this topic</a> in "
+"documentation"
+msgstr ""
+
+#: advance/admin/print_options.php:161
+msgid "Upload"
+msgstr ""
+
+#: advance/admin/print_options.php:265
+msgid "Classic fonts"
+msgstr ""
+
+#: advance/admin/print_options.php:272
+msgid "Google fonts"
+msgstr ""
+
+#: advance/admin/print_options.php:330
+msgid ""
+"Double click on sample text to edit it. After edit double click on input to "
+"see preview again."
+msgstr ""
+
+#: advance/admin/print_options.php:337
+msgid "Variants"
+msgstr ""
+
+#: advance/admin/print_options.php:343
+msgid "Subsets"
+msgstr ""
+
+#: advance/admin/print_options.php:386
+msgid "Insert transparent value"
+msgstr ""
+
+#: advance/admin/print_options.php:420
+msgid "Select page"
+msgstr ""
+
+#: advance/admin/print_options.php:427
+msgid "<span class=\"empty-type\">There is no pages yet!</span>"
+msgstr ""
+
+#: advance/admin/print_options.php:475
+msgid "<span class=\"empty-type\">There is no galleries yet!</span>"
+msgstr ""
+
+#: advance/admin/print_options.php:498
+msgid "Your current custom sidebars:"
+msgstr ""
+
+#: advance/admin/print_options.php:501
+msgid "Remove sidebar"
+msgstr ""
+
+#: advance/admin/print_options.php:529
+msgid "Your Categories"
+msgstr ""
+
+#: advance/apollo13.php:213
+msgid "Site Navigation"
+msgstr ""
+
+#: advance/apollo13.php:214
+msgid "Footer short menu"
+msgstr ""
+
+#: advance/apollo13.php:254
+#, php-format
+msgid "Warning - directory %s is not writable."
+msgstr ""
+
+#: advance/apollo13.php:260
+#, php-format
+msgid ""
+"Warning - slug for Works is taken by page or post! It may cause problems "
+"with displaying albums. Edit slug of <a href=\"%s\">this post</a> to make "
+"sure everything works good."
+msgstr ""
+
+#: advance/apollo13.php:266
+#, php-format
+msgid ""
+"Warning - slug for Galleries is taken by page or post! It may cause problems "
+"with displaying albums. Edit slug of <a href=\"%s\">this post</a> to make "
+"sure everything works good."
+msgstr ""
+
+#: advance/apollo13.php:282
+#, php-format
+msgid ""
+"There is new version <em>%1$s</em> of <strong>%2$s theme</strong> available. "
+"Please go to <a href=\"%3$s\" target=\"_blank\">ThemeForest</a> and get new "
+"version of it. Next follow <a href=\"%4$s\" target=\"_blank\">update "
+"instructions from documentation</a>. Good luck ;-) <br /><a href=\"%5$s\" "
+"target=\"_blank\">Check changes in Change log</a>"
+msgstr ""
+
+#: advance/cpt_gallery.php:12
+msgid "Gallery"
+msgstr ""
+
+#: advance/cpt_gallery.php:13 advance/cpt_work.php:14
+msgid "Add New"
+msgstr ""
+
+#: advance/cpt_gallery.php:14
+msgid "Add New Gallery"
+msgstr ""
+
+#: advance/cpt_gallery.php:15
+msgid "Edit Gallery"
+msgstr ""
+
+#: advance/cpt_gallery.php:16
+msgid "New Gallery"
+msgstr ""
+
+#: advance/cpt_gallery.php:17
+msgid "View Gallery"
+msgstr ""
+
+#: advance/cpt_gallery.php:18
+msgid "Search Galleries"
+msgstr ""
+
+#: advance/cpt_gallery.php:19 advance/cpt_work.php:20
+msgid "Nothing found"
+msgstr ""
+
+#: advance/cpt_gallery.php:20 advance/cpt_work.php:21
+msgid "Nothing found in Trash"
+msgstr ""
+
+#: advance/cpt_gallery.php:37 advance/cpt_gallery.php:54
+msgid "Galleries Types"
+msgstr ""
+
+#: advance/cpt_gallery.php:38 advance/cpt_gallery.php:48
+msgid "Gallery type"
+msgstr ""
+
+#: advance/cpt_gallery.php:39
+msgid "Search Galleries Types"
+msgstr ""
+
+#: advance/cpt_gallery.php:40
+msgid "Popular Galleries Types"
+msgstr ""
+
+#: advance/cpt_gallery.php:41
+msgid "All Galleries Types"
+msgstr ""
+
+#: advance/cpt_gallery.php:42
+msgid "Parent Gallery type"
+msgstr ""
+
+#: advance/cpt_gallery.php:43
+msgid "Parent Gallery type:"
+msgstr ""
+
+#: advance/cpt_gallery.php:44
+msgid "Edit Gallery type"
+msgstr ""
+
+#: advance/cpt_gallery.php:45
+msgid "Update Gallery type"
+msgstr ""
+
+#: advance/cpt_gallery.php:46
+msgid "Add New Gallery type"
+msgstr ""
+
+#: advance/cpt_gallery.php:47
+msgid "New Gallery type Name"
+msgstr ""
+
+#: advance/cpt_work.php:12
+msgid "My Works"
+msgstr ""
+
+#: advance/cpt_work.php:13
+msgid "Work"
+msgstr ""
+
+#: advance/cpt_work.php:15
+msgid "Add New Work"
+msgstr ""
+
+#: advance/cpt_work.php:16
+msgid "Edit Work"
+msgstr ""
+
+#: advance/cpt_work.php:17
+msgid "New Work"
+msgstr ""
+
+#: advance/cpt_work.php:18
+msgid "View Work"
+msgstr ""
+
+#: advance/cpt_work.php:19
+msgid "Search Works"
+msgstr ""
+
+#: advance/cpt_work.php:41 advance/cpt_work.php:58
+msgid "Works Genres"
+msgstr ""
+
+#: advance/cpt_work.php:42 advance/cpt_work.php:52
+msgid "Genre"
+msgstr ""
+
+#: advance/cpt_work.php:43
+msgid "Search Genres"
+msgstr ""
+
+#: advance/cpt_work.php:44
+msgid "Popular Genres"
+msgstr ""
+
+#: advance/cpt_work.php:45
+msgid "All Genres"
+msgstr ""
+
+#: advance/cpt_work.php:46
+msgid "Parent Genre"
+msgstr ""
+
+#: advance/cpt_work.php:47
+msgid "Parent Genre:"
+msgstr ""
+
+#: advance/cpt_work.php:48
+msgid "Edit Genre"
+msgstr ""
+
+#: advance/cpt_work.php:49
+msgid "Update Genre"
+msgstr ""
+
+#: advance/cpt_work.php:50
+msgid "Add New Genre"
+msgstr ""
+
+#: advance/cpt_work.php:51
+msgid "New Genre Name"
+msgstr ""
+
+#: advance/mega_menu.php:210
+msgid "Enable mega menu?"
+msgstr ""
+
+#: advance/mega_menu.php:216
+msgid "Number of columns"
+msgstr ""
+
+#: advance/mega_menu.php:231
+msgid "Don't show this item in mega menu. Show only descendants."
+msgstr ""
+
+#: advance/mega_menu.php:238
+msgid "Make this item unclickable in mega menu."
+msgstr ""
+
+#: advance/meta.php:32 advance/meta.php:601 advance/meta.php:857
+msgid "Alternative Link"
+msgstr ""
+
+#: advance/meta.php:33
+msgid ""
+"If you fill this then when selecting post from Blog(post list), it will lead "
+"to this link instead of opening post."
+msgstr ""
+
+#: advance/meta.php:39 advance/meta.php:370
+msgid "Post media"
+msgstr ""
+
+#: advance/meta.php:40 advance/meta.php:371
+msgid ""
+"Choose between Image and Video/Audio. For image use Featured Image Option"
+msgstr ""
+
+#: advance/meta.php:44 advance/meta.php:375 advance/meta.php:1004
+#: advance/options.php:279
+msgid "Image"
+msgstr ""
+
+#: advance/meta.php:45 advance/meta.php:376
+msgid "Video/Audio"
+msgstr ""
+
+#: advance/meta.php:56 advance/meta.php:387
+msgid "Image behavior"
+msgstr ""
+
+#: advance/meta.php:61 advance/meta.php:105 advance/meta.php:392
+#: advance/meta.php:436
+msgid "Align left"
+msgstr ""
+
+#: advance/meta.php:62 advance/meta.php:393
+msgid "Align right"
+msgstr ""
+
+#: advance/meta.php:63 advance/meta.php:107 advance/meta.php:394
+#: advance/meta.php:438
+msgid "Center"
+msgstr ""
+
+#: advance/meta.php:64 advance/meta.php:108 advance/meta.php:395
+#: advance/meta.php:439
+msgid "Take full space"
+msgstr ""
+
+#: advance/meta.php:69 advance/meta.php:400
+msgid "Image size"
+msgstr ""
+
+#: advance/meta.php:74 advance/meta.php:405 advance/options.php:912
+msgid "Automatic"
+msgstr ""
+
+#: advance/meta.php:75 advance/meta.php:118 advance/meta.php:406
+#: advance/meta.php:449
+msgid "Medium"
+msgstr ""
+
+#: advance/meta.php:76 advance/meta.php:119 advance/meta.php:407
+#: advance/meta.php:450
+msgid "Big"
+msgstr ""
+
+#: advance/meta.php:77 advance/meta.php:408 advance/options.php:1402
+#: advance/options.php:1431 advance/options.php:1729
+msgid "Original"
+msgstr ""
+
+#: advance/meta.php:90 advance/meta.php:421
+msgid "Link to video/audio"
+msgstr ""
+
+#: advance/meta.php:91 advance/meta.php:422
+msgid ""
+"Insert here link to your audio/video file or upload it. You can also add "
+"video from youtube or viemo by pasting here link to movie."
+msgstr ""
+
+#: advance/meta.php:95 advance/meta.php:426
+msgid "Upload media file"
+msgstr ""
+
+#: advance/meta.php:96 advance/meta.php:427
+msgid "Insert media file"
+msgstr ""
+
+#: advance/meta.php:100 advance/meta.php:431
+msgid "Video behavior"
+msgstr ""
+
+#: advance/meta.php:113 advance/meta.php:444
+msgid "Video size"
+msgstr ""
+
+#: advance/meta.php:150 advance/meta.php:463
+msgid "Sidebar"
+msgstr ""
+
+#: advance/meta.php:151 advance/meta.php:464
+msgid "If turned off, content will take full width."
+msgstr ""
+
+#: advance/meta.php:157 advance/meta.php:218 advance/meta.php:470
+#: advance/meta.php:508 advance/meta.php:718 advance/meta.php:732
+#: advance/meta.php:764 advance/meta.php:912 advance/meta.php:926
+msgid "Global settings"
+msgstr ""
+
+#: advance/meta.php:158 advance/meta.php:673 advance/options.php:970
+#: advance/options.php:982 advance/options.php:1079
+msgid "Left"
+msgstr ""
+
+#: advance/meta.php:159 advance/meta.php:674 advance/options.php:971
+#: advance/options.php:983 advance/options.php:1080
+msgid "Right"
+msgstr ""
+
+#: advance/meta.php:160 advance/meta.php:195 advance/meta.php:477
+#: advance/meta.php:1080 advance/options.php:382 advance/options.php:599
+#: advance/options.php:972 advance/options.php:984 advance/options.php:995
+#: advance/options.php:1006 advance/options.php:1017 advance/options.php:1028
+#: advance/options.php:1039 advance/options.php:1050 advance/options.php:1061
+#: advance/options.php:1081 advance/options.php:1092 advance/options.php:1103
+#: advance/options.php:1114 advance/options.php:1125 advance/options.php:1136
+#: advance/options.php:1147 advance/options.php:1158 advance/options.php:1169
+#: advance/options.php:1202 advance/options.php:1213 advance/options.php:1224
+#: advance/options.php:1314 advance/options.php:1336 advance/options.php:1591
+#: advance/options.php:1613 advance/options.php:1672 advance/options.php:2038
+msgid "Off"
+msgstr ""
+
+#: advance/meta.php:172
+msgid "Default for pages"
+msgstr ""
+
+#: advance/meta.php:188
+msgid "Full width elements"
+msgstr ""
+
+#: advance/meta.php:189
+msgid ""
+"If you will use builder and want to use full width elements, then it is "
+"recommended that you turn on this option. It will deactivate sidebars for "
+"this page."
+msgstr ""
+
+#: advance/meta.php:194
+msgid "Turn it on"
+msgstr ""
+
+#: advance/meta.php:199
+msgid "Content padding"
+msgstr ""
+
+#: advance/meta.php:200
+msgid ""
+"Enable or disable top and bottom padding of content. It is helpful in "
+"achieving some neat layout effects:-)."
+msgstr ""
+
+#: advance/meta.php:205
+msgid "Both on"
+msgstr ""
+
+#: advance/meta.php:206
+msgid "Only top"
+msgstr ""
+
+#: advance/meta.php:207
+msgid "Only bottom"
+msgstr ""
+
+#: advance/meta.php:208
+msgid "Both off"
+msgstr ""
+
+#: advance/meta.php:212 advance/meta.php:502 advance/meta.php:758
+msgid "Title bar look"
+msgstr ""
+
+#: advance/meta.php:213 advance/meta.php:503 advance/meta.php:759
+msgid "You can use global settings or overwrite them here"
+msgstr ""
+
+#: advance/meta.php:219 advance/meta.php:509 advance/meta.php:765
+msgid "Use custom settings"
+msgstr ""
+
+#: advance/meta.php:220 advance/meta.php:358 advance/meta.php:510
+#: advance/meta.php:589 advance/meta.php:766 advance/meta.php:845
+msgid "Turn it off"
+msgstr ""
+
+#: advance/meta.php:229 advance/meta.php:519 advance/meta.php:775
+msgid "Background image file"
+msgstr ""
+
+#: advance/meta.php:233 advance/meta.php:523 advance/meta.php:779
+#: advance/meta.php:1031 advance/meta.php:1070
+msgid "Upload Image"
+msgstr ""
+
+#: advance/meta.php:237 advance/meta.php:527 advance/meta.php:783
+#: advance/options.php:129 advance/options.php:685
+msgid "How to fit background image"
+msgstr ""
+
+#: advance/meta.php:238 advance/meta.php:528 advance/meta.php:784
+#: advance/options.php:130 advance/options.php:686
+msgid ""
+"In Internet Explorer 8 and lower whatever you will choose(except <em>repeat</"
+"em>) it will look like \"Just center\""
+msgstr ""
+
+#: advance/meta.php:242 advance/meta.php:532 advance/meta.php:788
+#: advance/meta.php:948 advance/options.php:134 advance/options.php:690
+#: advance/options.php:1324 advance/options.php:1601
+msgid "Cover"
+msgstr ""
+
+#: advance/meta.php:243 advance/meta.php:533 advance/meta.php:789
+#: advance/options.php:135 advance/options.php:691
+msgid "Contain"
+msgstr ""
+
+#: advance/meta.php:244 advance/meta.php:534 advance/meta.php:790
+#: advance/options.php:136 advance/options.php:692
+msgid "Fit Vertically"
+msgstr ""
+
+#: advance/meta.php:245 advance/meta.php:535 advance/meta.php:791
+#: advance/options.php:137 advance/options.php:693
+msgid "Fit Horizontally"
+msgstr ""
+
+#: advance/meta.php:246 advance/meta.php:536 advance/meta.php:792
+#: advance/options.php:138 advance/options.php:694
+msgid "Just center"
+msgstr ""
+
+#: advance/meta.php:247 advance/meta.php:537 advance/meta.php:793
+#: advance/options.php:139 advance/options.php:695
+msgid "Repeat"
+msgstr ""
+
+#: advance/meta.php:252 advance/meta.php:542 advance/meta.php:798
+#: advance/options.php:144 advance/options.php:478 advance/options.php:700
+#: advance/options.php:732 advance/plugins/js_composer_mod/config.php:65
+msgid "Background color"
+msgstr ""
+
+#: advance/meta.php:253 advance/meta.php:260 advance/meta.php:543
+#: advance/meta.php:550 advance/meta.php:799 advance/meta.php:806
+#: advance/meta.php:1044 advance/options.php:145 advance/options.php:214
+#: advance/options.php:221 advance/options.php:237 advance/options.php:244
+#: advance/options.php:251 advance/options.php:258 advance/options.php:341
+#: advance/options.php:479 advance/options.php:496 advance/options.php:503
+#: advance/options.php:510 advance/options.php:517 advance/options.php:532
+#: advance/options.php:539 advance/options.php:546 advance/options.php:642
+#: advance/options.php:649 advance/options.php:656 advance/options.php:663
+#: advance/options.php:701 advance/options.php:708 advance/options.php:733
+#: advance/options.php:740 advance/options.php:747 advance/options.php:762
+#: advance/options.php:769 advance/options.php:854 advance/options.php:861
+msgid ""
+"Use valid CSS <code>color</code> property values( <code>green, #33FF99, "
+"rgb(255,128,0)</code> ), or get your color with color picker tool. Left "
+"empty to use default theme value."
+msgstr ""
+
+#: advance/meta.php:259 advance/meta.php:549 advance/meta.php:805
+#: advance/options.php:707
+msgid "Title color"
+msgstr ""
+
+#: advance/meta.php:266 advance/meta.php:556 advance/meta.php:812
+#: advance/options.php:714
+msgid "Space in top and bottom"
+msgstr ""
+
+#: advance/meta.php:267 advance/meta.php:557 advance/meta.php:813
+#: advance/options.php:715 advance/options.php:948 advance/options.php:1341
+#: advance/options.php:1361 advance/options.php:1388 advance/options.php:1417
+#: advance/options.php:1618 advance/options.php:1638 advance/options.php:1677
+#: advance/options.php:1697 advance/options.php:1715
+msgid "Use slider to set proper size."
+msgstr ""
+
+#: advance/meta.php:284
+msgid "Subtitle or button link"
+msgstr ""
+
+#: advance/meta.php:290 advance/meta.php:301 advance/meta.php:574
+#: advance/meta.php:830
+msgid "Subtitle"
+msgstr ""
+
+#: advance/meta.php:291
+msgid "Button"
+msgstr ""
+
+#: advance/meta.php:292
+msgid "Nothing"
+msgstr ""
+
+#: advance/meta.php:302 advance/meta.php:575 advance/meta.php:831
+#: advance/options.php:423 advance/options.php:776
+msgid "You can use HTML here."
+msgstr ""
+
+#: advance/meta.php:316 advance/options.php:604
+msgid "URL"
+msgstr ""
+
+#: advance/meta.php:324 advance/options.php:612
+msgid "Text on button"
+msgstr ""
+
+#: advance/meta.php:331 advance/options.php:619
+msgid "Open in new tab"
+msgstr ""
+
+#: advance/meta.php:337 advance/options.php:625 advance/options.php:636
+msgid "Yes"
+msgstr ""
+
+#: advance/meta.php:338 advance/options.php:626 advance/options.php:637
+msgid "No"
+msgstr ""
+
+#: advance/meta.php:351 advance/meta.php:582 advance/meta.php:838
+msgid "Header tools"
+msgstr ""
+
+#: advance/meta.php:352 advance/meta.php:583 advance/meta.php:839
+msgid "Header tools are: breadcrumbs and search form."
+msgstr ""
+
+#: advance/meta.php:357 advance/meta.php:588 advance/meta.php:844
+#: advance/meta.php:1079 advance/options.php:598 advance/options.php:994
+#: advance/options.php:1005 advance/options.php:1016 advance/options.php:1027
+#: advance/options.php:1038 advance/options.php:1049 advance/options.php:1060
+#: advance/options.php:1091 advance/options.php:1102 advance/options.php:1113
+#: advance/options.php:1124 advance/options.php:1135 advance/options.php:1146
+#: advance/options.php:1157 advance/options.php:1168 advance/options.php:1201
+#: advance/options.php:1212 advance/options.php:1223 advance/options.php:1313
+#: advance/options.php:1335 advance/options.php:1590 advance/options.php:1612
+#: advance/options.php:1671 advance/options.php:2037
+msgid "On"
+msgstr ""
+
+#: advance/meta.php:362 advance/meta.php:593 advance/meta.php:849
+msgid "Menu icon"
+msgstr ""
+
+#: advance/meta.php:363 advance/meta.php:594 advance/meta.php:850
+msgid "It works only for first level menu items."
+msgstr ""
+
+#: advance/meta.php:363 advance/meta.php:594 advance/meta.php:850
+msgid ""
+" You can see available icons at <a href=\"http://fortawesome.github.io/Font-"
+"Awesome/icons/\" target=\"_blank\">Font Awesome</a>. You have to use code of "
+"icon that looks like <code>fa-coffee</code>. To add more icons separate them "
+"with white space."
+msgstr ""
+
+#: advance/meta.php:471 advance/options.php:376
+msgid "Sidebar on the left"
+msgstr ""
+
+#: advance/meta.php:472 advance/options.php:377
+msgid "Children Navigation + sidebar on the left"
+msgstr ""
+
+#: advance/meta.php:473 advance/options.php:378
+msgid "Only children Navigation on the left"
+msgstr ""
+
+#: advance/meta.php:474 advance/options.php:379
+msgid "Sidebar on the right"
+msgstr ""
+
+#: advance/meta.php:475 advance/options.php:380
+msgid "Children Navigation + sidebar on the right"
+msgstr ""
+
+#: advance/meta.php:476 advance/options.php:381
+msgid "Only children Navigation on the right"
+msgstr ""
+
+#: advance/meta.php:482
+msgid "Sidebar to show"
+msgstr ""
+
+#: advance/meta.php:602
+msgid ""
+"If you fill this then clicking in your work on works list will not lead to "
+"single work page but to link from this field."
+msgstr ""
+
+#: advance/meta.php:608 advance/meta.php:864
+msgid "Items order"
+msgstr ""
+
+#: advance/meta.php:609 advance/meta.php:865
+msgid "It will display your images/videos from first to last, or another way."
+msgstr ""
+
+#: advance/meta.php:613 advance/meta.php:869
+msgid "First on list, first displayed"
+msgstr ""
+
+#: advance/meta.php:614 advance/meta.php:870
+msgid "First on list, last displayed"
+msgstr ""
+
+#: advance/meta.php:615 advance/meta.php:871
+msgid "Random"
+msgstr ""
+
+#: advance/meta.php:620
+msgid "Internet address"
+msgstr ""
+
+#: advance/meta.php:628
+msgid "Custom info 1"
+msgstr ""
+
+#: advance/meta.php:629 advance/meta.php:637 advance/meta.php:645
+#: advance/meta.php:653 advance/meta.php:661
+msgid ""
+"If empty it won't be displayed. Use pattern <b>Field name: Field value</b>. "
+"Colon(:) is most important to get full result."
+msgstr ""
+
+#: advance/meta.php:636
+msgid "Custom info 2"
+msgstr ""
+
+#: advance/meta.php:644
+msgid "Custom info 3"
+msgstr ""
+
+#: advance/meta.php:652
+msgid "Custom info 4"
+msgstr ""
+
+#: advance/meta.php:660
+msgid "Custom info 5"
+msgstr ""
+
+#: advance/meta.php:668
+msgid "Description content position"
+msgstr ""
+
+#: advance/meta.php:669
+msgid "Where will text appear relative to images and videos."
+msgstr ""
+
+#: advance/meta.php:675
+msgid "Under images/videos"
+msgstr ""
+
+#: advance/meta.php:681
+msgid "Present media in:"
+msgstr ""
+
+#: advance/meta.php:686
+msgid "Scroller"
+msgstr ""
+
+#: advance/meta.php:687 advance/meta.php:881
+msgid "Slider"
+msgstr ""
+
+#: advance/meta.php:688
+msgid "Full width photos"
+msgstr ""
+
+#: advance/meta.php:698 advance/meta.php:892
+msgid "Fit images"
+msgstr ""
+
+#: advance/meta.php:699 advance/meta.php:893
+msgid ""
+"How will images fit area. <strong>Fit when needed</strong> is best for small "
+"images, that shouldn't be stretched to bigger sizes, only to smaller(to keep "
+"them visible)."
+msgstr ""
+
+#: advance/meta.php:703 advance/meta.php:897
+msgid "Fit always"
+msgstr ""
+
+#: advance/meta.php:704 advance/meta.php:898
+msgid "Fit landscape"
+msgstr ""
+
+#: advance/meta.php:705 advance/meta.php:899
+msgid "Fit portrait"
+msgstr ""
+
+#: advance/meta.php:706 advance/meta.php:900
+msgid "Fit when needed"
+msgstr ""
+
+#: advance/meta.php:711 advance/meta.php:905 advance/options.php:1437
+#: advance/options.php:1735
+msgid "Autoplay"
+msgstr ""
+
+#: advance/meta.php:712 advance/meta.php:906
+msgid "If autoplay is on, slider items will start sliding on page load"
+msgstr ""
+
+#: advance/meta.php:719 advance/meta.php:913 advance/meta.php:958
+#: advance/options.php:400 advance/options.php:434 advance/options.php:472
+#: advance/options.php:579 advance/options.php:1258 advance/options.php:1442
+#: advance/options.php:1485 advance/options.php:1496 advance/options.php:1535
+#: advance/options.php:1740 advance/options.php:1783 advance/options.php:1794
+#: advance/options.php:2130 advance/options.php:2141
+msgid "Enable"
+msgstr ""
+
+#: advance/meta.php:720 advance/meta.php:914 advance/meta.php:959
+#: advance/options.php:401 advance/options.php:435 advance/options.php:473
+#: advance/options.php:580 advance/options.php:1259 advance/options.php:1443
+#: advance/options.php:1486 advance/options.php:1497 advance/options.php:1536
+#: advance/options.php:1741 advance/options.php:1784 advance/options.php:1795
+#: advance/options.php:2131 advance/options.php:2142
+msgid "Disable"
+msgstr ""
+
+#: advance/meta.php:725 advance/meta.php:919 advance/options.php:1458
+#: advance/options.php:1756
+msgid "Transition type"
+msgstr ""
+
+#: advance/meta.php:726 advance/meta.php:920 advance/options.php:1459
+#: advance/options.php:1757
+msgid "Animation between slides."
+msgstr ""
+
+#: advance/meta.php:733 advance/meta.php:927 advance/options.php:568
+#: advance/options.php:883 advance/options.php:1463 advance/options.php:1761
+msgid "None"
+msgstr ""
+
+#: advance/meta.php:734 advance/meta.php:928 advance/options.php:1464
+#: advance/options.php:1762
+msgid "Fade"
+msgstr ""
+
+#: advance/meta.php:735 advance/meta.php:929 advance/options.php:1465
+#: advance/options.php:1763
+msgid "Carousel"
+msgstr ""
+
+#: advance/meta.php:858
+msgid ""
+"If you fill this then clicking in your gallery on galleries list will not "
+"lead to single gallery page but to link from this field."
+msgstr ""
+
+#: advance/meta.php:876
+msgid "Theme"
+msgstr ""
+
+#: advance/meta.php:882
+msgid "Bricks"
+msgstr ""
+
+#: advance/meta.php:942 advance/options.php:1318 advance/options.php:1595
+msgid "Hover Effect"
+msgstr ""
+
+#: advance/meta.php:949 advance/options.php:1325 advance/options.php:1602
+msgid "Uncover"
+msgstr ""
+
+#: advance/meta.php:953 advance/options.php:1253 advance/options.php:1530
+msgid "Items displayed Full width"
+msgstr ""
+
+#: advance/meta.php:954
+msgid ""
+"Part of layout with items will be displayed on full width. In other case "
+"items will be displayed in standard layout \"box\"."
+msgstr ""
+
+#: advance/meta.php:983
+msgid "Multi upload"
+msgstr ""
+
+#: advance/meta.php:997
+msgid "Choose image or video"
+msgstr ""
+
+#: advance/meta.php:998
+msgid "Choose between Image or Video"
+msgstr ""
+
+#: advance/meta.php:1005
+msgid "Video"
+msgstr ""
+
+#: advance/meta.php:1013
+msgid "Attachment id"
+msgstr ""
+
+#: advance/meta.php:1020
+msgid "Thumb input"
+msgstr ""
+
+#: advance/meta.php:1027
+msgid "Upload image"
+msgstr ""
+
+#: advance/meta.php:1036
+msgid "Link"
+msgstr ""
+
+#: advance/meta.php:1037
+msgid "Alternative link"
+msgstr ""
+
+#: advance/meta.php:1043
+msgid "Color under photo"
+msgstr ""
+
+#: advance/meta.php:1044
+msgid "Leave empty to use album default."
+msgstr ""
+
+#: advance/meta.php:1058
+msgid "Link to video"
+msgstr ""
+
+#: advance/meta.php:1066
+msgid "Video Thumb"
+msgstr ""
+
+#: advance/meta.php:1067
+msgid ""
+"Displayed instead of video placeholder in some cases. If none, placeholder "
+"will be used(for youtube movies default thumbnail will show)."
+msgstr ""
+
+#: advance/meta.php:1074
+msgid "Autoplay video"
+msgstr ""
+
+#: advance/meta.php:1093
+msgid "Title"
+msgstr ""
+
+#: advance/meta.php:1101
+msgid "Description"
+msgstr ""
+
+#: advance/meta.php:1108
+msgid "Add next image or video"
+msgstr ""
+
+#: advance/options.php:22
+msgid "Front page"
+msgstr ""
+
+#: advance/options.php:29
+msgid "What to show on front page?"
+msgstr ""
+
+#: advance/options.php:30
+msgid ""
+"If you choose <strong>Page</strong> then make sure that in Settings->Reading-"
+">Front page displays you selected <strong>A static page</strong>, that you "
+"wish to use.<br />"
+msgstr ""
+
+#: advance/options.php:36
+msgid "Page"
+msgstr ""
+
+#: advance/options.php:38
+msgid "Works list"
+msgstr ""
+
+#: advance/options.php:39
+msgid "Galleries list"
+msgstr ""
+
+#: advance/options.php:40
+msgid "Selected gallery"
+msgstr ""
+
+#: advance/options.php:45
+msgid "Select gallery to use as front page"
+msgstr ""
+
+#: advance/options.php:54
+msgid "Google Analytics"
+msgstr ""
+
+#: advance/options.php:60
+msgid "Enter code here from GA here:"
+msgstr ""
+
+#: advance/options.php:61
+msgid ""
+"Enter whole code that beggins with <code>&lt;script type=\"text/javascript"
+"\"&gt;</code> and ends with <code>&lt;/script&gt;</code>."
+msgstr ""
+
+#: advance/options.php:83
+msgid "Main appearance settings"
+msgstr ""
+
+#: advance/options.php:90
+msgid "Layout style"
+msgstr ""
+
+#: advance/options.php:91
+msgid "It affects layout in wide resolutions."
+msgstr ""
+
+#: advance/options.php:95
+msgid "Narrow"
+msgstr ""
+
+#: advance/options.php:96
+msgid "Wide"
+msgstr ""
+
+#: advance/options.php:112
+msgid "Favicon"
+msgstr ""
+
+#: advance/options.php:113
+msgid ""
+"Enter an URL or upload an image for favicon. It will appear in adress bar or "
+"on tab in browser. Image should be square (16x16px or 32x32px). Paste the "
+"full URL (include <code>http://</code>)."
+msgstr ""
+
+#: advance/options.php:116 advance/options.php:125 advance/options.php:199
+#: advance/options.php:294 advance/options.php:303 advance/options.php:681
+#: advance/options.php:787
+msgid "Upload/Select Image"
+msgstr ""
+
+#: advance/options.php:117
+msgid "Insert favicon"
+msgstr ""
+
+#: advance/options.php:121 advance/options.php:677
+msgid "Custom background image"
+msgstr ""
+
+#: advance/options.php:122 advance/options.php:678
+msgid ""
+"Enter an URL or upload an image for background. Paste the full URL (include "
+"<code>http://</code>)."
+msgstr ""
+
+#: advance/options.php:151
+msgid "Background attachment"
+msgstr ""
+
+#: advance/options.php:156
+msgid "fixed"
+msgstr ""
+
+#: advance/options.php:157
+msgid "scroll"
+msgstr ""
+
+#: advance/options.php:162
+msgid "Mouse cursor"
+msgstr ""
+
+#: advance/options.php:167
+msgid "Use normal"
+msgstr ""
+
+#: advance/options.php:168
+msgid "Use one of predefined"
+msgstr ""
+
+#: advance/options.php:169
+msgid "Use custom"
+msgstr ""
+
+#: advance/options.php:179
+msgid "Cursors"
+msgstr ""
+
+#: advance/options.php:195
+msgid "Custom cursor image"
+msgstr ""
+
+#: advance/options.php:196
+msgid ""
+"Enter an URL or upload an image for cursor. Paste the full URL (include "
+"<code>http://</code>)."
+msgstr ""
+
+#: advance/options.php:200
+msgid "Insert cursor"
+msgstr ""
+
+#: advance/options.php:213 advance/options.php:761
+msgid "Links color"
+msgstr ""
+
+#: advance/options.php:220 advance/options.php:768
+msgid "Links color hover"
+msgstr ""
+
+#: advance/options.php:230
+msgid "Buttons colors"
+msgstr ""
+
+#: advance/options.php:236 advance/options.php:641
+msgid "Button color"
+msgstr ""
+
+#: advance/options.php:243 advance/options.php:648
+msgid "Button text color"
+msgstr ""
+
+#: advance/options.php:250 advance/options.php:655
+msgid "Button hover color"
+msgstr ""
+
+#: advance/options.php:257 advance/options.php:662
+msgid "Button hover text color"
+msgstr ""
+
+#: advance/options.php:267
+msgid "Customize Logo"
+msgstr ""
+
+#: advance/options.php:274
+msgid "Logo type"
+msgstr ""
+
+#: advance/options.php:280 advance/options.php:422
+msgid "Text"
+msgstr ""
+
+#: advance/options.php:290
+msgid "Logo image"
+msgstr ""
+
+#: advance/options.php:291 advance/options.php:300
+msgid ""
+"Enter an URL or upload an image for logo. Paste the full URL (include "
+"<code>http://</code>)."
+msgstr ""
+
+#: advance/options.php:295 advance/options.php:304
+msgid "Insert logo"
+msgstr ""
+
+#: advance/options.php:299
+msgid "Logo image for HIGH DPI screen"
+msgstr ""
+
+#: advance/options.php:300
+msgid "For example Retina(iPhone/iPad) screen is HIGH DPI."
+msgstr ""
+
+#: advance/options.php:333
+msgid "Text in your logo"
+msgstr ""
+
+#: advance/options.php:340
+msgid "Logo text color"
+msgstr ""
+
+#: advance/options.php:347
+msgid "Logo font size"
+msgstr ""
+
+#: advance/options.php:348 advance/options.php:486 advance/options.php:524
+#: advance/options.php:754
+msgid "Use slider to set proper font size."
+msgstr ""
+
+#: advance/options.php:365
+msgid "Static pages"
+msgstr ""
+
+#: advance/options.php:371 advance/widgets.php:112
+msgid "Page sidebar"
+msgstr ""
+
+#: advance/options.php:372
+msgid "It affects look of pages. You can change it in each page settings."
+msgstr ""
+
+#: advance/options.php:389
+msgid "Header top bar"
+msgstr ""
+
+#: advance/options.php:395
+msgid "Top bar of header"
+msgstr ""
+
+#: advance/options.php:411
+msgid "Color"
+msgstr ""
+
+#: advance/options.php:416
+msgid "Dark"
+msgstr ""
+
+#: advance/options.php:417
+msgid "Light"
+msgstr ""
+
+#: advance/options.php:429
+msgid "Theme social icons"
+msgstr ""
+
+#: advance/options.php:450
+msgid "Customize header"
+msgstr ""
+
+#: advance/options.php:456
+msgid "Header style"
+msgstr ""
+
+#: advance/options.php:457
+msgid "In centered style logo takes separate row in wide resolution."
+msgstr ""
+
+#: advance/options.php:461 advance/options.php:557 advance/options.php:872
+msgid "Normal"
+msgstr ""
+
+#: advance/options.php:462
+msgid "Centered"
+msgstr ""
+
+#: advance/options.php:467
+msgid "Fixed header"
+msgstr ""
+
+#: advance/options.php:468
+msgid "If enabled, header will remain fixed while scrolling page."
+msgstr ""
+
+#: advance/options.php:485
+msgid "Menu main links/\"Mega menu group\" font size"
+msgstr ""
+
+#: advance/options.php:495
+msgid "Menu links color"
+msgstr ""
+
+#: advance/options.php:502
+msgid "Menu links hover/active color"
+msgstr ""
+
+#: advance/options.php:509
+msgid "Menu separator color"
+msgstr ""
+
+#: advance/options.php:516
+msgid "Menu hover background color"
+msgstr ""
+
+#: advance/options.php:523
+msgid "Submenu links font size"
+msgstr ""
+
+#: advance/options.php:531
+msgid "Submenu links color"
+msgstr ""
+
+#: advance/options.php:538
+msgid "Submenu links hover/active color"
+msgstr ""
+
+#: advance/options.php:545
+msgid "Submenu hover/active background color"
+msgstr ""
+
+#: advance/options.php:552
+msgid "Menu font weight"
+msgstr ""
+
+#: advance/options.php:558 advance/options.php:873
+msgid "Bold"
+msgstr ""
+
+#: advance/options.php:563
+msgid "Menu text transform"
+msgstr ""
+
+#: advance/options.php:569 advance/options.php:884
+msgid "Uppercase"
+msgstr ""
+
+#: advance/options.php:574
+msgid "Switch on/off header search form"
+msgstr ""
+
+#: advance/options.php:587
+msgid "Button near main menu"
+msgstr ""
+
+#: advance/options.php:593
+msgid "Turn on/off this button"
+msgstr ""
+
+#: advance/options.php:630
+msgid "Show button in width below 680px"
+msgstr ""
+
+#: advance/options.php:671
+msgid "Customize title bar"
+msgstr ""
+
+#: advance/options.php:726
+msgid "Customize footer"
+msgstr ""
+
+#: advance/options.php:739
+msgid "Widget title font color"
+msgstr ""
+
+#: advance/options.php:746
+msgid "Font color"
+msgstr ""
+
+#: advance/options.php:753
+msgid "Font size"
+msgstr ""
+
+#: advance/options.php:775
+msgid "Footer text"
+msgstr ""
+
+#: advance/options.php:783
+msgid "Image in foot text"
+msgstr ""
+
+#: advance/options.php:784
+msgid "It will be aligned left in footer text area."
+msgstr ""
+
+#: advance/options.php:788
+msgid "Insert image"
+msgstr ""
+
+#: advance/options.php:798
+msgid "Defined in CSS"
+msgstr ""
+
+#: advance/options.php:799
+msgid "Arial"
+msgstr ""
+
+#: advance/options.php:800
+msgid "Calibri"
+msgstr ""
+
+#: advance/options.php:801
+msgid "Cambria"
+msgstr ""
+
+#: advance/options.php:802
+msgid "Georgia"
+msgstr ""
+
+#: advance/options.php:803
+msgid "Tahoma"
+msgstr ""
+
+#: advance/options.php:804
+msgid "Times new roman"
+msgstr ""
+
+#: advance/options.php:809
+msgid "Fonts settings"
+msgstr ""
+
+#: advance/options.php:816
+msgid "Font for top nav menu, interactive elements, short labels, etc.:"
+msgstr ""
+
+#: advance/options.php:817 advance/options.php:827 advance/options.php:837
+msgid ""
+"If you choose <strong>classic font</strong> then remember that this setting "
+"depends on fonts installed on client device.<br />If you choose "
+"<strong>google font</strong> then remember to choose needed variants and "
+"subsets. Read more in documentation.<br />For preview google font is loaded "
+"with variants regular and 700, and all available subsets."
+msgstr ""
+
+#: advance/options.php:826
+msgid "Font for Titles/Headings:"
+msgstr ""
+
+#: advance/options.php:836
+msgid "Font for normal(content) text:"
+msgstr ""
+
+#: advance/options.php:847
+msgid "Headings styles"
+msgstr ""
+
+#: advance/options.php:853
+msgid "Headings/Titles color"
+msgstr ""
+
+#: advance/options.php:860
+msgid "Headings/Titles color hover"
+msgstr ""
+
+#: advance/options.php:867
+msgid "Headings/Titles font weight"
+msgstr ""
+
+#: advance/options.php:878
+msgid "Headings/Titles text transform"
+msgstr ""
+
+#: advance/options.php:897
+msgid "Blog, Search &amp; Archives appearance"
+msgstr ""
+
+#: advance/options.php:904
+msgid "Type of post excerpts"
+msgstr ""
+
+#: advance/options.php:905
+msgid ""
+"In Manual mode excerpts are used only if you add more tag (&lt;!--more--"
+"&gt;).<br />In Automatic mode if you won't provide more tag or explicit "
+"excerpt, content of post will be cut automatic.<br />This setting only "
+"concerns blog list, archive list, search results. <br />Read more in "
+"<strong>Adding New Posts/Pages -&gt; Posts list / blog</strong> section in "
+"documentation."
+msgstr ""
+
+#: advance/options.php:913
+msgid "Manual"
+msgstr ""
+
+#: advance/options.php:918
+msgid "Blog appearance variant:"
+msgstr ""
+
+#: advance/options.php:919 advance/options.php:966
+msgid "It affects look of main blog page."
+msgstr ""
+
+#: advance/options.php:923
+msgid "Classic 1: First title, next post media"
+msgstr ""
+
+#: advance/options.php:924
+msgid "Classic 2: First post media, next title"
+msgstr ""
+
+#: advance/options.php:925
+msgid "Classic 3: Everything centered"
+msgstr ""
+
+#: advance/options.php:926
+msgid "Short list"
+msgstr ""
+
+#: advance/options.php:927
+msgid "Masonry bricks"
+msgstr ""
+
+#: advance/options.php:937 advance/options.php:1676
+msgid "Brick width"
+msgstr ""
+
+#: advance/options.php:938
+msgid ""
+"Use slider to set proper size. Width set here will be dynamically changed up "
+"to 120% to stretch bricks to fill space."
+msgstr ""
+
+#: advance/options.php:947 advance/options.php:1696
+msgid "Brick margin"
+msgstr ""
+
+#: advance/options.php:965 advance/widgets.php:100
+msgid "Blog sidebar"
+msgstr ""
+
+#: advance/options.php:977
+msgid "Archive sidebar"
+msgstr ""
+
+#: advance/options.php:978
+msgid "It affects look of search and archive pages."
+msgstr ""
+
+#: advance/options.php:989
+msgid "RSS icon"
+msgstr ""
+
+#: advance/options.php:1000 advance/options.php:1086
+msgid "Display post Media"
+msgstr ""
+
+#: advance/options.php:1001
+msgid ""
+"You can set to not display post media(featured image/video/slider) inside of "
+"post brick."
+msgstr ""
+
+#: advance/options.php:1011 advance/options.php:1119
+msgid "Post meta: Date"
+msgstr ""
+
+#: advance/options.php:1022 advance/options.php:1130
+msgid "Post meta: Author"
+msgstr ""
+
+#: advance/options.php:1033 advance/options.php:1141
+msgid "Post meta: Comments number"
+msgstr ""
+
+#: advance/options.php:1044 advance/options.php:1152
+msgid "Post meta: Tags"
+msgstr ""
+
+#: advance/options.php:1055 advance/options.php:1163
+msgid "Post meta: Categories"
+msgstr ""
+
+#: advance/options.php:1068
+msgid "Post appearance"
+msgstr ""
+
+#: advance/options.php:1074 advance/widgets.php:106
+msgid "Post sidebar"
+msgstr ""
+
+#: advance/options.php:1075
+msgid "It affects look of posts. You can change it in each post."
+msgstr ""
+
+#: advance/options.php:1087
+msgid ""
+"You can set to not display post media(featured image/video/slider) inside of "
+"post."
+msgstr ""
+
+#: advance/options.php:1097
+msgid "Author info in post"
+msgstr ""
+
+#: advance/options.php:1098
+msgid ""
+"Will show information about author below post content. Not displayed in blog "
+"post list."
+msgstr ""
+
+#: advance/options.php:1108
+msgid "Related posts under content of post"
+msgstr ""
+
+#: advance/options.php:1109
+msgid "Will show up to 3 related posts to current post."
+msgstr ""
+
+#: advance/options.php:1182
+msgid "Works main settings"
+msgstr ""
+
+#: advance/options.php:1189
+msgid "Work slug name"
+msgstr ""
+
+#: advance/options.php:1190
+msgid ""
+"Don't change this if you don't have to. Remember that if you use nice "
+"permalinks(eg. <code>yoursite.com/page-about-me</code>, <code>yoursite.com/"
+"album/damn-empty/</code>) then <strong>NONE of your static pages</strong> "
+"should have same slug as this, or pagination will break and other problems "
+"may appear."
+msgstr ""
+
+#: advance/options.php:1196
+msgid "Related works under content of work"
+msgstr ""
+
+#: advance/options.php:1197
+msgid "Will show up to 3 related works to current work."
+msgstr ""
+
+#: advance/options.php:1207
+msgid "Comments"
+msgstr ""
+
+#: advance/options.php:1218
+msgid "Show work genres in single view"
+msgstr ""
+
+#: advance/options.php:1231
+msgid "Works list page settings"
+msgstr ""
+
+#: advance/options.php:1238
+msgid "Works main page"
+msgstr ""
+
+#: advance/options.php:1239
+msgid ""
+"Select page that is your Works list page. It will make working some "
+"features. If you setup Work list as your front page then you don't have to "
+"set any page here."
+msgstr ""
+
+#: advance/options.php:1245
+msgid "Work list page title"
+msgstr ""
+
+#: advance/options.php:1254
+msgid ""
+"Part of layout with works items will be displayed on full width. In other "
+"case items will be displayed in standard layout \"box\"."
+msgstr ""
+
+#: advance/options.php:1264 advance/options.php:1541
+msgid "Where to show category filter"
+msgstr ""
+
+#: advance/options.php:1265
+msgid ""
+"If <strong>Above</strong> is selected, place it will be displayed depends on "
+"<strong>Works appearance variant</strong>"
+msgstr ""
+
+#: advance/options.php:1269 advance/options.php:1546
+msgid "Title bar"
+msgstr ""
+
+#: advance/options.php:1271 advance/options.php:1548
+msgid "Above"
+msgstr ""
+
+#: advance/options.php:1272 advance/options.php:1549
+msgid "Don't show filter"
+msgstr ""
+
+#: advance/options.php:1277 advance/options.php:1554
+msgid "Filter by default is"
+msgstr ""
+
+#: advance/options.php:1282 advance/options.php:1559
+msgid "Open"
+msgstr ""
+
+#: advance/options.php:1283 advance/options.php:1560
+msgid "Closed"
+msgstr ""
+
+#: advance/options.php:1289
+msgid "Works appearance variant:"
+msgstr ""
+
+#: advance/options.php:1290 advance/options.php:1567
+msgid "It affects look of works list page."
+msgstr ""
+
+#: advance/options.php:1294 advance/options.php:1571
+msgid "Classic 1: Big-sized images"
+msgstr ""
+
+#: advance/options.php:1295 advance/options.php:1572
+msgid "Classic 2: Medium-sized images"
+msgstr ""
+
+#: advance/options.php:1296 advance/options.php:1573
+msgid "Classic 3: Small-sized images"
+msgstr ""
+
+#: advance/options.php:1297 advance/options.php:1574
+msgid "Image with \"on hover title\""
+msgstr ""
+
+#: advance/options.php:1307
+msgid "Show works titles"
+msgstr ""
+
+#: advance/options.php:1329 advance/options.php:1606 advance/options.php:1665
+msgid "Zoom on hover"
+msgstr ""
+
+#: advance/options.php:1340 advance/options.php:1617
+msgid "Cover width"
+msgstr ""
+
+#: advance/options.php:1350 advance/options.php:1627
+msgid "Cover height"
+msgstr ""
+
+#: advance/options.php:1351 advance/options.php:1628 advance/options.php:1687
+msgid ""
+"Use slider to set proper size. If you want photo to not be cropped, set to 0."
+msgstr ""
+
+#: advance/options.php:1360 advance/options.php:1637
+msgid "Cover margin"
+msgstr ""
+
+#: advance/options.php:1381
+msgid "Single work appearance(Scroller)"
+msgstr ""
+
+#: advance/options.php:1387
+msgid "Scroller height"
+msgstr ""
+
+#: advance/options.php:1388 advance/options.php:1449 advance/options.php:1471
+#: advance/options.php:1481 advance/options.php:1492
+msgid "Global for all works."
+msgstr ""
+
+#: advance/options.php:1397 advance/options.php:1426 advance/options.php:1724
+msgid "Images size"
+msgstr ""
+
+#: advance/options.php:1398 advance/options.php:1427 advance/options.php:1725
+msgid "You can use images that you have uploaded, or resized versions."
+msgstr ""
+
+#: advance/options.php:1403 advance/options.php:1432 advance/options.php:1730
+msgid "Resized"
+msgstr ""
+
+#: advance/options.php:1410
+msgid "Single work appearance(Slider)"
+msgstr ""
+
+#: advance/options.php:1416 advance/options.php:1714
+msgid "Slider height"
+msgstr ""
+
+#: advance/options.php:1438
+msgid ""
+"If autoplay is on, slider will run on page load. Global setting, but you can "
+"change this in each work."
+msgstr ""
+
+#: advance/options.php:1448 advance/options.php:1746
+msgid "Slide interval(ms)"
+msgstr ""
+
+#: advance/options.php:1449 advance/options.php:1747
+msgid "Time between slide transitions."
+msgstr ""
+
+#: advance/options.php:1470 advance/options.php:1768
+msgid "Transition speed(ms)"
+msgstr ""
+
+#: advance/options.php:1471 advance/options.php:1769
+msgid "Speed of transition."
+msgstr ""
+
+#: advance/options.php:1480
+msgid "Titles"
+msgstr ""
+
+#: advance/options.php:1481
+msgid "Show image/video titles."
+msgstr ""
+
+#: advance/options.php:1491
+msgid "List of slides(buttons)"
+msgstr ""
+
+#: advance/options.php:1509
+msgid "Galleries list page settings"
+msgstr ""
+
+#: advance/options.php:1516
+msgid "Galleries main page"
+msgstr ""
+
+#: advance/options.php:1517
+msgid ""
+"Select page that is your Galleries list page. It will make working some "
+"features. If you setup Galleries list as your front page then you don't have "
+"to set any page here."
+msgstr ""
+
+#: advance/options.php:1523
+msgid "Galleries list page title"
+msgstr ""
+
+#: advance/options.php:1531
+msgid ""
+"Part of layout with galleries items will be displayed on full width. In "
+"other case items will be displayed in standard layout \"box\"."
+msgstr ""
+
+#: advance/options.php:1542
+msgid ""
+"If <strong>Above</strong> is selected, place it will be displayed depends on "
+"<strong>Galleries appearance variant</strong>"
+msgstr ""
+
+#: advance/options.php:1566
+msgid "Galleries appearance variant:"
+msgstr ""
+
+#: advance/options.php:1584
+msgid "Show galleries titles"
+msgstr ""
+
+#: advance/options.php:1658
+msgid "Gallery appearance(Bricks theme)"
+msgstr ""
+
+#: advance/options.php:1677 advance/options.php:1687 advance/options.php:1697
+#: advance/options.php:1747 advance/options.php:1769 advance/options.php:1779
+#: advance/options.php:1790
+msgid "Global for all galleries."
+msgstr ""
+
+#: advance/options.php:1686
+msgid "Brick height"
+msgstr ""
+
+#: advance/options.php:1708
+msgid "Gallery appearance(Slider theme)"
+msgstr ""
+
+#: advance/options.php:1736
+msgid ""
+"If autoplay is on, slider will run on page load. Global setting, but you can "
+"change this in each gallery."
+msgstr ""
+
+#: advance/options.php:1778
+msgid "Titles and descriptions"
+msgstr ""
+
+#: advance/options.php:1779
+msgid "Show image/video titles and descriptions."
+msgstr ""
+
+#: advance/options.php:1789
+msgid "List of slides(buttons)."
+msgstr ""
+
+#: advance/options.php:1808
+msgid "Add custom sidebars"
+msgstr ""
+
+#: advance/options.php:1815
+msgid "New sidebar name"
+msgstr ""
+
+#: advance/options.php:1816
+msgid "Choose name for new sidebar and click <b>Save Changes</b> to add it."
+msgstr ""
+
+#: advance/options.php:2004 advance/options.php:2010
+msgid "Social services"
+msgstr ""
+
+#: advance/options.php:2011
+msgid ""
+"If you face problems with saving this options, then please remove "
+"<code>http://</code> from your social links.<br />It will be converted to "
+"proper links on front-end, so don't worry;-)"
+msgstr ""
+
+#: advance/options.php:2025
+msgid "Map settings"
+msgstr ""
+
+#: advance/options.php:2032
+msgid "Contact page map"
+msgstr ""
+
+#: advance/options.php:2048
+msgid "Google map drop area"
+msgstr ""
+
+#: advance/options.php:2049
+msgid ""
+"Paste here your google map link(see documentation for more info), and "
+"everything will be filled automatically."
+msgstr ""
+
+#: advance/options.php:2055
+msgid "Latitude, Longitude"
+msgstr ""
+
+#: advance/options.php:2056
+msgid "Use format Latitude, Longitude (ex. 50.854817, 20.644566)"
+msgstr ""
+
+#: advance/options.php:2063
+msgid "Map type"
+msgstr ""
+
+#: advance/options.php:2068
+msgid "Road map"
+msgstr ""
+
+#: advance/options.php:2069
+msgid "Satellite"
+msgstr ""
+
+#: advance/options.php:2070
+msgid "Hybrid"
+msgstr ""
+
+#: advance/options.php:2071
+msgid "Terrain"
+msgstr ""
+
+#: advance/options.php:2076
+msgid "Zoom level"
+msgstr ""
+
+#: advance/options.php:2077
+msgid "Use slider to set proper zoom level."
+msgstr ""
+
+#: advance/options.php:2086
+msgid "Marker title"
+msgstr ""
+
+#: advance/options.php:2087
+msgid "Will show while hovering mouse cursor over marker"
+msgstr ""
+
+#: advance/options.php:2093
+msgid "Info window content"
+msgstr ""
+
+#: advance/options.php:2094
+msgid "Will show up after clicking in marker"
+msgstr ""
+
+#: advance/options.php:2118
+msgid "Miscellaneous settings"
+msgstr ""
+
+#: advance/options.php:2125
+msgid "Comments validation"
+msgstr ""
+
+#: advance/options.php:2126
+msgid ""
+"If you wish to use some plugin for validation in <strong>comments form</"
+"strong> then you should turn off build in theme validation"
+msgstr ""
+
+#: advance/options.php:2136
+msgid "Theme lightbox"
+msgstr ""
+
+#: advance/options.php:2137
+msgid ""
+"If you wish to use some other plugin/script for images and items switch it "
+"off."
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:45
+msgid "Full width?"
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:53
+msgid "Full width content?"
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:67
+msgid "Select background color for your row."
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:74
+msgid "Background image"
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:76
+msgid "Select background image for your row"
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:82
+msgid "Background position"
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:85
+msgid "Top left"
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:86
+msgid "Top center"
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:87
+msgid "Top right"
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:88
+msgid "Middle left"
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:89
+msgid "Middle center"
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:90
+msgid "Middle right"
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:91
+msgid "Bottom left"
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:92
+msgid "Bottom center"
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:93
+msgid "Bottom right"
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:104
+msgid "Background repeat"
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:107
+msgid "No repeat"
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:108
+msgid "Repeat in both axes"
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:109
+msgid "Repeat X axe"
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:110
+msgid "Repeat Y axe"
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:121
+msgid "Cover background with image?"
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:124
+msgid ""
+"This is good if you use single not repeated image for background. If you "
+"want to use repeated pattern then uncheck this."
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:134
+msgid "Enable parallax?"
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:146
+msgid "Parallax speed"
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:149
+msgid "Interesting values are in range of 0.01-0.99."
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:163
+msgid "Padding"
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:166
+msgid "It will add padding in top and bottom. Value in pixels."
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:172
+msgid "Side padding"
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:175
+msgid "It will add padding in left and right. Value in pixels."
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:181
+msgid "Bottom margin"
+msgstr ""
+
+#: advance/plugins/js_composer_mod/config.php:184
+msgid "Value in pixels."
+msgstr ""
+
+#: advance/widgets.php:101
+msgid ""
+"Widgets from this sidebar will appear on blog, search results, archive page "
+"and 404 error page."
+msgstr ""
+
+#: advance/widgets.php:107
+msgid "Widgets from this sidebar will appear in single posts."
+msgstr ""
+
+#: advance/widgets.php:113 advance/widgets.php:125
+msgid "Widgets from this sidebar will appear in static pages."
+msgstr ""
+
+#: advance/widgets.php:146
+msgid "Footer widget area"
+msgstr ""
+
+#: advance/widgets.php:148
+msgid "Widgets from this area will appear in footer."
+msgstr ""
+
+#: advance/widgets.php:160
+msgid "The most recent posts on your site"
+msgstr ""
+
+#: advance/widgets.php:161
+msgid "Recent Posts"
+msgstr ""
+
+#: advance/widgets.php:233 advance/widgets.php:323 advance/widgets.php:425
+#: advance/widgets.php:520 advance/widgets.php:694 advance/widgets.php:800
+#: advance/widgets.php:934
+msgid "Title:"
+msgstr ""
+
+#: advance/widgets.php:236 advance/widgets.php:326 advance/widgets.php:428
+#: advance/widgets.php:697
+msgid "Number of posts to show:"
+msgstr ""
+
+#: advance/widgets.php:239 advance/widgets.php:329 advance/widgets.php:431
+msgid "Add posts excerpt"
+msgstr ""
+
+#: advance/widgets.php:250
+msgid "The most popular posts on your site"
+msgstr ""
+
+#: advance/widgets.php:251
+msgid "Popular Posts"
+msgstr ""
+
+#: advance/widgets.php:339
+msgid "Related posts to current post"
+msgstr ""
+
+#: advance/widgets.php:340
+msgid "Related Posts"
+msgstr ""
+
+#: advance/widgets.php:441
+msgid "The most recent comments"
+msgstr ""
+
+#: advance/widgets.php:442
+msgid "Recent Comments"
+msgstr ""
+
+#: advance/widgets.php:484
+msgid "on"
+msgstr ""
+
+#: advance/widgets.php:523
+msgid "Number of comments to show:"
+msgstr ""
+
+#: advance/widgets.php:526
+msgid "Add comments excerpt"
+msgstr ""
+
+#: advance/widgets.php:605
+msgid "Your most recent added works"
+msgstr ""
+
+#: advance/widgets.php:606
+msgid "Recent Works"
+msgstr ""
+
+#: advance/widgets.php:707 advance/widgets.php:708
+msgid "Contact information"
+msgstr ""
+
+#: advance/widgets.php:802
+msgid "Content:"
+msgstr ""
+
+#: advance/widgets.php:804
+msgid "Phone:"
+msgstr ""
+
+#: advance/widgets.php:806
+msgid "Fax:"
+msgstr ""
+
+#: advance/widgets.php:808
+msgid "E-mail:"
+msgstr ""
+
+#: advance/widgets.php:810
+msgid "Site:"
+msgstr ""
+
+#: advance/widgets.php:812
+msgid "Open hours info:"
+msgstr ""
+
+#: advance/widgets.php:824
+msgid "Widget to put shortcodes in"
+msgstr ""
+
+#: advance/widgets.php:826
+msgid "Shortcodes"
+msgstr ""
+
+#: advance/widgets.php:870
+msgid "Social icons form theme settings"
+msgstr ""
+
+#: advance/widgets.php:871
+msgid "Apollo13 Social Icons"
+msgstr ""

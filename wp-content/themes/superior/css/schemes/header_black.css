@@ -1,0 +1,41 @@
+/* ==================
+   DARK HEADER CSS
+   ==================*/
+/*#header{
+    background-color: #1C1C1C;
+}
+.head a,
+#footer a{
+    color: #ccc;
+}
+.head a:hover,
+#footer a:hover{
+    color: #fff;
+}
+.top-menu li{
+     background-color: #1C1C1C;
+}
+.top-menu li:hover,
+.top-menu li.current-menu-item{
+    background-color: #fff;
+}
+.top-menu li a{
+    color: #F5F5F5;
+}
+.top-menu li:hover > a,
+.top-menu li.current-menu-item > a{
+    color: #333;
+}
+#access, #footer .copyright{
+    background-image: url('data:image/gif;base64,R0lGODlhAwAHAIABAFJSUv///yH5BAEAAAEALAAAAAADAAcAAAIFRI5niVsAOw==');
+}
+#header input[type="search"]{
+    background-color:#171717;
+    border-color: #2A2A2A;
+    color: #fff;
+}
+@media only screen and (max-width: 650px) {
+    #footer{
+        background-color: #0f0f0f;
+    }
+}*/
