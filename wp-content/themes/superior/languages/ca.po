@@ -6,7 +6,7 @@ msgstr ""
 "PO-Revision-Date: 2014-08-14 09:58+0100\n"
 "Last-Translator: Apollo13 <info@apollo13.eu>\n"
 "Language-Team: Apollo13 <info@apollo13.eu>\n"
-"Language: es\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,43 +24,43 @@ msgstr "Error 404"
 #: 404.php:44 archives_template.php:31 contact.php:36 contact2.php:36
 #: page.php:30 single.php:34
 msgid "Pages: "
-msgstr "Páginas"
+msgstr "Pàgines:"
 
 #: advance/cpt_work.php:146
 msgid "Visit Site"
-msgstr "Visitar Web"
+msgstr "Visitar web"
 
 #: advance/head_scripts_styles.php:104
 msgid "Load more"
-msgstr "Cargar más"
+msgstr "Carregar més"
 
 #: advance/options.php:1248
 msgid "Portfolio"
-msgstr "Portfolio"
+msgstr "Portfoli"
 
 #: advance/options.php:1526 no-content.php:58
 msgid "Galleries"
-msgstr "Galerias"
+msgstr "Galeries"
 
 #: advance/utilities.php:90
 #, php-format
 msgid "Page %s"
-msgstr "Página %s"
+msgstr "Pàgina %s"
 
 #: advance/utilities.php:172
 #, php-format
 msgid "Posted on <time class=\"entry-date\" datetime=\"%1$s\">%2$s</time> "
-msgstr "Publicado el <time class=\"entry-date\" datetime=\"%1$s\">%2$s</time> "
+msgstr "Publicat el <time class=\"entry-date\" datetime=\"%1$s\">%2$s</time> "
 
 #: advance/utilities.php:185
 #, php-format
 msgid "by <a class=\"author\" href=\"%1$s\" title=\"%2$s\">%3$s</a> "
-msgstr "por <a class=\"author\" href=\"%1$s\" title=\"%2$s\">%3$s</a> "
+msgstr "per <a class=\"author\" href=\"%1$s\" title=\"%2$s\">%3$s</a> "
 
 #: advance/utilities.php:187 attachment.php:79
 #, php-format
 msgid "View all posts by %s"
-msgstr "Ver todas las publicaciones de %s"
+msgstr "Veure totes les entrades per %s"
 
 #: advance/utilities.php:200 advance/utilities.php:201
 #: vc_templates/a13_recent_posts.php:181 vc_templates/a13_recent_posts.php:182
@@ -68,24 +68,24 @@ msgstr "Ver todas las publicaciones de %s"
 #: vc_templates/teasers.php:188
 #, php-format
 msgid "%d Comment(s)"
-msgstr "%d Comentario(s)"
+msgstr "%d Comentaris"
 
 #: advance/utilities.php:214
 #, php-format
 msgid "<span class=\"tags\">tagged %s</span> "
-msgstr "<span class=\"tags\">etiquetado %s</span> "
+msgstr "<span class=\"tags\">etiquetat %s</span> "
 
 #: advance/utilities.php:230
 #, php-format
 msgid "<span class=\"cats\">in %s</span> "
-msgstr "<span class=\"cats\">en %s</span> "
+msgstr "<span class=\"cats\">a %s</span> "
 
 #: advance/utilities.php:308
 msgid ""
 "This post is password protected. To view it please enter your password below:"
 msgstr ""
-"Esta publicación está protegido con contraseña. Para verla introduce tu "
-"contraseña abajo:"
+"Aquesta publicació està protegida amb contrasenya. Per poder veure-la "
+"introdueix al contrasenya a sota:"
 
 #: advance/utilities.php:309
 msgid "Submit"
@@ -97,22 +97,22 @@ msgstr "Buscar"
 
 #: advance/utilities.php:732
 msgid "My cart"
-msgstr "Mi carrito"
+msgstr "El meu carro"
 
 #: advance/utilities.php:767 content.php:30 content.php:38
 msgid "Read more"
-msgstr "Leer más"
+msgstr "Seguir llegint"
 
 #  translators: 1: date, 2: time
 # 12.07.2012 at 12:00
 #: advance/utilities.php:833
 #, php-format
 msgid "%1$s at %2$s"
-msgstr "%1$s en %2$s"
+msgstr "%1$s a %2$s"
 
 #: advance/utilities.php:840
 msgid "Your comment is awaiting moderation."
-msgstr "Tu comentario está esperando moderación."
+msgstr "El teu comentari està pendent de moderació."
 
 #: advance/utilities.php:853
 msgid "Pingback:"
@@ -124,15 +124,15 @@ msgstr "Editar"
 
 #: advance/utilities.php:1156
 msgid "Follow us on "
-msgstr "Som Energia en "
+msgstr "Som Energia a "
 
 #: advance/utilities.php:1177
 msgid "Similar Posts"
-msgstr "Publicaciones similares"
+msgstr "Articles similars"
 
 #: advance/utilities.php:1188
 msgid "Similar Works"
-msgstr "Trabajos similares"
+msgstr "Treballs similars"
 
 #: advance/utilities.php:1430
 msgid "Previous"
@@ -140,7 +140,7 @@ msgstr "Anterior"
 
 #: advance/utilities.php:1445
 msgid "Next"
-msgstr "Siguiente"
+msgstr "Següent"
 
 #: advance/utilities.php:1566
 msgid "Blog"
@@ -152,187 +152,186 @@ msgstr "RSS"
 
 #: advance/utilities.php:1693
 msgid "Back to Works list"
-msgstr "Volver a la lista de trabajos"
+msgstr "Tornar a la llista de feines"
 
 #: advance/utilities.php:1707
 msgid "Back to Galleries list"
-msgstr "Volver a la galería"
+msgstr "Tornar a la llista de galeries"
 
 #: advance/utilities.php:1721
 msgid "Back to Blog"
-msgstr "Volver al blog"
+msgstr "Tornar al blog"
 
 #: advance/widgets.php:72
 msgid "comment(s)"
-msgstr "comentario(s)"
+msgstr "comentaris"
 
 #: advance/widgets.php:184
 msgid "Recent Posts"
-msgstr "Publicaciones recientes"
+msgstr "Articles recents"
 
 #: advance/widgets.php:274
 msgid "Popular Posts"
-msgstr "Publicaciones populares"
+msgstr "Articles populars"
 
 #: advance/widgets.php:363
 msgid "Related Posts"
-msgstr "Publicaciones relacionadas"
+msgstr "Articles relacionats"
 
 #: advance/widgets.php:468
 msgid "Recent Comments"
-msgstr "Comentarios recientes"
+msgstr "Comentaris recents"
 
 #: advance/widgets.php:628
 msgid "Recent Works"
-msgstr "Últimos trabajos"
+msgstr "Feines recents"
 
 #: advance/widgets.php:731
 msgid "Contact information"
-msgstr "Información de contacto"
+msgstr "Informació de contacte"
 
 #: advance/widgets.php:894
 msgid "Social Icons"
-msgstr "Iconas Socia"
+msgstr "Icones socials"
 
 #: archive.php:30
 #, php-format
 msgid "Author Archives: %s"
-msgstr "Archivos del autor: %s"
+msgstr "Arxiu d'autor: %s"
 
 #: archive.php:32
 #, php-format
 msgid "Category Archives: %s"
-msgstr "Archivos por categoría: %s"
+msgstr "Ariux de categories: %s"
 
 #: archive.php:34
 #, php-format
 msgid "Tag Archives: %s"
-msgstr "Archivo etiqueta: %s"
+msgstr "Arxiu d'etiquetes: %s"
 
 #: archive.php:36
 #, php-format
 msgid "Daily Archives: %s"
-msgstr "Archivo diario: %s"
+msgstr "Arxiu diari: %s"
 
 #: archive.php:38
 #, php-format
 msgid "Monthly Archives: %s"
-msgstr "Archivo mensuales: %s"
+msgstr "Arxiu mensual: %s"
 
 #: archive.php:40
 #, php-format
 msgid "Yearly Archives: %s"
-msgstr "Archivo anuales: %s"
+msgstr "Arxiu anual: %s"
 
 #: archive.php:42
 msgid "Blog Archives"
-msgstr "Archivos blog"
+msgstr "Arxiu del blog"
 
 #: archive.php:84 galleries-list.php:64 loop.php:23 works-list.php:62
 msgid "Apologies, but no results were found for the requested archive."
-msgstr ""
-"Lo sentimos, pero no encontramos resultados para el archivo solicitado."
+msgstr "Ens sap greu! No trobem resultats per l'arxiu sol·licitat"
 
 #: archives_template.php:37
 #, php-format
 msgid "Latest %d posts"
-msgstr "Últimas %d publicaciones"
+msgstr "Últims %d articles"
 
 #: archives_template.php:49
 msgid "By months"
-msgstr "Por mes"
+msgstr "Per mesos"
 
 #: archives_template.php:59
 #, php-format
 msgid "Top %d categories"
-msgstr "Top %d categorías"
+msgstr "Top %d categories"
 
 #: archives_template.php:72
 #, php-format
 msgid "Top %d tags"
-msgstr "Top %d etiquetas "
+msgstr "Top %d etiquetes"
 
 #: attachment.php:69 attachment.php:71
 #, php-format
 msgid "Return to %s"
-msgstr "Volver a %s"
+msgstr "Tornar a %s"
 
 # By Jan Kowalski
 #: attachment.php:76
 #, php-format
 msgid "By %1$s"
-msgstr "Por %1$s"
+msgstr "Per %1$s"
 
 #: attachment.php:86
 #, php-format
 msgid "<span>Published %1$s</span>"
-msgstr "<span>Publicado %1$s</span>"
+msgstr "<span>Publicat %1$s</span>"
 
 #: attachment.php:95
 #, php-format
 msgid "Full size is %s pixels"
-msgstr "Tamaño completo de %s pixels"
+msgstr "Tamany real %s pixels"
 
 #: attachment.php:98
 msgid "Link to full-size image"
-msgstr "Enlace a la imagen a tamaño completo"
+msgstr "Enllaç a la imatge real"
 
 #: comments.php:12
 msgid ""
 "This post is password protected. Enter the password to view any comments."
 msgstr ""
-"Esta publicación está protegido con contraseña. Introduce la contraseña para "
-"ver cualquier comentario."
+"Aquest article està protegit en contrasenya. Introdueix-la per veure els "
+"comentaris."
 
 #: comments.php:25
 #, php-format
 msgid "%d comments"
-msgstr "%d comentarios"
+msgstr "%d comentaris"
 
 #: comments.php:39
 msgid "Older Comments"
-msgstr "Comentarios más antiguos"
+msgstr "Comentaris antics"
 
 #: comments.php:40
 msgid "Newer Comments"
-msgstr "Comentarios más nuevos."
+msgstr "Comentaris nous"
 
 #: comments.php:51
 msgid "Comments are closed."
-msgstr "Los comentarios están cerrados"
+msgstr "Els comentaris estàn tancats."
 
 #: comments.php:63
 msgid "Name"
-msgstr "Nombre"
+msgstr "Nom"
 
 #: comments.php:66
 msgid "Email"
-msgstr "Correo electrónico"
+msgstr "Email"
 
 #: comments.php:69
 msgid "Website"
-msgstr "Sitio web"
+msgstr "Website"
 
 #: comments.php:80
 msgid "Message"
-msgstr "Mensaje"
+msgstr "Missatge"
 
 #: comments.php:81
 msgid "Leave a reply"
-msgstr "Deja una respuesta"
+msgstr "Deixa una resposta"
 
 #: comments.php:82
 #, php-format
 msgid "Leave a replay to %s"
-msgstr "Deja una respuesta a %s"
+msgstr "Deixa una resposa a %s"
 
 #: comments.php:83
 msgid "required"
-msgstr "Obligatorio"
+msgstr "obligatori"
 
 #: comments.php:84 comments.php:85
 msgid "Please correct form"
-msgstr "Por favor, corrige el formulario"
+msgstr "Si us plau, repasa el formulari"
 
 #: comments.php:85
 #, php-format
@@ -340,16 +339,16 @@ msgid ""
 "Logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\" title=\"Log out of "
 "this account\">Log out?</a>"
 msgstr ""
-"Iniciar sesión como <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\" title=\"Log "
-"out of this account\">Log out?</a>"
+"Sessió iniciada com a <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\" title="
+"\"Log out of this account\">Sortir?</a>"
 
 #: comments.php:87
 msgid "Submit Comment"
-msgstr "Enviar comentario"
+msgstr "Enviar comentari"
 
 #: comments.php:88
 msgid "Cancel reply"
-msgstr "Cancelar respuesta"
+msgstr "Cancelar resposta"
 
 #: galleries-list.php:41 works-list.php:38
 #, php-format
@@ -362,54 +361,54 @@ msgstr "Menú principal"
 
 #: header.php:56
 msgid "Skip to primary content"
-msgstr "Saltar al contenido principal"
+msgstr "Saltar al contingut principal"
 
 #: header.php:57
 msgid "Skip to secondary content"
-msgstr "Saltar al contenido secundario"
+msgstr "Saltar al contingut secundari"
 
 #: no-content.php:8
 msgid "Go back"
-msgstr "Volver"
+msgstr "Tornar"
 
 #: no-content.php:8
 msgid "or use Site Map below:"
-msgstr "o utiliza el Mapa Web de abajo:"
+msgstr "o utilitza el Mapa Web de sota:"
 
 #: no-content.php:25
 msgid "Main navigation"
-msgstr "Menú principal"
+msgstr "Navegació principal"
 
 #: no-content.php:36
 msgid "Categories"
-msgstr "Categorías"
+msgstr "Categories"
 
 #: no-content.php:77
 msgid "Pages"
-msgstr "Páginas"
+msgstr "Pàgines"
 
 #: no-content.php:98
 msgid "Works"
-msgstr "Trabajos"
+msgstr "Feines"
 
 #: parts/genre-filter.php:31
 msgid "Filter"
-msgstr "Filtro"
+msgstr "Filtre"
 
 #: parts/genre-filter.php:32
 msgid "All"
-msgstr "Todo"
+msgstr "Tots"
 
 #: search.php:17
 #, php-format
 msgid "%1$d Search results for \"%2$s\""
-msgstr "%1$d resultados de búsqueda por \"%2$s\""
+msgstr "%1$d Resultats de la cerca per \"%2$s\""
 
 #: search.php:48
 #, php-format
 msgid "No Search results for \"%1$s\""
-msgstr "Ningun resultado de la búsqueda \"%1$s\""
+msgstr "No hem trobat resultat per la cerca \"%1$s\""
 
 #: single.php:43
 msgid "About the author"
-msgstr "Sobre el autor"
+msgstr "Sobre l'autor"

@@ -3,28 +3,28 @@ msgstr ""
 "Project-Id-Version: superior fe\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-05 00:27+0100\n"
-"PO-Revision-Date: 2014-08-14 09:58+0100\n"
+"PO-Revision-Date: 2014-08-14 11:13+0100\n"
 "Last-Translator: Apollo13 <info@apollo13.eu>\n"
 "Language-Team: Apollo13 <info@apollo13.eu>\n"
-"Language: es\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: _fe;__fe\n"
 "X-Poedit-Basepath: D:\\workspace\\Superior\\superior\n"
-"X-Generator: Poedit 1.6.7\n"
+"X-Generator: Poedit 1.5.7\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: 404.php:16
 msgid "Error 404"
-msgstr "Error 404"
+msgstr "Erro 404"
 
 #: 404.php:44 archives_template.php:31 contact.php:36 contact2.php:36
 #: page.php:30 single.php:34
 msgid "Pages: "
-msgstr "Páginas"
+msgstr "Páxinas"
 
 #: advance/cpt_work.php:146
 msgid "Visit Site"
@@ -32,7 +32,7 @@ msgstr "Visitar Web"
 
 #: advance/head_scripts_styles.php:104
 msgid "Load more"
-msgstr "Cargar más"
+msgstr "Cargar máis"
 
 #: advance/options.php:1248
 msgid "Portfolio"
@@ -40,27 +40,27 @@ msgstr "Portfolio"
 
 #: advance/options.php:1526 no-content.php:58
 msgid "Galleries"
-msgstr "Galerias"
+msgstr "Galerías"
 
 #: advance/utilities.php:90
 #, php-format
 msgid "Page %s"
-msgstr "Página %s"
+msgstr "Páxina %s"
 
 #: advance/utilities.php:172
 #, php-format
 msgid "Posted on <time class=\"entry-date\" datetime=\"%1$s\">%2$s</time> "
-msgstr "Publicado el <time class=\"entry-date\" datetime=\"%1$s\">%2$s</time> "
+msgstr "Publicado o <time class=\"entry-date\" datetime=\"%1$s\">%2$s</time>"
 
 #: advance/utilities.php:185
 #, php-format
 msgid "by <a class=\"author\" href=\"%1$s\" title=\"%2$s\">%3$s</a> "
-msgstr "por <a class=\"author\" href=\"%1$s\" title=\"%2$s\">%3$s</a> "
+msgstr "por <a class=\"author\" href=\"%1$s\" title=\"%2$s\">%3$s</a>"
 
 #: advance/utilities.php:187 attachment.php:79
 #, php-format
 msgid "View all posts by %s"
-msgstr "Ver todas las publicaciones de %s"
+msgstr "Ver todas as publicacións de %s"
 
 #: advance/utilities.php:200 advance/utilities.php:201
 #: vc_templates/a13_recent_posts.php:181 vc_templates/a13_recent_posts.php:182
@@ -73,19 +73,19 @@ msgstr "%d Comentario(s)"
 #: advance/utilities.php:214
 #, php-format
 msgid "<span class=\"tags\">tagged %s</span> "
-msgstr "<span class=\"tags\">etiquetado %s</span> "
+msgstr "<span class=\"tags\">etiquetado %s</span>"
 
 #: advance/utilities.php:230
 #, php-format
 msgid "<span class=\"cats\">in %s</span> "
-msgstr "<span class=\"cats\">en %s</span> "
+msgstr "<span class=\"cats\">en %s</span>"
 
 #: advance/utilities.php:308
 msgid ""
 "This post is password protected. To view it please enter your password below:"
 msgstr ""
-"Esta publicación está protegido con contraseña. Para verla introduce tu "
-"contraseña abajo:"
+"Esta publicación está protexida con contrasinal. Para vela introduce o teu "
+"contrasinal abaixo:"
 
 #: advance/utilities.php:309
 msgid "Submit"
@@ -101,7 +101,7 @@ msgstr "Mi carrito"
 
 #: advance/utilities.php:767 content.php:30 content.php:38
 msgid "Read more"
-msgstr "Leer más"
+msgstr "Ler máis"
 
 #  translators: 1: date, 2: time
 # 12.07.2012 at 12:00
@@ -112,7 +112,7 @@ msgstr "%1$s en %2$s"
 
 #: advance/utilities.php:840
 msgid "Your comment is awaiting moderation."
-msgstr "Tu comentario está esperando moderación."
+msgstr "O teu comentario está pendente de moderación."
 
 #: advance/utilities.php:853
 msgid "Pingback:"
@@ -124,15 +124,15 @@ msgstr "Editar"
 
 #: advance/utilities.php:1156
 msgid "Follow us on "
-msgstr "Som Energia en "
+msgstr "Som Energia en"
 
 #: advance/utilities.php:1177
 msgid "Similar Posts"
-msgstr "Publicaciones similares"
+msgstr "Publicacións similares"
 
 #: advance/utilities.php:1188
 msgid "Similar Works"
-msgstr "Trabajos similares"
+msgstr "Traballos similares"
 
 #: advance/utilities.php:1430
 msgid "Previous"
@@ -140,11 +140,11 @@ msgstr "Anterior"
 
 #: advance/utilities.php:1445
 msgid "Next"
-msgstr "Siguiente"
+msgstr "Seguinte"
 
 #: advance/utilities.php:1566
 msgid "Blog"
-msgstr "Blog"
+msgstr "Blogue"
 
 #: advance/utilities.php:1606
 msgid "RSS"
@@ -152,15 +152,15 @@ msgstr "RSS"
 
 #: advance/utilities.php:1693
 msgid "Back to Works list"
-msgstr "Volver a la lista de trabajos"
+msgstr "Volver á lista de traballos"
 
 #: advance/utilities.php:1707
 msgid "Back to Galleries list"
-msgstr "Volver a la galería"
+msgstr "Volver á galería"
 
 #: advance/utilities.php:1721
 msgid "Back to Blog"
-msgstr "Volver al blog"
+msgstr "Volver ao blogue"
 
 #: advance/widgets.php:72
 msgid "comment(s)"
@@ -168,23 +168,23 @@ msgstr "comentario(s)"
 
 #: advance/widgets.php:184
 msgid "Recent Posts"
-msgstr "Publicaciones recientes"
+msgstr "Publicacións recentes"
 
 #: advance/widgets.php:274
 msgid "Popular Posts"
-msgstr "Publicaciones populares"
+msgstr "Publicacións populares"
 
 #: advance/widgets.php:363
 msgid "Related Posts"
-msgstr "Publicaciones relacionadas"
+msgstr "Publicacións relacionadas"
 
 #: advance/widgets.php:468
 msgid "Recent Comments"
-msgstr "Comentarios recientes"
+msgstr "Comentarios recentes"
 
 #: advance/widgets.php:628
 msgid "Recent Works"
-msgstr "Últimos trabajos"
+msgstr "Últimos traballos"
 
 #: advance/widgets.php:731
 msgid "Contact information"
@@ -192,51 +192,50 @@ msgstr "Información de contacto"
 
 #: advance/widgets.php:894
 msgid "Social Icons"
-msgstr "Iconas Socia"
+msgstr "Iconas Sociais"
 
 #: archive.php:30
 #, php-format
 msgid "Author Archives: %s"
-msgstr "Archivos del autor: %s"
+msgstr "Arquivos do/a autor/a: %s"
 
 #: archive.php:32
 #, php-format
 msgid "Category Archives: %s"
-msgstr "Archivos por categoría: %s"
+msgstr "Arquivos por categoría: %s"
 
 #: archive.php:34
 #, php-format
 msgid "Tag Archives: %s"
-msgstr "Archivo etiqueta: %s"
+msgstr "Arquivos da etiqueta: %s"
 
 #: archive.php:36
 #, php-format
 msgid "Daily Archives: %s"
-msgstr "Archivo diario: %s"
+msgstr "Arquivos diarios: %s"
 
 #: archive.php:38
 #, php-format
 msgid "Monthly Archives: %s"
-msgstr "Archivo mensuales: %s"
+msgstr "Arquivos mensuais: %s"
 
 #: archive.php:40
 #, php-format
 msgid "Yearly Archives: %s"
-msgstr "Archivo anuales: %s"
+msgstr "Arquivos anuais: %s"
 
 #: archive.php:42
 msgid "Blog Archives"
-msgstr "Archivos blog"
+msgstr "Arquivos blogue"
 
 #: archive.php:84 galleries-list.php:64 loop.php:23 works-list.php:62
 msgid "Apologies, but no results were found for the requested archive."
-msgstr ""
-"Lo sentimos, pero no encontramos resultados para el archivo solicitado."
+msgstr "Sentímolo, mais non atopamos resultados para o arquivo solicitado."
 
 #: archives_template.php:37
 #, php-format
 msgid "Latest %d posts"
-msgstr "Últimas %d publicaciones"
+msgstr "Últimas %d publicacións"
 
 #: archives_template.php:49
 msgid "By months"
@@ -250,7 +249,7 @@ msgstr "Top %d categorías"
 #: archives_template.php:72
 #, php-format
 msgid "Top %d tags"
-msgstr "Top %d etiquetas "
+msgstr "Top %d etiquetas"
 
 #: attachment.php:69 attachment.php:71
 #, php-format
@@ -275,14 +274,14 @@ msgstr "Tamaño completo de %s pixels"
 
 #: attachment.php:98
 msgid "Link to full-size image"
-msgstr "Enlace a la imagen a tamaño completo"
+msgstr "Ligazón á imaxe a tamaño completo"
 
 #: comments.php:12
 msgid ""
 "This post is password protected. Enter the password to view any comments."
 msgstr ""
-"Esta publicación está protegido con contraseña. Introduce la contraseña para "
-"ver cualquier comentario."
+"Esta publicación está protexida con contrasinal. Introduce o contrasinal "
+"para ver calquera comentario."
 
 #: comments.php:25
 #, php-format
@@ -291,19 +290,19 @@ msgstr "%d comentarios"
 
 #: comments.php:39
 msgid "Older Comments"
-msgstr "Comentarios más antiguos"
+msgstr "Comentarios máis antigos"
 
 #: comments.php:40
 msgid "Newer Comments"
-msgstr "Comentarios más nuevos."
+msgstr "Comentarios máis novos."
 
 #: comments.php:51
 msgid "Comments are closed."
-msgstr "Los comentarios están cerrados"
+msgstr "Os comentarios están pechados."
 
 #: comments.php:63
 msgid "Name"
-msgstr "Nombre"
+msgstr "Nome"
 
 #: comments.php:66
 msgid "Email"
@@ -315,24 +314,24 @@ msgstr "Sitio web"
 
 #: comments.php:80
 msgid "Message"
-msgstr "Mensaje"
+msgstr "Mensaxe"
 
 #: comments.php:81
 msgid "Leave a reply"
-msgstr "Deja una respuesta"
+msgstr "Deixa unha resposta"
 
 #: comments.php:82
 #, php-format
 msgid "Leave a replay to %s"
-msgstr "Deja una respuesta a %s"
+msgstr "Deixa unha resposta a %s"
 
 #: comments.php:83
 msgid "required"
-msgstr "Obligatorio"
+msgstr "Obrigatorio"
 
 #: comments.php:84 comments.php:85
 msgid "Please correct form"
-msgstr "Por favor, corrige el formulario"
+msgstr "Por favor, corrixe o formulario"
 
 #: comments.php:85
 #, php-format
@@ -340,8 +339,8 @@ msgid ""
 "Logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\" title=\"Log out of "
 "this account\">Log out?</a>"
 msgstr ""
-"Iniciar sesión como <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\" title=\"Log "
-"out of this account\">Log out?</a>"
+"Sesión iniciada como <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\" title=\"Log "
+"out of this account\">Saír?</a>"
 
 #: comments.php:87
 msgid "Submit Comment"
@@ -349,7 +348,7 @@ msgstr "Enviar comentario"
 
 #: comments.php:88
 msgid "Cancel reply"
-msgstr "Cancelar respuesta"
+msgstr "Cancelar resposta"
 
 #: galleries-list.php:41 works-list.php:38
 #, php-format
@@ -362,11 +361,11 @@ msgstr "Menú principal"
 
 #: header.php:56
 msgid "Skip to primary content"
-msgstr "Saltar al contenido principal"
+msgstr "Saltar ao contido principal"
 
 #: header.php:57
 msgid "Skip to secondary content"
-msgstr "Saltar al contenido secundario"
+msgstr "Saltar ao contido secundario"
 
 #: no-content.php:8
 msgid "Go back"
@@ -374,7 +373,7 @@ msgstr "Volver"
 
 #: no-content.php:8
 msgid "or use Site Map below:"
-msgstr "o utiliza el Mapa Web de abajo:"
+msgstr "ou utiliza o Mapa Web de abaixo:"
 
 #: no-content.php:25
 msgid "Main navigation"
@@ -386,11 +385,11 @@ msgstr "Categorías"
 
 #: no-content.php:77
 msgid "Pages"
-msgstr "Páginas"
+msgstr "Páxinas"
 
 #: no-content.php:98
 msgid "Works"
-msgstr "Trabajos"
+msgstr "Traballos"
 
 #: parts/genre-filter.php:31
 msgid "Filter"
@@ -403,13 +402,13 @@ msgstr "Todo"
 #: search.php:17
 #, php-format
 msgid "%1$d Search results for \"%2$s\""
-msgstr "%1$d resultados de búsqueda por \"%2$s\""
+msgstr "%1$d resultados da búsqueda por \"%2$s\""
 
 #: search.php:48
 #, php-format
 msgid "No Search results for \"%1$s\""
-msgstr "Ningun resultado de la búsqueda \"%1$s\""
+msgstr "Ningún resultado da búsqueda \"%1$s\""
 
 #: single.php:43
 msgid "About the author"
-msgstr "Sobre el autor"
+msgstr "Sobre o/a autor/a"

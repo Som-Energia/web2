@@ -3,36 +3,36 @@ msgstr ""
 "Project-Id-Version: superior fe\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-05 00:27+0100\n"
-"PO-Revision-Date: 2014-08-14 09:58+0100\n"
+"PO-Revision-Date: 2014-08-14 11:32+0100\n"
 "Last-Translator: Apollo13 <info@apollo13.eu>\n"
 "Language-Team: Apollo13 <info@apollo13.eu>\n"
-"Language: es\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: _fe;__fe\n"
 "X-Poedit-Basepath: D:\\workspace\\Superior\\superior\n"
-"X-Generator: Poedit 1.6.7\n"
+"X-Generator: Poedit 1.5.7\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: 404.php:16
 msgid "Error 404"
-msgstr "Error 404"
+msgstr "Errorea 404"
 
 #: 404.php:44 archives_template.php:31 contact.php:36 contact2.php:36
 #: page.php:30 single.php:34
 msgid "Pages: "
-msgstr "Páginas"
+msgstr "Orrialdeak:"
 
 #: advance/cpt_work.php:146
 msgid "Visit Site"
-msgstr "Visitar Web"
+msgstr "Web bisitatu"
 
 #: advance/head_scripts_styles.php:104
 msgid "Load more"
-msgstr "Cargar más"
+msgstr "Gehiago kargatu"
 
 #: advance/options.php:1248
 msgid "Portfolio"
@@ -40,27 +40,28 @@ msgstr "Portfolio"
 
 #: advance/options.php:1526 no-content.php:58
 msgid "Galleries"
-msgstr "Galerias"
+msgstr "Galeriak"
 
 #: advance/utilities.php:90
 #, php-format
 msgid "Page %s"
-msgstr "Página %s"
+msgstr "%s. orrialdea"
 
 #: advance/utilities.php:172
 #, php-format
 msgid "Posted on <time class=\"entry-date\" datetime=\"%1$s\">%2$s</time> "
-msgstr "Publicado el <time class=\"entry-date\" datetime=\"%1$s\">%2$s</time> "
+msgstr ""
+"<time class=\"entry-date\" datetime=\"%1$s\">%2$s</time>(e)an argitaratua"
 
 #: advance/utilities.php:185
 #, php-format
 msgid "by <a class=\"author\" href=\"%1$s\" title=\"%2$s\">%3$s</a> "
-msgstr "por <a class=\"author\" href=\"%1$s\" title=\"%2$s\">%3$s</a> "
+msgstr "<a class=\"author\" href=\"%1$s\" title=\"%2$s\">%3$s</a>(e)k"
 
 #: advance/utilities.php:187 attachment.php:79
 #, php-format
 msgid "View all posts by %s"
-msgstr "Ver todas las publicaciones de %s"
+msgstr "%s(r)en argitalpen guztiak ikusi"
 
 #: advance/utilities.php:200 advance/utilities.php:201
 #: vc_templates/a13_recent_posts.php:181 vc_templates/a13_recent_posts.php:182
@@ -68,32 +69,31 @@ msgstr "Ver todas las publicaciones de %s"
 #: vc_templates/teasers.php:188
 #, php-format
 msgid "%d Comment(s)"
-msgstr "%d Comentario(s)"
+msgstr "%d iruzkin"
 
 #: advance/utilities.php:214
 #, php-format
 msgid "<span class=\"tags\">tagged %s</span> "
-msgstr "<span class=\"tags\">etiquetado %s</span> "
+msgstr "<span class=\"tags\">etiketatua %s</span>"
 
 #: advance/utilities.php:230
 #, php-format
 msgid "<span class=\"cats\">in %s</span> "
-msgstr "<span class=\"cats\">en %s</span> "
+msgstr "<span class=\"cats\"> %s</span>(e)n"
 
 #: advance/utilities.php:308
 msgid ""
 "This post is password protected. To view it please enter your password below:"
 msgstr ""
-"Esta publicación está protegido con contraseña. Para verla introduce tu "
-"contraseña abajo:"
+"Argitalpen hau babestua dago pasahitzez. Ikusteko, sartu pasahitza azpian:"
 
 #: advance/utilities.php:309
 msgid "Submit"
-msgstr "Enviar"
+msgstr "Bidali"
 
 #: advance/utilities.php:674 advance/utilities.php:683
 msgid "Search"
-msgstr "Buscar"
+msgstr "Bilatu"
 
 #: advance/utilities.php:732
 msgid "My cart"
@@ -101,18 +101,18 @@ msgstr "Mi carrito"
 
 #: advance/utilities.php:767 content.php:30 content.php:38
 msgid "Read more"
-msgstr "Leer más"
+msgstr "Gehiago irakurri"
 
 #  translators: 1: date, 2: time
 # 12.07.2012 at 12:00
 #: advance/utilities.php:833
 #, php-format
 msgid "%1$s at %2$s"
-msgstr "%1$s en %2$s"
+msgstr "%1$s  %2$s(e)n"
 
 #: advance/utilities.php:840
 msgid "Your comment is awaiting moderation."
-msgstr "Tu comentario está esperando moderación."
+msgstr "Zure iruzkina moderazioaren zain dago"
 
 #: advance/utilities.php:853
 msgid "Pingback:"
@@ -120,31 +120,31 @@ msgstr "Pingback:"
 
 #: advance/utilities.php:853 attachment.php:106
 msgid "Edit"
-msgstr "Editar"
+msgstr "Editatu"
 
 #: advance/utilities.php:1156
 msgid "Follow us on "
-msgstr "Som Energia en "
+msgstr "Som Energia hemen"
 
 #: advance/utilities.php:1177
 msgid "Similar Posts"
-msgstr "Publicaciones similares"
+msgstr "Antzeko argitalpenak"
 
 #: advance/utilities.php:1188
 msgid "Similar Works"
-msgstr "Trabajos similares"
+msgstr "Antzeko lanak"
 
 #: advance/utilities.php:1430
 msgid "Previous"
-msgstr "Anterior"
+msgstr "Aurrekoa"
 
 #: advance/utilities.php:1445
 msgid "Next"
-msgstr "Siguiente"
+msgstr "Hurrengoa"
 
 #: advance/utilities.php:1566
 msgid "Blog"
-msgstr "Blog"
+msgstr "Bloga"
 
 #: advance/utilities.php:1606
 msgid "RSS"
@@ -152,187 +152,186 @@ msgstr "RSS"
 
 #: advance/utilities.php:1693
 msgid "Back to Works list"
-msgstr "Volver a la lista de trabajos"
+msgstr "Itzuli lan zerrendara"
 
 #: advance/utilities.php:1707
 msgid "Back to Galleries list"
-msgstr "Volver a la galería"
+msgstr "Itzuli galeriara"
 
 #: advance/utilities.php:1721
 msgid "Back to Blog"
-msgstr "Volver al blog"
+msgstr "Itzuli blogera"
 
 #: advance/widgets.php:72
 msgid "comment(s)"
-msgstr "comentario(s)"
+msgstr "iruzkin"
 
 #: advance/widgets.php:184
 msgid "Recent Posts"
-msgstr "Publicaciones recientes"
+msgstr "Argitalpen gustukoak"
 
 #: advance/widgets.php:274
 msgid "Popular Posts"
-msgstr "Publicaciones populares"
+msgstr "Erlazionatutako argitalpenak"
 
 #: advance/widgets.php:363
 msgid "Related Posts"
-msgstr "Publicaciones relacionadas"
+msgstr "Iruzkin berriak"
 
 #: advance/widgets.php:468
 msgid "Recent Comments"
-msgstr "Comentarios recientes"
+msgstr "Azken lanak"
 
 #: advance/widgets.php:628
 msgid "Recent Works"
-msgstr "Últimos trabajos"
+msgstr "Kontaktu informazioa"
 
 #: advance/widgets.php:731
 msgid "Contact information"
-msgstr "Información de contacto"
+msgstr "Ikono sozialak"
 
 #: advance/widgets.php:894
 msgid "Social Icons"
-msgstr "Iconas Socia"
+msgstr "Artxiboak autorez: %s"
 
 #: archive.php:30
 #, php-format
 msgid "Author Archives: %s"
-msgstr "Archivos del autor: %s"
+msgstr "Artxiboak kategoriaz: %s"
 
 #: archive.php:32
 #, php-format
 msgid "Category Archives: %s"
-msgstr "Archivos por categoría: %s"
+msgstr "Artxiboak etiketaz: %s"
 
 #: archive.php:34
 #, php-format
 msgid "Tag Archives: %s"
-msgstr "Archivo etiqueta: %s"
+msgstr "Artxiboak egunez: %s"
 
 #: archive.php:36
 #, php-format
 msgid "Daily Archives: %s"
-msgstr "Archivo diario: %s"
+msgstr "Artxiboak hilabetez: %s"
 
 #: archive.php:38
 #, php-format
 msgid "Monthly Archives: %s"
-msgstr "Archivo mensuales: %s"
+msgstr "Artxiboak urtez: %s"
 
 #: archive.php:40
 #, php-format
 msgid "Yearly Archives: %s"
-msgstr "Archivo anuales: %s"
+msgstr "Artxiboak blogaz: %s"
 
 #: archive.php:42
 msgid "Blog Archives"
-msgstr "Archivos blog"
+msgstr "Artxiboak blogaz"
 
 #: archive.php:84 galleries-list.php:64 loop.php:23 works-list.php:62
 msgid "Apologies, but no results were found for the requested archive."
-msgstr ""
-"Lo sentimos, pero no encontramos resultados para el archivo solicitado."
+msgstr "Barkatu, baina ez dugu aurkitu eskatu duzun artxiboa"
 
 #: archives_template.php:37
 #, php-format
 msgid "Latest %d posts"
-msgstr "Últimas %d publicaciones"
+msgstr "Azken %d argitalpen"
 
 #: archives_template.php:49
 msgid "By months"
-msgstr "Por mes"
+msgstr "Hilabetez"
 
 #: archives_template.php:59
 #, php-format
 msgid "Top %d categories"
-msgstr "Top %d categorías"
+msgstr "Top %d kategoria"
 
 #: archives_template.php:72
 #, php-format
 msgid "Top %d tags"
-msgstr "Top %d etiquetas "
+msgstr "Top %d etiketa"
 
 #: attachment.php:69 attachment.php:71
 #, php-format
 msgid "Return to %s"
-msgstr "Volver a %s"
+msgstr "Itzuli %s(e)ra "
 
 # By Jan Kowalski
 #: attachment.php:76
 #, php-format
 msgid "By %1$s"
-msgstr "Por %1$s"
+msgstr "%1$s(e)k"
 
 #: attachment.php:86
 #, php-format
 msgid "<span>Published %1$s</span>"
-msgstr "<span>Publicado %1$s</span>"
+msgstr "<span>Argitaratua %1$s</span>"
 
 #: attachment.php:95
 #, php-format
 msgid "Full size is %s pixels"
-msgstr "Tamaño completo de %s pixels"
+msgstr "Tamaina osoa %s pixel"
 
 #: attachment.php:98
 msgid "Link to full-size image"
-msgstr "Enlace a la imagen a tamaño completo"
+msgstr "Lotura tamaina osoko irudira"
 
 #: comments.php:12
 msgid ""
 "This post is password protected. Enter the password to view any comments."
 msgstr ""
-"Esta publicación está protegido con contraseña. Introduce la contraseña para "
-"ver cualquier comentario."
+"Argitalpen hau babestua dago pasahitzez. Sar ezazu pasahitza edozein "
+"iruzkina ikusteko."
 
 #: comments.php:25
 #, php-format
 msgid "%d comments"
-msgstr "%d comentarios"
+msgstr "%d iruzkin"
 
 #: comments.php:39
 msgid "Older Comments"
-msgstr "Comentarios más antiguos"
+msgstr "Iruzkin zaharrenak"
 
 #: comments.php:40
 msgid "Newer Comments"
-msgstr "Comentarios más nuevos."
+msgstr "Iruzkin berrienak"
 
 #: comments.php:51
 msgid "Comments are closed."
-msgstr "Los comentarios están cerrados"
+msgstr "Iruzkinak itxita daude."
 
 #: comments.php:63
 msgid "Name"
-msgstr "Nombre"
+msgstr "Izena"
 
 #: comments.php:66
 msgid "Email"
-msgstr "Correo electrónico"
+msgstr "Posta elektronikoa"
 
 #: comments.php:69
 msgid "Website"
-msgstr "Sitio web"
+msgstr "Web lekua"
 
 #: comments.php:80
 msgid "Message"
-msgstr "Mensaje"
+msgstr "Mezua"
 
 #: comments.php:81
 msgid "Leave a reply"
-msgstr "Deja una respuesta"
+msgstr "Utzi erantzuna"
 
 #: comments.php:82
 #, php-format
 msgid "Leave a replay to %s"
-msgstr "Deja una respuesta a %s"
+msgstr "Utzi erantzuna  %s(r)i"
 
 #: comments.php:83
 msgid "required"
-msgstr "Obligatorio"
+msgstr "Beharrezkoa"
 
 #: comments.php:84 comments.php:85
 msgid "Please correct form"
-msgstr "Por favor, corrige el formulario"
+msgstr "Mesedez, zuzendu inprimakia"
 
 #: comments.php:85
 #, php-format
@@ -340,16 +339,16 @@ msgid ""
 "Logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\" title=\"Log out of "
 "this account\">Log out?</a>"
 msgstr ""
-"Iniciar sesión como <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\" title=\"Log "
-"out of this account\">Log out?</a>"
+"Saioa <a href=\"%1$s\">%2$s</a> bezala hasita. <a href=\"%3$s\" title=\"Log "
+"out of this account\">Atera?</a>"
 
 #: comments.php:87
 msgid "Submit Comment"
-msgstr "Enviar comentario"
+msgstr "Bidali iruzkina"
 
 #: comments.php:88
 msgid "Cancel reply"
-msgstr "Cancelar respuesta"
+msgstr "Erantzuna utzi"
 
 #: galleries-list.php:41 works-list.php:38
 #, php-format
@@ -358,58 +357,58 @@ msgstr "%1$s : %2$s"
 
 #: header.php:54
 msgid "Main menu"
-msgstr "Menú principal"
+msgstr "Menu nagusia"
 
 #: header.php:56
 msgid "Skip to primary content"
-msgstr "Saltar al contenido principal"
+msgstr "Jauzi eduki nagusira"
 
 #: header.php:57
 msgid "Skip to secondary content"
-msgstr "Saltar al contenido secundario"
+msgstr "Jauzi bigarren mailako edukira"
 
 #: no-content.php:8
 msgid "Go back"
-msgstr "Volver"
+msgstr "Itzuli"
 
 #: no-content.php:8
 msgid "or use Site Map below:"
-msgstr "o utiliza el Mapa Web de abajo:"
+msgstr "edo erabili azpiko Web Mapa:"
 
 #: no-content.php:25
 msgid "Main navigation"
-msgstr "Menú principal"
+msgstr "Menu nagusia"
 
 #: no-content.php:36
 msgid "Categories"
-msgstr "Categorías"
+msgstr "Kategoriak"
 
 #: no-content.php:77
 msgid "Pages"
-msgstr "Páginas"
+msgstr "Orrialdeak"
 
 #: no-content.php:98
 msgid "Works"
-msgstr "Trabajos"
+msgstr "Lanak"
 
 #: parts/genre-filter.php:31
 msgid "Filter"
-msgstr "Filtro"
+msgstr "Filtroa"
 
 #: parts/genre-filter.php:32
 msgid "All"
-msgstr "Todo"
+msgstr "Guztia"
 
 #: search.php:17
 #, php-format
 msgid "%1$d Search results for \"%2$s\""
-msgstr "%1$d resultados de búsqueda por \"%2$s\""
+msgstr "%1$d emaitza da  \"%2$s\" bilaketarako"
 
 #: search.php:48
 #, php-format
 msgid "No Search results for \"%1$s\""
-msgstr "Ningun resultado de la búsqueda \"%1$s\""
+msgstr "Emaitzarik ez \"%1$s\" bilaketarako"
 
 #: single.php:43
 msgid "About the author"
-msgstr "Sobre el autor"
+msgstr "Autoreari buruz"
