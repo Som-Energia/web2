@@ -1,165 +1,228 @@
-.clearfix {
-  *zoom: 1;
+/*!
+ * Visual Composer v4.3.4 (http://vc.wpbakery.com)
+ * Copyright 2011-2014 Michael M - WPBakery.com
+ */
+.thumbnail > img,
+.thumbnail a > img,
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
-.clearfix:before,
-.clearfix:after {
+.btn-group-lg > .btn {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 6px;
+}
+.btn-group-sm > .btn {
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+.btn-group-xs > .btn {
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+.dl-horizontal dd:before,
+.dl-horizontal dd:after,
+.container:before,
+.container:after,
+.container-fluid:before,
+.container-fluid:after,
+.row:before,
+.row:after,
+.form-horizontal .form-group:before,
+.form-horizontal .form-group:after,
+.btn-toolbar:before,
+.btn-toolbar:after,
+.btn-group-vertical > .btn-group:before,
+.btn-group-vertical > .btn-group:after,
+.nav:before,
+.nav:after,
+.navbar:before,
+.navbar:after,
+.navbar-header:before,
+.navbar-header:after,
+.navbar-collapse:before,
+.navbar-collapse:after,
+.pager:before,
+.pager:after,
+.panel-body:before,
+.panel-body:after,
+.modal-footer:before,
+.modal-footer:after {
+  content: " ";
   display: table;
-  content: "";
 }
-.clearfix:after {
+.dl-horizontal dd:after,
+.container:after,
+.container-fluid:after,
+.row:after,
+.form-horizontal .form-group:after,
+.btn-toolbar:after,
+.btn-group-vertical > .btn-group:after,
+.nav:after,
+.navbar:after,
+.navbar-header:after,
+.navbar-collapse:after,
+.pager:after,
+.panel-body:after,
+.modal-footer:after {
   clear: both;
 }
-.vc-settings a:active,
-.vc-settings h3:active,
-.vc-settings a:focus,
-.vc-settings h3:focus {
+/* Navbar */
+/* Modal box */
+/* Panel */
+.vc_pull-right {
+  float: right !important;
+}
+.vc_pull-left {
+  float: left !important;
+}
+.vc_clearfix:before,
+.vc_clearfix:after {
+  content: " ";
+  display: table;
+}
+.vc_clearfix:after {
+  clear: both;
+}
+.vc_clearfix:before,
+.vc_clearfix:after {
+  content: " ";
+  display: table;
+}
+.vc_clearfix:after {
+  clear: both;
+}
+.vc_el-clearfix {
+  clear: both;
+}
+@media (max-width: 767px) {
+  .vc_el-clearfix-xs {
+    clear: both;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .vc_el-clearfix-sm {
+    clear: both;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .vc_el-clearfix-md {
+    clear: both;
+  }
+}
+@media (min-width: 1200px) {
+  .vc_el-clearfix-lg {
+    clear: both;
+  }
+}
+.vc_visible {
+  display: block;
+}
+.vc_settings a:active,
+.vc_settings h3:active,
+.vc_settings a:focus,
+.vc_settings h3:focus {
   outline: none;
 }
-.vc-settings label {
+.vc_settings label {
   padding: 0 0 5px 0;
 }
-.vc-settings label input {
+.vc_settings label input {
   margin-top: -1px;
   margin-right: 5px;
 }
-.vc-settings .vc-settings-tab-content {
+.vc_settings .vc_settings-tab-content {
   display: none;
 }
-.vc-settings .vc-settings-tab-content.vc-settings-tab-content-active {
+.vc_settings .vc_settings-tab-content.vc_settings-tab-content-active {
   display: block;
 }
-.vc-settings .vc-settings-tab-content p.submit {
+.vc_settings .vc_settings-tab-content p.submit {
   float: left;
 }
-.vc-settings .vc-settings-tab-content .vc-restore-button,
-.vc-settings .vc-settings-tab-content .vc-activate-license-button {
-  margin: 23px 0 0 10px;
-}
-.vc-settings .vc-settings-tab-content .css-control,
-.vc-settings .vc-settings-tab-content .wp-picker-container {
-  opacity: 0.5;
-}
-.vc-settings .vc-settings-tab-content.color_enabled .css-control,
-.vc-settings .vc-settings-tab-content.color_enabled .wp-picker-container {
-  opacity: 1;
-}
-.vc-settings .vc-settings-tab-content .column_css_class {
-  margin-bottom: 6px;
-}
-.vc-settings .vc-settings-tab-content .column_css_class label {
-  width: 60px;
-  display: inline-block;
-}
-.vc-settings .vc-settings-tab-content .vc-updater-result-message {
+.vc_settings .vc_settings-tab-content .vc_updater-result-message {
   clear: both;
 }
-.vc-settings .vc-settings-tab-content .vc-updater-passive {
+.vc_settings .vc_settings-tab-content .vc_updater-passive {
   opacity: 0.4;
 }
-.vc-settings .custom_css {
-  width: 100%;
-  height: 200px;
-}
-.vc-settings .vc_helper {
+.vc_settings .vc_helper {
   display: none;
 }
-.vc-settings .tab_intro {
+.vc_settings .tab_intro {
   padding: 15px 10px 0 10px;
 }
-.vc-settings .deprecated {
-  background-color: #ffffe0;
-  border-bottom-color: #e6db55;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-left-color: #e6db55;
-  border-left-style: solid;
-  border-left-width: 1px;
-  border-right-color: #e6db55;
-  border-right-style: solid;
-  border-right-width: 1px;
-  border-top-color: #e6db55;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  color: #333333;
-  display: block;
-  font-family: sans-serif;
-  font-size: 12px;
-  line-height: 16.796875px;
-  margin-bottom: 15px;
-  margin-left: 0px;
-  margin-right: 0px;
-  margin-top: 15px;
-  outline-color: #333333;
-  outline-style: none;
-  outline-width: 0px;
-  padding-bottom: 0px;
-  padding-left: 7.1875px;
-  padding-right: 7.1875px;
-  padding-top: 0px;
-}
-.vc-settings .vc_show_example {
-  cursor: pointer;
-}
-.vc-settings #wpb_js_settings_access_groups h3 {
+.vc_settings #wpb_js_settings_access_groups h3 {
   margin-top: 0;
 }
-.vc-settings #wpb_js_settings_access_groups .settings-block,
-.vc-settings #wpb_js_settings_access_groups .title {
+.vc_settings #wpb_js_settings_access_groups .settings-block,
+.vc_settings #wpb_js_settings_access_groups .title {
   margin-bottom: 10px;
 }
-.vc-settings #wpb_js_settings_access_groups .pull-left {
+.vc_settings #wpb_js_settings_access_groups .pull-left {
   float: left;
   width: 33%;
 }
-.vc-settings #wpb_js_settings_access_groups .pull-left label {
+.vc_settings #wpb_js_settings_access_groups .pull-left label {
   clear: both;
   display: block;
   float: left;
 }
-.vc-settings #wpb_js_settings_access_groups .select-all {
+.vc_settings #wpb_js_settings_access_groups .select-all {
   margin-top: 10px;
 }
-#wpb-js-composer-settings #icon-options-general {
-  background: url(../vc/visual_composer_32.png) no-repeat center center;
+.vc_settings .vc_settings-tab-content .css-control,
+.vc_settings .vc_settings-tab-content .wp-picker-container {
+  opacity: 0.5;
 }
-#wpb-js-composer-settings .vc-settings-tab-control {
-  margin-right: 0;
+.vc_settings .vc_settings-tab-content.color_enabled .css-control,
+.vc_settings .vc_settings-tab-content.color_enabled .wp-picker-container {
+  opacity: 1;
 }
-#wpb-js-composer-settings .form-table th {
-  font-weight: bold;
+.vc_settings .vc_settings-tab-content .column_css_class {
+  margin-bottom: 6px;
 }
-.vc-error {
-  border: 1px solid red !important;
+.vc_settings .vc_settings-tab-content .column_css_class label {
+  width: 60px;
+  display: inline-block;
 }
-#vc-settings-automapper {
-  padding: 9px;
+.vc_settings .vc_settings-tab-content .vc_restore-button {
+  margin: 20px 0 0 10px;
 }
-#vc-settings-automapper .tab_intro {
-  padding: 6px 0;
+.vc_settings .custom_css {
+  width: 100%;
+  height: 200px;
 }
-#vc-settings-automapper .vc-atm-message {
+.vc_settings #wpb_csseditor {
+  border: 1px solid #BABABA;
+}
+.vc_settings #vc_settings-automapper .vc_atm-message {
   padding: 10px;
 }
-#vc-settings-automapper .vc-automapper-toolbar {
+.vc_settings #vc_settings-automapper .vc_automapper-toolbar {
   margin-bottom: 15px;
 }
-#vc-settings-automapper .vc-automapper-list {
+.vc_settings #vc_settings-automapper .vc_automapper-list {
   width: 100%;
 }
-#vc-settings-automapper .vc-automapper-list .vc-automapper-item {
+.vc_settings #vc_settings-automapper .vc_automapper-list .vc_automapper-item {
   display: block;
   margin: 0 0 1px 0;
   background: #E7E7E7;
   padding: 10px;
 }
-#vc-settings-automapper .vc-automapper-list .vc-automapper-item label {
+.vc_settings #vc_settings-automapper .vc_automapper-list .vc_automapper-item label {
   color: #446591;
 }
-#vc-settings-automapper .vc-automapper-list .vc-automapper-item .vc-automapper-item-controls a {
+.vc_settings #vc_settings-automapper .vc_automapper-list .vc_automapper-item .vc_automapper-item-controls a {
   display: block;
   float: right;
   cursor: pointer;
@@ -169,58 +232,58 @@
   height: 16px;
   background-position: -16px -64px;
 }
-#vc-settings-automapper .vc-automapper-list .vc-automapper-item .vc-automapper-item-controls a.vc-automapper-edit-btn {
+.vc_settings #vc_settings-automapper .vc_automapper-list .vc_automapper-item .vc_automapper-item-controls a.vc_automapper-edit-btn {
   background-position: -16px -32px;
   margin-right: 5px;
 }
-#vc-settings-automapper .vc-add-form-atm {
+.vc_settings #vc_settings-automapper .vc_add-form-atm {
   padding: 15px;
   border: 1px solid #e5e5e5;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
 }
-#vc-settings-automapper .vc-add-form-atm label {
+.vc_settings #vc_settings-automapper .vc_add-form-atm label {
   font-size: 16px;
 }
-#vc-settings-automapper .vc-add-form-atm .description {
+.vc_settings #vc_settings-automapper .vc_add-form-atm .description {
   display: block;
 }
-#vc-settings-automapper .vc-add-form-atm .vc-wrapper {
+.vc_settings #vc_settings-automapper .vc_add-form-atm .vc_wrapper {
   display: table;
   margin: 10px 0;
 }
-#vc-settings-automapper .vc-add-form-atm .vc-wrapper .vc-string {
+.vc_settings #vc_settings-automapper .vc_add-form-atm .vc_wrapper .vc_string {
   display: table-cell;
   width: 100%;
   padding: 0;
 }
-#vc-settings-automapper .vc-add-form-atm .vc-wrapper .vc-string input {
+.vc_settings #vc_settings-automapper .vc_add-form-atm .vc_wrapper .vc_string input {
   box-sizing: border-box;
   width: 100%;
 }
-#vc-settings-automapper .vc-add-form-atm .vc-wrapper .vc-buttons {
+.vc_settings #vc_settings-automapper .vc_add-form-atm .vc_wrapper .vc_buttons {
   width: 190px;
   margin-left: 10px;
   display: inline-block;
 }
-#vc-settings-automapper .vc-add-form-atm .vc-wrapper .vc-buttons .button {
+.vc_settings #vc_settings-automapper .vc_add-form-atm .vc_wrapper .vc_buttons .button {
   margin-top: -6px;
 }
-#vc-settings-automapper .vc-edit-form h4 {
+.vc_settings #vc_settings-automapper .vc_edit-form h4 {
   margin: 0.5em 0;
   font-size: 16px;
   font-weight: normal;
 }
-#vc-settings-automapper .vc-edit-form .vc-line {
+.vc_settings #vc_settings-automapper .vc_edit-form .vc_line {
   height: 1px;
   margin: 0;
   background: #e3e3e3;
 }
-#vc-settings-automapper .vc-edit-form .vc-wrapper {
+.vc_settings #vc_settings-automapper .vc_edit-form .vc_wrapper {
   padding: 15px;
   position: relative;
 }
-#vc-settings-automapper .vc-edit-form .vc-shortcode-preview {
+.vc_settings #vc_settings-automapper .vc_edit-form .vc_shortcode-preview {
   text-align: center;
   width: 90%;
   margin: 15px auto;
@@ -229,16 +292,16 @@
   border: 1px solid #e3e3e3;
   color: #8a8a8a;
 }
-#vc-settings-automapper .vc-edit-form .vc-shortcode-preview .vc-active {
+.vc_settings #vc_settings-automapper .vc_edit-form .vc_shortcode-preview .vc_active {
   color: #0074A2;
 }
-#vc-settings-automapper .vc-edit-form .vc-field {
+.vc_settings #vc_settings-automapper .vc_edit-form .vc_field {
   float: left;
   padding: 0 0 15px;
   width: 48%;
   box-sizing: border-box;
 }
-#vc-settings-automapper .vc-edit-form .vc-field label {
+.vc_settings #vc_settings-automapper .vc_edit-form .vc_field label {
   padding: 0;
   display: inline-block;
   vertical-align: top;
@@ -247,74 +310,74 @@
   width: 30%;
   font-weight: bold;
 }
-#vc-settings-automapper .vc-edit-form .vc-field input[type=text],
-#vc-settings-automapper .vc-edit-form .vc-field textarea {
+.vc_settings #vc_settings-automapper .vc_edit-form .vc_field input[type=text],
+.vc_settings #vc_settings-automapper .vc_edit-form .vc_field textarea {
   width: 65%;
 }
-#vc-settings-automapper .vc-edit-form .vc-field.vc-is-container {
+.vc_settings #vc_settings-automapper .vc_edit-form .vc_field.vc_is-container {
   clear: both;
   float: none;
 }
-#vc-settings-automapper .vc-edit-form .vc-field.vc-is-container label {
+.vc_settings #vc_settings-automapper .vc_edit-form .vc_field.vc_is-container label {
   margin-left: 30%;
   width: 65%;
 }
-#vc-settings-automapper .vc-edit-form .vc-field.vc-description {
+.vc_settings #vc_settings-automapper .vc_edit-form .vc_field.vc_description {
   float: right;
 }
-#vc-settings-automapper .vc-edit-form .vc-field.vc-description textarea {
+.vc_settings #vc_settings-automapper .vc_edit-form .vc_field.vc_description textarea {
   height: 70px;
 }
-#vc-settings-automapper .vc-edit-form .vc-add-param {
+.vc_settings #vc_settings-automapper .vc_edit-form .vc_add-param {
   position: absolute;
   top: 18px;
   right: 15px;
 }
-#vc-settings-automapper .vc-edit-form .vc-params {
+.vc_settings #vc_settings-automapper .vc_edit-form .vc_params {
   margin-top: 30px;
   display: table;
   width: 100%;
 }
-#vc-settings-automapper .vc-edit-form .vc-params .vc-param {
+.vc_settings #vc_settings-automapper .vc_edit-form .vc_params .vc_param {
   position: relative;
   margin: 3px 0 3px -3px;
   border: 1px solid #e3e3e3;
   width: 100%;
 }
-#vc-settings-automapper .vc-edit-form .vc-params .vc-param .vc-fields {
+.vc_settings #vc_settings-automapper .vc_edit-form .vc_params .vc_param .vc_fields {
   margin-left: 30px;
 }
-#vc-settings-automapper .vc-edit-form .vc-params .vc-param .vc-fields .vc-param-field {
+.vc_settings #vc_settings-automapper .vc_edit-form .vc_params .vc_param .vc_fields .vc_param-field {
   display: table-cell;
   padding: 3px 6px 3px 8px;
   box-sizing: border-box;
   width: 19%;
 }
-#vc-settings-automapper .vc-edit-form .vc-params .vc-param .vc-fields .vc-param-field label {
+.vc_settings #vc_settings-automapper .vc_edit-form .vc_params .vc_param .vc_fields .vc_param-field label {
   font-weight: bold;
   padding: 6px 0;
   display: block;
 }
-#vc-settings-automapper .vc-edit-form .vc-params .vc-param .vc-fields .vc-param-field .description {
+.vc_settings #vc_settings-automapper .vc_edit-form .vc_params .vc_param .vc_fields .vc_param-field .description {
   margin: 6px 0;
   display: block;
 }
-#vc-settings-automapper .vc-edit-form .vc-params .vc-param .vc-fields .vc-param-field input[type=text],
-#vc-settings-automapper .vc-edit-form .vc-params .vc-param .vc-fields .vc-param-field select,
-#vc-settings-automapper .vc-edit-form .vc-params .vc-param .vc-fields .vc-param-field textarea {
+.vc_settings #vc_settings-automapper .vc_edit-form .vc_params .vc_param .vc_fields .vc_param-field input[type=text],
+.vc_settings #vc_settings-automapper .vc_edit-form .vc_params .vc_param .vc_fields .vc_param-field select,
+.vc_settings #vc_settings-automapper .vc_edit-form .vc_params .vc_param .vc_fields .vc_param-field textarea {
   width: 100%;
 }
-#vc-settings-automapper .vc-edit-form .vc-params .vc-param .vc-buttons {
+.vc_settings #vc_settings-automapper .vc_edit-form .vc_params .vc_param .vc_buttons {
   width: 30px;
   background: #f5f5f5;
   position: absolute;
   height: 100%;
   border-right: 1px solid #e3e3e3;
 }
-#vc-settings-automapper .vc-edit-form .vc-params .vc-param .vc-buttons:hover {
+.vc_settings #vc_settings-automapper .vc_edit-form .vc_params .vc_param .vc_buttons:hover {
   background-color: #e3e3e3;
 }
-#vc-settings-automapper .vc-edit-form .vc-params .vc-param .vc-buttons .vc-delete-param {
+.vc_settings #vc_settings-automapper .vc_edit-form .vc_params .vc_param .vc_buttons .vc_delete-param {
   position: absolute;
   left: 8px;
   bottom: 10px;
@@ -327,7 +390,7 @@
   width: 16px;
   height: 16px;
 }
-#vc-settings-automapper .vc-edit-form .vc-params .vc-param .vc-buttons .vc-move-param {
+.vc_settings #vc_settings-automapper .vc_edit-form .vc_params .vc_param .vc_buttons .vc_move-param {
   position: absolute;
   left: 8px;
   top: 10px;
@@ -340,26 +403,26 @@
   width: 16px;
   height: 16px;
 }
-#vc-settings-automapper .vc-edit-form .vc-params .vc-param.vc-content .vc-buttons .vc-delete-param {
+.vc_settings #vc_settings-automapper .vc_edit-form .vc_params .vc_param.vc_content .vc_buttons .vc_delete-param {
   display: none;
 }
-#vc-settings-automapper .vc-edit-form .vc-params .vc-sortable-placeholder {
+.vc_settings #vc_settings-automapper .vc_edit-form .vc_params .vc_sortable-placeholder {
   height: 30px;
   background: url(../vc/pattern.gif);
 }
-#vc-settings-automapper .vc-edit-form > .vc-buttons {
+.vc_settings #vc_settings-automapper .vc_edit-form > .vc_buttons {
   clear: both;
   background-color: #F7F7F7;
   padding: 15px;
 }
-#vc-settings-automapper .vc-edit-form > .vc-buttons .vc-atm-delete {
+.vc_settings #vc_settings-automapper .vc_edit-form > .vc_buttons .vc_atm-delete {
   float: right;
   clear: both;
 }
-#vc-settings-automapper .widget .widget-top {
+.vc_settings #vc_settings-automapper .widget .widget-top {
   cursor: pointer;
 }
-#vc-settings-automapper .widget .widget-top .vc-atm-header {
+.vc_settings #vc_settings-automapper .widget .widget-top .vc_atm-header {
   display: block;
   margin: 0;
   padding: 7px 15px;
@@ -369,14 +432,14 @@
   text-overflow: ellipsis;
   -webkit-user-select: none;
 }
-#vc-settings-automapper .widget.vc-opened .vc-header-name {
+.vc_settings #vc_settings-automapper .widget.vc_opened .vc_header-name {
   width: 245px;
 }
-#vc-settings-automapper .widget.vc-opened .widget-top {
+.vc_settings #vc_settings-automapper .widget.vc_opened .widget-top {
   cursor: default;
   background: #f1f1f1;
 }
-#vc-settings-automapper .widget.vc-opened .widget-top a.widget-action:after {
+.vc_settings #vc_settings-automapper .widget.vc_opened .widget-top a.widget-action:after {
   content: '\f142';
   cursor: pointer;
 }

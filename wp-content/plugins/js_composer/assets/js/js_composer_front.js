@@ -29,6 +29,7 @@ var vc_js = function () {
   vc_pinterest();
   vc_progress_bar();
   vc_plugin_flexslider();
+  vc_google_fonts();
   window.setTimeout(vc_waypoints, 1500);
 };
 jQuery(document).ready(function ($) {
@@ -51,7 +52,7 @@ if (typeof window['vc_plugin_flexslider'] !== 'function') {
         slideshow:slideshow,
         slideshowSpeed:sliderTimeout,
         sliderSpeed:sliderSpeed,
-        smoothHeight:false
+        smoothHeight:true
       });
     });
   }
@@ -181,7 +182,7 @@ if (typeof window['vc_tabsBehaviour'] !== 'function') {
       $(document.body).off('click.preview', 'a')
     });
     var $call = $tab || jQuery('.wpb_tabs, .wpb_tour'),
-      ver = jQuery.ui ? jQuery.ui.version.split('.') : '1.10',
+      ver = jQuery.ui && jQuery.ui.version ? jQuery.ui.version.split('.') : '1.10',
       old_version = parseInt(ver[0]) == 1 && parseInt(ver[1]) < 9;
     // if($call.hasClass('ui-widget')) $call.tabs('destroy');
     $call.each(function (index) {
@@ -194,7 +195,7 @@ if (typeof window['vc_tabsBehaviour'] !== 'function') {
           wpb_prepare_tab_content(event, ui);
         },
         beforeActivate: function(event, ui) {
-          ui.newPanel.index() !== 1 && ui.newPanel.find('.vc_pie_chart:not(.vc-ready)');
+          ui.newPanel.index() !== 1 && ui.newPanel.find('.vc_pie_chart:not(.vc_ready)');
         },
         activate:function (event, ui) {
           wpb_prepare_tab_content(event, ui);
@@ -400,33 +401,33 @@ if (typeof window['vc_carouselBehaviour'] !== 'function') {
         my_swiper = jQuery(this).swiper(jQuery.extend(options, {
           onFirstInit:function (swiper) {
             if (swiper.slides.length < 2) {
-              $this.find('.vc-arrow-left,.vc-arrow-right').hide();
+              $this.find('.vc_arrow-left,.vc_arrow-right').hide();
             } else if (swiper.activeIndex === 0 && swiper.params.loop !== true) {
-              $this.find('.vc-arrow-left').hide();
+              $this.find('.vc_arrow-left').hide();
             } else {
-              $this.find('.vc-arrow-left').show();
+              $this.find('.vc_arrow-left').show();
             }
           },
           onSlideChangeStart:function (swiper) {
             if (swiper.slides.length > 1 && swiper.params.loop !== true) {
               if (swiper.activeIndex === 0) {
-                $this.find('.vc-arrow-left').hide();
+                $this.find('.vc_arrow-left').hide();
               } else {
-                $this.find('.vc-arrow-left').show();
+                $this.find('.vc_arrow-left').show();
               }
               if (swiper.slides.length - 1 === swiper.activeIndex) {
-                $this.find('.vc-arrow-right').hide();
+                $this.find('.vc_arrow-right').hide();
               } else {
-                $this.find('.vc-arrow-right').show();
+                $this.find('.vc_arrow-right').show();
               }
             }
           }
         }));
-        $this.find('.vc-arrow-left').click(function (e) {
+        $this.find('.vc_arrow-left').click(function (e) {
           e.preventDefault();
           my_swiper.swipePrev();
         });
-        $this.find('.vc-arrow-right').click(function (e) {
+        $this.find('.vc_arrow-right').click(function (e) {
           e.preventDefault();
           my_swiper.swipeNext();
         });
@@ -591,6 +592,12 @@ if (typeof window['vc_prettyPhoto'] !== 'function') {
     }
   }
 }
+
+if ( typeof window['vc_google_fonts'] !== 'function' ) {
+    function vc_google_fonts() {
+        return;
+    }
+}
 /* Helper
  ---------------------------------------------------------- */
 function getColumnsCount(el) {
@@ -665,8 +672,8 @@ function loadScript(url, $obj, callback) {
 
 function wpb_prepare_tab_content(event, ui) {
   var panel = ui.panel || ui.newPanel,
-      $pie_charts = panel.find('.vc_pie_chart:not(.vc-ready)'),
-      $carousel = panel.find('[data-ride="vc-carousel"]'),
+      $pie_charts = panel.find('.vc_pie_chart:not(.vc_ready)'),
+      $carousel = panel.find('[data-ride="vc_carousel"]'),
       $ui_panel, $google_maps;
   vc_carouselBehaviour();
   vc_plugin_flexslider(panel);
@@ -689,8 +696,8 @@ function wpb_prepare_tab_content(event, ui) {
   }
 }
 var vc_accordionActivate = function(event, ui) {
-  var $pie_charts = ui.newPanel.find('.vc_pie_chart:not(.vc-ready)'),
-    $carousel = ui.newPanel.find('[data-ride="vc-carousel"]');
+  var $pie_charts = ui.newPanel.find('.vc_pie_chart:not(.vc_ready)'),
+    $carousel = ui.newPanel.find('[data-ride="vc_carousel"]');
   if (jQuery.fn.isotope != undefined) {
     ui.newPanel.find('.isotope').isotope("layout");
   }

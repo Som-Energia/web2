@@ -10,10 +10,10 @@ function vc_loop_form_field( $settings, $value ) {
 			$loop_info .= ' <b>' . $query_builder->getLabel( $key ) . '</b>: ' . $param_value . ';';
 	}
 
-	return '<div class="vc-loop">'
+	return '<div class="vc_loop">'
 	  . '<input name="' . $settings['param_name'] . '" class="wpb_vc_param_value  ' . $settings['param_name'] . ' ' . $settings['type'] . '_field" type="hidden" value="' . $value . '"/>'
-	  . '<a href="#" class="button vc-loop-build ' . $settings['param_name'] . '_button" data-settings="' . rawurlencode( json_encode( $settings['settings'] ) ) . '">' . __( 'Build query', 'js_composer' ) . '</a>'
-	  . '<div class="vc-loop-info">' . $loop_info . '</div>'
+	  . '<a href="#" class="button vc_loop-build ' . $settings['param_name'] . '_button" data-settings="' . rawurlencode( json_encode( $settings['settings'] ) ) . '">' . __( 'Build query', 'js_composer' ) . '</a>'
+	  . '<div class="vc_loop-info">' . $loop_info . '</div>'
 	  . '</div>';
 }
 
@@ -517,8 +517,7 @@ add_action('wp_ajax_wpb_get_loop_settings', 'vc_get_loop_settings_json');
 function vc_loop_include_templates() {
 	require_once vc_path_dir( 'TEMPLATES_DIR', 'params/loop/templates.html' );
 }
-add_action('vc_backend_editor_render', 'vc_loop_include_templates');
-add_action('vc_frontend_editor_render', 'vc_loop_include_templates');
+add_action('admin_footer', 'vc_loop_include_templates');
 
 function vc_set_loop_default_value($param) {
 	if ( empty( $param['value']) && isset($param['settings'])) {

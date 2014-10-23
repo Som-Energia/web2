@@ -20,6 +20,7 @@ function VCS4() {
 }
 if(_.isUndefined(vc)) var vc = {};
 _.extend(vc, {
+  responsive_disabled: false,
   template_options:{
     evaluate:    /<#([\s\S]+?)#>/g,
     interpolate: /\{\{\{([\s\S]+?)\}\}\}/g,
@@ -30,7 +31,6 @@ _.extend(vc, {
   clone_index: 1,
   loaded: false,
   path: '',
-  active_panel: false,
   admin_ajax: window.ajaxurl,
   filters:{templates:[]},
   title: '',
@@ -51,32 +51,20 @@ _.extend(vc, {
   addTemplateFilter:function (callback) {
     if (_.isFunction(callback)) this.filters.templates.push(callback);
   },
-  closeActivePanel: function() {
-    this.active_panel && this.active_panel.hide();
-    this.actice_panel = false;
-  },
   unsetHoldActive: function() {
     if(this.$hold_active) {
-      this.$hold_active.removeClass('vc-hold-active');
+      this.$hold_active.removeClass('vc_hold-active');
       this.$hold_active = false;
     }
   }
 });
 (function ($) {
   "use strict";
-  $( document ).ajaxSend(function(e, xhr, req) {
-      req && req.data && req.data.match(/vc_inline=true/) && $('#vc-logo').addClass('vc-ajax-loading');
-  }).ajaxStop(function(){
-      $('#vc-logo').removeClass('vc-ajax-loading');
-    });
   vc.map = {};
-  vc.getMapped = function(tag) {
-    return vc.map[tag] || {};
-  }
   vc.setFrameSize = function(size) {
-    var height = $(window).height() - $('#vc-navbar').height();
+    var height = $(window).height() - $('#vc_navbar').height();
     vc.$frame.width(size);
-    vc.$frame_wrapper.css({top: $('#vc-navbar').height()});
+    vc.$frame_wrapper.css({top: $('#vc_navbar').height()});
     vc.$frame.height(height);
     // vc.$frame.height(vc.$frame.contents() ? vc.$frame.contents().height() : 1000);
   };
@@ -159,7 +147,7 @@ _.extend(vc, {
     if(!_.isBoolean(child_of_clone) || child_of_clone !== true) data.place_after_id = model.get('id');
     builder.create(data);
     var new_model = builder.last();
-    // if(!_.isBoolean(child_of_clone) || child_of_clone !== true) model.view.$el.addClass('vc-place-after');
+    // if(!_.isBoolean(child_of_clone) || child_of_clone !== true) model.view.$el.addClass('vc_place-after');
     _.each(vc.shortcodes.where({parent_id:model.get('id')}), function (shortcode) {
       vc.CloneModel(builder, shortcode, new_model.get('id'), true);
     }, this);
@@ -178,10 +166,10 @@ _.extend(vc, {
   };
   vc.showMessage = function(message) {
     if(vc.message_timeout) {
-      $('.vc-message').remove();
+      $('.vc_message').remove();
       window.clearTimeout(vc.message_timeout);
     }
-    var $message = $('<div class="vc-message success" style="z-index: 999;">' + message + '</div>').prependTo($('body'));
+    var $message = $('<div class="vc_message success" style="z-index: 999;">' + message + '</div>').prependTo($('body'));
     $message.fadeIn(500);
     vc.message_timeout = window.setTimeout(function(){
       $message.slideUp(500, function(){$(this).remove();});
@@ -191,14 +179,14 @@ _.extend(vc, {
   window.InlineShortcodeView = vc.shortcode_view = Backbone.View.extend({
     hold_hover_on: false,
     events: {
-      'click > .vc-controls .control-btn-delete': 'destroy',
-      'click > .vc-controls .control-btn-edit': 'edit',
-      'click > .vc-controls .control-btn-clone': 'clone',
+      'click > .vc_controls .vc_control-btn-delete': 'destroy',
+      'click > .vc_controls .vc_control-btn-edit': 'edit',
+      'click > .vc_controls .vc_control-btn-clone': 'clone',
       'mousemove': 'checkControlsPosition'
       //'mousemove': 'setMove',
       // 'mouseenter': 'resetControlPosition',
       // 'mouseleave': 'mouseLeave'
-      // 'mouseover .control-btn': 'holdHover',
+      // 'mouseover .vc_control-btn': 'holdHover',
       // 'mouseout .controls-cc': 'releaseHover'
     },
     controls_set: false,
@@ -216,9 +204,9 @@ _.extend(vc, {
     render: function() {
       this.$el.attr('data-model-id', this.model.get('id'));
       this.$el.attr('data-tag', this.model.get('shortcode'));
-      this.$el.addClass('vc-' + this.model.get('shortcode'));
+      this.$el.addClass('vc_' + this.model.get('shortcode'));
       this.addControls();
-      if(_.isBoolean(vc.getMapped(this.model.get('shortcode')).is_container) && vc.getMapped(this.model.get('shortcode')).is_container) this.$el.addClass('vc-container');
+      if(_.isBoolean(vc.getMapped(this.model.get('shortcode')).is_container) && vc.getMapped(this.model.get('shortcode')).is_container) this.$el.addClass('vc_container-block');
       this.changed();
       return this;
     },
@@ -242,45 +230,6 @@ _.extend(vc, {
         }
       }
     },
-    /*
-     setMove: function(e) {
-     window.clearTimeout(this.move_timeout);
-     this.mouse_event = _.extend({}, e);
-     if(!this.controls_set) this.move_timeout = window.setTimeout(this.setControlPosition, 700);
-     },
-     resetControlPosition: function(e) {
-     this.controls_set = false;
-
-     if(this.controls_set && 1==2) {
-     this.mouse_event = _.extend({}, e);
-     this.out_timeout && window.clearTimeout(this.out_timeout);
-     this.setControlPosition();
-     }
-
-     },
-     setControlPosition: function() {
-     this.controls_set = true;
-     this.$el.removeClass('vc-active');
-     this.out_timeout && window.clearTimeout(this.out_timeout);
-     var $controls = this.$controls.find('> :first'),
-     y = this.mouse_event.pageY - this.$el.offset().top,
-     x = this.mouse_event.pageX - this.$el.offset().left,
-     new_x = x + 20 + $controls.width()/ 2;
-     // set on the left if very far to element
-     if(new_x/(this.$el.offset().left + this.$el.width()) > 0.7) new_x = x - 20 - $controls.width()/ 2
-     $controls.css({top: y + 20, left: new_x});
-     this.$el.addClass('vc-active');
-     },
-     unsetControlPosition: function() {
-     this.controls_set = false;
-     this.out_timeout && window.clearTimeout(this.out_timeout);
-     this.out_timeout = false;
-     this.$el.removeClass('vc-active');
-     },
-     mouseLeave: function() {
-     this.out_timeout = window.setTimeout(this.unsetControlPosition, 1500);
-     },
-     */
     beforeUpdate: function() {},
     updated: function() {
       _.each(vc.shortcodes.where({parent_id: this.model.get('id')}), function(model){
@@ -293,7 +242,7 @@ _.extend(vc, {
     },
     rendered: function() {},
     addControls: function() {
-      var template = $('#vc-controls-template-' + this.model.get('shortcode')).length ? $('#vc-controls-template-' + this.model.get('shortcode')).html() : this._getDefaultTemplate(),
+      var template = $('#vc_controls-template-' + this.model.get('shortcode')).length ? $('#vc_controls-template-' + this.model.get('shortcode')).html() : this._getDefaultTemplate(),
         parent = vc.shortcodes.get(this.model.get('parent_id')),
         data = {
           name: vc.getMapped(this.model.get('shortcode')).name,
@@ -301,7 +250,7 @@ _.extend(vc, {
           parent_name: parent ? vc.getMapped(parent.get('shortcode')).name : '',
           parent_tag: parent ? parent.get('shortcode') : ''
         };
-      this.$controls = $(_.template(template, data, vc.template_options).trim()).addClass('vc-controls');
+      this.$controls = $(_.template(template, data, vc.template_options).trim()).addClass('vc_controls');
       this.$controls.appendTo(this.$el);
       this.$controls_buttons = this.$controls.find('> :first');
     },
@@ -321,12 +270,12 @@ _.extend(vc, {
       this.parentChanged();
     },
     _getDefaultTemplate: function() {
-      if(_.isUndefined(vc.default_controls_template)) vc.default_controls_template = $('#vc-controls-template-default').html();
+      if(_.isUndefined(vc.default_controls_template)) vc.default_controls_template = $('#vc_controls-template-default').html();
       return vc.default_controls_template;
     },
     changed: function(){
-      this.$el.removeClass('vc-empty-shortcode-element')
-      this.$el.height()===0 && this.$el.addClass('vc-empty-shortcode-element');
+      this.$el.removeClass('vc_empty-shortcode-element')
+      this.$el.height()===0 && this.$el.addClass('vc_empty-shortcode-element');
     },
     edit: function(e) {
       _.isObject(e) && e.preventDefault() && e.stopPropagation();
@@ -335,6 +284,8 @@ _.extend(vc, {
     },
     destroy: function(e) {
       _.isObject(e) && e.preventDefault() && e.stopPropagation();
+      var answer = confirm(window.i18nLocale.press_ok_to_delete_section);
+      if (true !== answer) return false;
       vc.showMessage(window.sprintf(window.i18nLocale.inline_element_deleted, this.model.setting('name')));
       this.model.destroy();
     },
@@ -342,9 +293,7 @@ _.extend(vc, {
       this.remove();
       vc.setDataChanged();
       vc.builder.notifyParent(this.model.get('parent_id'));
-      if(vc.active_panel.model && vc.active_panel.model.get('id') === model.get('id')) {
-        vc.closeActivePanel();
-      }
+      vc.closeActivePanel(model);
       vc.setFrameSize();
     },
     update: function() {
@@ -379,8 +328,10 @@ _.extend(vc, {
   vc.FrameView = Backbone.View.extend({
     events: {
       // 'keypress .entry-title': 'updateKeyPress',
-      'click .vc-add-element-action': 'addElement',
-      'click #vc-no-content-add-text-block': 'addTextBlock'
+      'click .vc_add-element-action': 'addElement',
+      'click #vc_no-content-add-text-block': 'addTextBlock',
+      'click [data-template_name]':'loadDefaultTemplate'
+
     },
     updateKeyPress: function(e) {
       if(e.which===13) {
@@ -389,6 +340,11 @@ _.extend(vc, {
         $('.entry-content').trigger('click');
         return false;
       }
+    },
+    loadDefaultTemplate: function(e) {
+      e && e.preventDefault();
+      vc.templates_editor_view.loadDefaultTemplate(e);
+      $("#vc_no-content-helper").remove();
     },
     setTitle: function(title) {
       if(vc.$title.length) {
@@ -401,12 +357,12 @@ _.extend(vc, {
       vc.frame_window = vc.$frame.get(0).contentWindow;
     },
     setActiveHover: function(e) {
-      if(this.$hover_element) this.$hover_element.removeClass('vc-hover');
-      this.$hover_element = $(e.currentTarget).addClass('vc-hover');
+      if(this.$hover_element) this.$hover_element.removeClass('vc_hover');
+      this.$hover_element = $(e.currentTarget).addClass('vc_hover');
       e.stopPropagation();
     },
     unsetActiveHover: function(e) {
-      if(this.$hover_element) this.$hover_element.removeClass('vc-hover');
+      if(this.$hover_element) this.$hover_element.removeClass('vc_hover');
     },
     setSortable: function() {
       vc.frame_window.vc_iframe.setSortable(vc.app);
@@ -440,6 +396,9 @@ _.extend(vc, {
     },
     addInlineScript: function(script) {
       return vc.frame_window.vc_iframe.addInlineScript(script);
+    },
+    addInlineScriptBody: function(script) {
+        return vc.frame_window.vc_iframe.addInlineScriptBody(script);
     }
   });
   vc.View = Backbone.View.extend({
@@ -447,19 +406,18 @@ _.extend(vc, {
     mode: 'view',
     current_size: '100%',
     events:{
-      'click #vc-add-new-row':'createRow',
-      'click #vc-add-new-element':'addElement',
-      'click #vc-post-settings-button': 'editSettings',
-      // 'click .vc-mode-control': 'switchMode',
-      'click #vc-templates-editor-button': 'openTemplatesEditor',
-      'click #vc-guides-toggle-button': 'toggleMode',
-      'click #vc-button-cancel': 'cancel',
-      'click #vc-button-edit-admin': 'cancel',
-      'click #vc-button-update': 'save',
-      'click #vc-button-save-draft, #vc-button-save-as-pending': 'save',
-      'click .vc-screen-width': 'resizeFrame',
-      'click [data-template_id]':'loadTemplate',
-      'click .vc-edit-cloned': 'editCloned'
+      'click #vc_add-new-row':'createRow',
+      'click #vc_add-new-element':'addElement',
+      'click #vc_post-settings-button': 'editSettings',
+      // 'click .vc_mode-control': 'switchMode',
+      'click #vc_templates-editor-button': 'openTemplatesEditor',
+      'click #vc_guides-toggle-button': 'toggleMode',
+      'click #vc_button-cancel': 'cancel',
+      'click #vc_button-edit-admin': 'cancel',
+      'click #vc_button-update': 'save',
+      'click #vc_button-save-draft, #vc_button-save-as-pending': 'save',
+      'click .vc_screen-width': 'resizeFrame',
+      'click .vc_edit-cloned': 'editCloned'
     },
     initialize: function() {
       _.bindAll(this, 'saveRowOrder', 'saveElementOrder', 'saveColumnOrder', 'resizeWindow');
@@ -467,12 +425,12 @@ _.extend(vc, {
       // vc.shortcodes.bind('reset', this.addAll, this);
     },
     render: function() {
-      this.updateSettingsBadge();
-      vc.$page = $(vc.$frame.get(0).contentWindow.document).find('#vc-inline-anchor').parent();
-      vc.$frame_body = $(vc.$frame.get(0).contentWindow.document).find('body').addClass('vc-editor');
+      vc.updateSettingsBadge();
+      vc.$page = $(vc.$frame.get(0).contentWindow.document).find('#vc_inline-anchor').parent();
+      vc.$frame_body = $(vc.$frame.get(0).contentWindow.document).find('body').addClass('vc_editor');
       this.setMode('compose');
-      this.$size_control = $('#vc-screen-size-control');
-      $(".vc-element-container", vc.frame_window.document).droppable({ accept: ".vc_element_button" });
+      this.$size_control = $('#vc_screen-size-control');
+      $(".vc_element-container", vc.frame_window.document).droppable({ accept: ".vc_element_button" });
       $(window).resize(this.resizeWindow);
       /*
       $('.vc_element_button').draggable({
@@ -486,18 +444,18 @@ _.extend(vc, {
         stop: function(event, ui) {
           vc.frame_window.vc_iframe.killDroppable();
         }
-        // connectToSortable: vc.frame_window.jQuery('.vc-element-container')
+        // connectToSortable: vc.frame_window.jQuery('.vc_element-container')
       });
       */
       // vc.shortcodes.fetch({reset: true});
       /*
       if(getCookie('vc_inline_mode')) {
         var mode = getCookie('vc_inline_mode');
-        this.$el.find('.vc-mode-control').removeClass('active');
-        this.$el.find('.vc-mode-control[data-mode=' + mode +']').addClass('active');
+        this.$el.find('.vc_mode-control').removeClass('active');
+        this.$el.find('.vc_mode-control[data-mode=' + mode +']').addClass('active');
         this.setMode(mode);
       } else {
-        this.$el.find('.vc-mode-control[data-mode=' + this.mode +']').addClass('active');
+        this.$el.find('.vc_mode-control[data-mode=' + this.mode +']').addClass('active');
       }
       */
       return this;
@@ -515,7 +473,7 @@ _.extend(vc, {
       e.preventDefault();
       if($control.hasClass('active')) return false;
       this.$size_control.find('.active').removeClass('active');
-      $('#vc-screen-size-current').attr('class', 'icon ' + $control.attr('class'));
+      $('#vc_screen-size-current').attr('class', 'vc_icon ' + $control.attr('class'));
       this.current_size = $control.data('size');
       $control.addClass('active');
       vc.setFrameSize(this.current_size);
@@ -535,17 +493,17 @@ _.extend(vc, {
       e && e.preventDefault();
       this.setMode($control.data('mode'));
       // setCookie('vc_inline_mode', this.mode);
-      $control.siblings('.active').removeClass('active');
-      $control.addClass('active');
+      $control.siblings('.vc_active').removeClass('vc_active');
+      $control.addClass('vc_active');
     },
     toggleMode: function(e) {
       var $control = $(e.currentTarget);
       e && e.preventDefault();
       if(this.mode === 'compose') {
-        $control.addClass('vc-off').text(window.i18nLocale.guides_off);
+        $control.addClass('vc_off').text(window.i18nLocale.guides_off);
         this.setMode('view');
       } else {
-        $control.removeClass('vc-off').text(window.i18nLocale.guides_on);
+        $control.removeClass('vc_off').text(window.i18nLocale.guides_on);
         this.setMode('compose');
       }
     },
@@ -564,7 +522,7 @@ _.extend(vc, {
       } else if(_.isString(activity) && activity === 'prepend') {
         $view.prependTo(vc.$page);
       } else {
-        $view.insertBefore(vc.$page.find('#vc-no-content-helper'));
+        $view.insertBefore(vc.$page.find('#vc_no-content-helper'));
       }
     },
     addShortcodes: function(models) {
@@ -574,8 +532,8 @@ _.extend(vc, {
       }, this);
     },
     createShortcodeHtml: function(model) {
-      var $template = $('#vc-template-' + model.get('shortcode')),
-        template = $template.length ? $template.html() : '<div class="vc-block"></div>';
+      var $template = $('#vc_template-' + model.get('shortcode')),
+        template = $template.length ? $template.html() : '<div class="vc_block"></div>';
       return $(_.template(template, model.toJSON(), vc.template_options).trim());
     },
     addAll: function(models) {
@@ -597,14 +555,6 @@ _.extend(vc, {
     editSettings: function(e) {
       e && e.preventDefault();
       vc.post_settings_view.render().show();
-    },
-    updateSettingsBadge: function() {
-      var value = vc.$custom_css.val();
-      if(value.trim() !== '') {
-        $('#vc-post-css-badge').show();
-      } else {
-        $('#vc-post-css-badge').hide();
-      }
     },
     openTemplatesEditor: function(e) {
       e && e.preventDefault && e.preventDefault();
@@ -628,7 +578,7 @@ _.extend(vc, {
             if(key === 0) {
               vc.activity = 'prepend';
             } else if(key+1 != $rows.length) {
-              // vc.$page.find('> [data-tag=vc_row]:eq(' + (key - 1) +')').addClass('vc-place-after')
+              // vc.$page.find('> [data-tag=vc_row]:eq(' + (key - 1) +')').addClass('vc_place-after')
               row_data.place_after_id = vc.$page.find('> [data-tag=vc_row]:eq(' + (key - 1) +')').data('modelId');
             }
             builder
@@ -640,6 +590,7 @@ _.extend(vc, {
           }
 
         });
+	    vc.setDataChanged();
       }, this);
     },
     saveElementOrder: function(event, ui) {
@@ -651,19 +602,19 @@ _.extend(vc, {
             var $element = $(this),
                 model, prev_parent, current_parent, prepend = false;
             if($element.is('.droppable')) {
-              current_parent = vc.shortcodes.get($column.parents('.vc-element:first').data('modelId'));
+              current_parent = vc.shortcodes.get($column.parents('.vc_element[data-tag]:first').data('modelId'));
               $element.remove();
               if(key === 0) {
                 prepend = true;
               } else if(key+1 != $elements.length) {
                 prepend = $column.find('> [data-tag]:eq(' + (key - 1) +')').data('modelId');
-                // $column.find('> [data-tag]:eq(' + (key - 1) +')').addClass('vc-place-after');
+                // $column.find('> [data-tag]:eq(' + (key - 1) +')').addClass('vc_place-after');
               }
               if(current_parent) vc.add_element_block_view.render(current_parent, prepend);
             } else {
               model = vc.shortcodes.get($element.data('modelId'));
               prev_parent = model.get('parent_id');
-              current_parent = $column.parents('.vc-element:first').data('modelId');
+              current_parent = $column.parents('.vc_element[data-tag]:first').data('modelId');
               model.save({order: key, parent_id: current_parent}, {silent: true});
 
               if(prev_parent!==current_parent) {
@@ -674,6 +625,7 @@ _.extend(vc, {
 
           });
         }
+	    vc.setDataChanged();
       }, this, event, ui);
     },
     saveColumnOrder: function(event, ui) {
@@ -685,6 +637,7 @@ _.extend(vc, {
           vc.shortcodes.get($element.data('modelId')).save({order: index});
         });
       }, this, event, ui);
+	  vc.setDataChanged();
     }
   });
 })(window.jQuery);

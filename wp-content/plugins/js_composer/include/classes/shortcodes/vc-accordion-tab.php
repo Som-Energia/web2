@@ -1,6 +1,8 @@
 <?php
 require_once vc_path_dir('SHORTCODES_DIR', 'vc-tab.php');
 class WPBakeryShortCode_VC_Accordion_tab extends WPBakeryShortCode_VC_Tab {
+	protected $controls_css_settings = 'tc vc_control-container';
+	protected $controls_list = array('add', 'edit', 'clone', 'delete');
 	protected $predefined_atts = array(
 		'el_class' => '',
 		'width' => '',
@@ -16,25 +18,25 @@ class WPBakeryShortCode_VC_Accordion_tab extends WPBakeryShortCode_VC_Tab {
 		$column_controls_bottom = $this->getColumnControls( 'add', 'bottom-controls' );
 
 		if ( $width == 'column_14' || $width == '1/4' ) {
-			$width = array( 'vc_span3' );
+			$width = array( 'vc_col-sm-3' );
 		} else if ( $width == 'column_14-14-14-14' ) {
-			$width = array( 'vc_span3', 'vc_span3', 'vc_span3', 'vc_span3' );
+			$width = array( 'vc_col-sm-3', 'vc_col-sm-3', 'vc_col-sm-3', 'vc_col-sm-3' );
 		} else if ( $width == 'column_13' || $width == '1/3' ) {
-			$width = array( 'vc_span4' );
+			$width = array( 'vc_col-sm-4' );
 		} else if ( $width == 'column_13-23' ) {
-			$width = array( 'vc_span4', 'vc_span8' );
+			$width = array( 'vc_col-sm-4', 'vc_col-sm-8' );
 		} else if ( $width == 'column_13-13-13' ) {
-			$width = array( 'vc_span4', 'vc_span4', 'vc_span4' );
+			$width = array( 'vc_col-sm-4', 'vc_col-sm-4', 'vc_col-sm-4' );
 		} else if ( $width == 'column_12' || $width == '1/2' ) {
-			$width = array( 'vc_span6' );
+			$width = array( 'vc_col-sm-6' );
 		} else if ( $width == 'column_12-12' ) {
-			$width = array( 'vc_span6', 'vc_span6' );
+			$width = array( 'vc_col-sm-6', 'vc_col-sm-6' );
 		} else if ( $width == 'column_23' || $width == '2/3' ) {
-			$width = array( 'vc_span8' );
+			$width = array( 'vc_col-sm-8' );
 		} else if ( $width == 'column_34' || $width == '3/4' ) {
-			$width = array( 'vc_span9' );
+			$width = array( 'vc_col-sm-9' );
 		} else if ( $width == 'column_16' || $width == '1/6' ) {
-			$width = array( 'vc_span2' );
+			$width = array( 'vc_col-sm-2' );
 		} else {
 			$width = array( '' );
 		}
@@ -46,7 +48,6 @@ class WPBakeryShortCode_VC_Accordion_tab extends WPBakeryShortCode_VC_Tab {
 			$output .= '<div class="wpb_element_wrapper">';
 			$output .= '<div ' . $this->containerHtmlBlockParams( $width, $i ) . '>';
 			$output .= do_shortcode( shortcode_unautop( $content ) );
-			$output .= vc_backend_editor()->getLayout()->getContainerHelper();
 			$output .= '</div>';
 			if ( isset( $this->settings['params'] ) ) {
 				$inner = '';

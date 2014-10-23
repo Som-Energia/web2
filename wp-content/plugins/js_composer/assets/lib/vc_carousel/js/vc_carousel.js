@@ -26,7 +26,7 @@
 
   var Carousel = function (element, options) {
     this.$element    = $(element)
-    this.$indicators = this.$element.find('.vc-carousel-indicators')
+    this.$indicators = this.$element.find('.vc_carousel-indicators')
     this.options     = options
     this.paused      =
     this.sliding     =
@@ -60,8 +60,8 @@
     return this
   }
   Carousel.prototype.getActiveIndex = function () {
-    this.$active = this.$element.find('.vc-item.vc-active')
-    if(!this.$active.length) this.$active = this.$element.find('.vc-item:first').addClass('vc-active')
+    this.$active = this.$element.find('.vc_item.vc_active')
+    if(!this.$active.length) this.$active = this.$element.find('.vc_item:first').addClass('vc_active')
     this.$items  = this.$active.parent().children()
     return this.$items.index(this.$active)
   }
@@ -85,7 +85,7 @@
   Carousel.prototype.pause = function (e) {
     e || (this.paused = true)
 
-    if (this.$element.find('.vc-next, .vc-prev').length && $.support.transition.end) {
+    if (this.$element.find('.vc_right.vc_carousel-control, .vc_left.vc_carousel-control').length && $.support.transition.end) {
       this.$element.trigger($.support.transition.end)
       this.cycle(true)
     }
@@ -106,10 +106,10 @@
   }
 
   Carousel.prototype.slide = function (type, next) {
-    var $active   = this.$element.find('.vc-item.vc-active')
+    var $active   = this.$element.find('.vc_item.vc_active')
     var $next     = next || $active[type]()
     var isCycling = this.interval
-    var direction = type == 'next' ? 'vc-left' : 'vc-right'
+    var direction = type == 'next' ? 'vc_left' : 'vc_right'
     var fallback  = type == 'next' ? 'first' : 'last'
     var that      = this
     if (!$next.length) {
@@ -117,7 +117,7 @@
         this.returnSwipedSlide()
         return
       }
-      $next = this.$element.find('.vc-item')[fallback]()
+      $next = this.$element.find('.vc_item')[fallback]()
     }
 
     this.sliding = true
@@ -126,16 +126,16 @@
 
     var e = $.Event('slide.vc.carousel', { relatedTarget: $next[0], direction: direction })
 
-    if ($next.hasClass('vc-active')) return
+    if ($next.hasClass('vc_active')) return
 
     if (this.$indicators.length) {
-      this.$indicators.find('.vc-active').removeClass('vc-active')
-      this.$indicators.find('.vc-partial').removeClass('vc-partial')
+      this.$indicators.find('.vc_active').removeClass('vc_active')
+      this.$indicators.find('.vc_partial').removeClass('vc_partial')
       this.$element.one('slid', function () {
         var index = that.getActiveIndex(),
             $nextIndicator = $(that.$indicators.children().slice(index, that.getActiveIndex() + that.options.perView))
-        $nextIndicator && $nextIndicator.addClass('vc-active')
-        that.options.partial && $nextIndicator && (index+1 < that.items_count ? $nextIndicator.last().next().addClass('vc-partial') : $nextIndicator.first().prev().addClass('vc-partial'))
+        $nextIndicator && $nextIndicator.addClass('vc_active')
+        that.options.partial && $nextIndicator && (index+1 < that.items_count ? $nextIndicator.last().next().addClass('vc_partial') : $nextIndicator.first().prev().addClass('vc_partial'))
         !that.options.wrap && that.showHideControl(index)
       })
     }
@@ -153,17 +153,17 @@
     if(this.options.partial && this.current_index >= this.items_count-1) {
       this.current_pos_value += this._step*(1-this.partial_part)
     }
-    if ($.support.transition && this.$element.hasClass('vc-slide')) {
+    if ($.support.transition && this.$element.hasClass('vc_slide')) {
       this.$element.trigger(e)
       if (e.isDefaultPrevented()) return
       this.$slideline_inner
-        .addClass('vc-transition')
+        .addClass('vc_transition')
         .css(this.animation_position,  this.current_pos_value + that.pos_units)
       if(!this.options.autoHeight) this.recalculateSlidelineHeight($next.height(), true)
       this.$slideline_inner.one($.support.transition.end, function(){
-        $next.addClass('vc-active')
-        $active.removeClass('vc-active')
-        that.$slideline_inner.removeClass([type, 'vc-transition'].join(' '))
+        $next.addClass('vc_active')
+        $active.removeClass('vc_active')
+        that.$slideline_inner.removeClass([type, 'vc_transition'].join(' '))
         that.sliding = false
         that.removeSwipeAnimationSpeed()
         setTimeout(function () { that.$element.trigger('slid') }, 0)
@@ -171,8 +171,8 @@
     } else {
       this.$element.trigger(e)
       if (e.isDefaultPrevented()) return
-      $active.removeClass('vc-active')
-      $next.addClass('vc-active')
+      $active.removeClass('vc_active')
+      $next.addClass('vc_active')
       this.sliding = false
       this.$slideline_inner.css(this.animation_position, this.current_pos_value + that.pos_units)
     }
@@ -180,10 +180,10 @@
     return this
   }
   Carousel.prototype.setSwipeAnimationSpeed = function() {
-    this.$slideline_inner.addClass('vc-swipe-transition')
+    this.$slideline_inner.addClass('vc_swipe-transition')
   }
   Carousel.prototype.removeSwipeAnimationSpeed = function() {
-    this.$slideline_inner.removeClass('vc-swipe-transition')
+    this.$slideline_inner.removeClass('vc_swipe-transition')
 
   }
     /**
@@ -253,8 +253,7 @@
       this.el_width               = 0
       this.items_count            = this.$items.length
 
-      this.$slideline             = this.$element.find('.vc-carousel-slideline')
-      this.slideline              = this.$slideline.get(0)
+      this.$slideline             = this.$element.find('.vc_carousel-slideline')
       this.$slideline_inner       = this.$slideline.find('> div')
       this.slideline_inner        = this.$slideline_inner.get(0)
 
@@ -266,13 +265,13 @@
       this.el_effect_size         = 0
       this.transition_speed       = 600
 
-      this.$left_control = this.$element.find('.vc-left.vc-carousel-control')
-      this.$right_control = this.$element.find('.vc-right.vc-carousel-control')
+      this.$left_control = this.$element.find('.vc_left.vc_carousel-control')
+      this.$right_control = this.$element.find('.vc_right.vc_carousel-control')
 
       // Enable autoHeight if partial
       if(this.options.partial) this.options.autoHeight = true
       // Add Css classes for perView > 1
-      if(this.options.perView > 1) this.$element.addClass('vc-per-view-more vc-per-view-' + this.options.perView)
+      if(this.options.perView > 1) this.$element.addClass('vc_per-view-more vc_per-view-' + this.options.perView)
 
       if( mode === 'horizontal') {
         this.pos_units = '%'
@@ -284,6 +283,7 @@
         this.pos_units = 'px'
         this.animation_position = 'top'
         this.touch_direction = 'pageY'
+        this.$element.addClass('vc_carousel_vertical')
       }
       // Hide first control if this.current_index === 0
       !that.options.wrap && this.showHideControl()
@@ -293,47 +293,42 @@
       if(this.$indicators.length) {
         var $active_indecators = that.$indicators.children()
                                                  .slice(this.current_index, this.current_index + this.options.perView)
-                                                 .addClass('vc-active')
+                                                 .addClass('vc_active')
         this.options.partial && $active_indecators.last().next().addClass('vc_partial')
       }
       $(window).resize(this.resizeAction.bind(this)); this.resizeAction()
-		
-		if(!el.addEventListener){
-            //IE 8 or lower
+
+      el.addEventListener("touchstart", function(e){
+        _touch_start_position = parseFloat(e[that.touch_direction])
+        _touch_start_time = e.timeStamp
+        _pos_before_touch = that.$slideline_inner.position()[that.animation_position]
+      }.bind(this), false)
+      el.addEventListener('touchmove', function(e){
+        _diff = parseFloat(e[that.touch_direction]) - _touch_start_position
+        _moved = Math.abs(_diff) > 0
+        if(!_moved) return true
+        e.preventDefault()
+        that.slideline_inner.style[that.animation_position] = (_pos_before_touch + _diff) + 'px'
+      }, false)
+      el.addEventListener('touchend', function(e){
+        var time,part,velocity
+        if(_moved) {
+          time= (e.timeStamp-_touch_start_time)/1000
+          part = _diff/ that.el_effect_size
+          velocity = that.velocity(time, part)
+          if((velocity.x > that.swipe_velocity && part < 0) || part <= -0.7) {
+            that.setSwipeAnimationSpeed()
+            that.next()
+          } else if(velocity.x > that.swipe_velocity || part >= 0.7) {
+            that.setSwipeAnimationSpeed()
+            that.prev()
+          } else {
+            that.returnSwipedSlide()
+          }
+          _moved = false
         }
-        else{
-	      el.addEventListener("touchstart", function(e){
-	        _touch_start_position = parseFloat(e[that.touch_direction])
-	        _touch_start_time = e.timeStamp
-	        _pos_before_touch = that.$slideline_inner.position()[that.animation_position]
-	      }.bind(this), false)
-	      el.addEventListener('touchmove', function(e){
-	        _diff = parseFloat(e[that.touch_direction]) - _touch_start_position
-	        _moved = Math.abs(_diff) > 0
-	        if(!_moved) return true
-	        e.preventDefault()
-	        that.slideline_inner.style[that.animation_position] = (_pos_before_touch + _diff) + 'px'
-	      }, false)
-	      el.addEventListener('touchend', function(e){
-	        var time,part,velocity
-	        if(_moved) {
-	          time= (e.timeStamp-_touch_start_time)/1000
-	          part = _diff/ that.el_effect_size
-	          velocity = that.velocity(time, part)
-	          if((velocity.x > that.swipe_velocity && part < 0) || part <= -0.7) {
-	            that.setSwipeAnimationSpeed()
-	            that.next()
-	          } else if(velocity.x > that.swipe_velocity || part >= 0.7) {
-	            that.setSwipeAnimationSpeed()
-	            that.prev()
-	          } else {
-	            that.returnSwipedSlide()
-	          }
-	          _moved = false
-	        }
-	      }, false)
-	  }
-      this.$element.addClass('vc-build')
+      }, false)
+      this.$element.addClass('vc_build')
       return this
     }
   // CAROUSEL PLUGIN DEFINITION
@@ -386,7 +381,7 @@
   })
 
   $(window).on('load', function () {
-    $('[data-ride="vc-carousel"]').each(function () {
+    $('[data-ride="vc_carousel"]').each(function () {
       var $carousel = $(this)
       $carousel.carousel($carousel.data())
     })

@@ -205,14 +205,6 @@ function vc_is_editor() {
 	return vc_is_frontend_editor();
 }
 
-function vc_disable_frontend( $disable = true ) {
-	vc_frontend_editor()->disableInline( $disable );
-}
-
-function vc_enabled_frontend() {
-	return vc_frontend_editor()->inlineEnabled();
-}
-
 function vc_value_from_safe( $value, $encode = false ) {
 	$value = preg_match( '/^#E\-8_/', $value ) ? rawurldecode( base64_decode( preg_replace( '/^#E\-8_/', '', $value ) ) ) : $value;
 	if ( $encode ) $value = htmlentities( $value, ENT_COMPAT, 'UTF-8' );
@@ -242,7 +234,6 @@ function vc_get_css_color( $prefix, $color ) {
 
 function vc_shortcode_custom_css_class( $param_value, $prefix = '' ) {
 	$css_class = preg_match( '/\s*\.([^\{]+)\s*\{\s*([^\}]+)\s*\}\s*/', $param_value ) ? $prefix . preg_replace( '/\s*\.([^\{]+)\s*\{\s*([^\}]+)\s*\}\s*/', '$1', $param_value ) : '';
-	if ( vc_is_page_editable() ) $css_class .= ' vc-cc-placeholder';
 	return $css_class;
 }
 

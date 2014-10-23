@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /wp-admin/ 
+Disallow: /wp-includes/
+Disallow: /.git/
+Disallow: /wp-content/plugins/
+Disallow: /wp-content/languages/
+Disallow: /wp-content/upgrade/
+Disallow: /wp-content/themes/
+Disallow: /*?
+Disallow: /comments/
+Allow: /wp-content/uploads/

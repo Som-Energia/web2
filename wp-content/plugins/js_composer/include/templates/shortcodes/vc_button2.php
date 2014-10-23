@@ -17,8 +17,8 @@ $a_href = $link['url'];
 $a_title = $link['title'];
 $a_target = $link['target'];
 
-$class .= ( $color != '' ) ? ' vc_btn_' . $color : '';
-$class .= ( $size != '' ) ? ' vc_btn_' . $size : '';
+$class .= ( $color != '' ) ? ( ' vc_btn_' . $color . ' vc_btn-' . $color ) : '';
+$class .= ( $size != '' ) ? ( ' vc_btn_' . $size . ' vc_btn-' . $size ) : '';
 $class .= ( $style != '' ) ? ' vc_btn_' . $style : '';
 
 $el_class = $this->getExtraClass( $el_class );

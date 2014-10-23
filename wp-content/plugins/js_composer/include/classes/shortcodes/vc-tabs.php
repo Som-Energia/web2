@@ -5,7 +5,8 @@
 
 class WPBakeryShortCode_VC_Tabs extends WPBakeryShortCode {
 	static $filter_added = false;
-
+	protected $controls_css_settings = 'out-tc vc_controls-content-widget';
+	protected $controls_list = array('edit', 'clone', 'delete');
 	public function __construct( $settings ) {
 		parent::__construct( $settings );
 		// WPBakeryVisualComposer::getInstance()->addShortCode( array( 'base' => 'vc_tab' ) );

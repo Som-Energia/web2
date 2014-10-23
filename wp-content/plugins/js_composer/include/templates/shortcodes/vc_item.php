@@ -6,4 +6,4 @@ extract( shortcode_atts( array(
 
 $el_class = $this->getExtraClass( $el_class );
 
-echo '<div class="vc-items' . $el_class . '">' . __( 'Item', "js_composer" ) . '</div>';
+echo '<div class="vc_items' . $el_class . '">' . __( 'Item', "js_composer" ) . '</div>';

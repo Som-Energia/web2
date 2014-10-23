@@ -6,11 +6,12 @@ var vc_iframe = {
   scripts_to_load: false,
   loaded_script: {},
   loaded_styles: {},
-  inline_scripts: []
+  inline_scripts: [],
+  inline_scripts_body: []
 };
 (function($) {
   vc_iframe.showNoContent = function(show) {
-    (show === false && $('#vc-no-content-helper').addClass('vc-not-empty')) || $('#vc-no-content-helper').removeClass('vc-not-empty');
+    (show === false && $('#vc_no-content-helper').addClass('vc_not-empty')) || $('#vc_no-content-helper').removeClass('vc_not-empty');
   };
   vc_iframe.scrollTo = function(id) {
     var $el, el_height, hidden = true, position_y, position,
@@ -27,29 +28,29 @@ var vc_iframe = {
     }
   };
   vc_iframe.startSorting = function() {
-    $('body').addClass('vc-sorting');
+    $('body').addClass('vc_sorting');
   };
   vc_iframe.stopSorting = function() {
-    $('body').removeClass('vc-sorting')
+    $('body').removeClass('vc_sorting')
   };
   vc_iframe.initDroppable = function() {
-    $('body').addClass('vc-dragging');
-    $('.vc-container').bind('mouseenter.vcDraggable', function(){
-      $(this).addClass('vc-catcher');
+    $('body').addClass('vc_dragging');
+    $('.vc_container-block').bind('mouseenter.vcDraggable', function(){
+      $(this).addClass('vc_catcher');
     }).bind('mouseout.vcDraggable', function(){
-      $(this).removeClass('vc-catcher');
+      $(this).removeClass('vc_catcher');
     });
   };
   vc_iframe.killDroppable = function() {
-    $('body').removeClass('vc-dragging');
-    $('.vc-container').unbind('mouseover.vcDraggable mouseleave.vcDraggable');
+    $('body').removeClass('vc_dragging');
+    $('.vc_container-block').unbind('mouseover.vcDraggable mouseleave.vcDraggable');
   };
   vc_iframe.addActivity = function(callback) {
     this.activities_list.push(callback);
   };
   vc_iframe.renderPlaceholder = function(event, element) {
     var tag = $(element).data('tag'),
-      $helper = $('<div class="vc-helper vc-helper-' + tag + '"><i class="vc-element-icon'
+      $helper = $('<div class="vc_helper vc_helper-' + tag + '"><i class="vc_element-icon'
         + ( parent.vc.map[tag].icon ? ' ' + parent.vc.map[tag].icon : '' )
         + '"></i> ' + parent.vc.map[tag].name + '</div>').prependTo('body');
     return $helper;
@@ -58,10 +59,10 @@ var vc_iframe = {
     $('[data-tag=vc_row]').parent().sortable({
       forcePlaceholderSize: false,
       items: '[data-tag=vc_row]',
-      handle: '.vc-move-vc_row',
+      handle: '.vc_move-vc_row',
       cursor: 'move',
       cursorAt: {top: 20, left: 16},
-      placeholder: "vc-placeholder-row",
+      placeholder: "vc_placeholder-row",
       helper: this.renderPlaceholder,
       start: function(event, ui){
         vc_iframe.startSorting();
@@ -73,7 +74,7 @@ var vc_iframe = {
         parent.vc.app.saveRowOrder();
       }
     });
-    $('.vc-element-container').sortable({
+    $('.vc_element-container').sortable({
       forcePlaceholderSize: true,
       helper: this.renderPlaceholder,
       distance: 3,
@@ -81,53 +82,62 @@ var vc_iframe = {
       scrollSensitivity: 70,
       cursor: 'move',
       cursorAt: {top: 20, left: 16},
-      connectWith:'.vc-element-container',
+      connectWith:'.vc_element-container',
       items: '> [data-model-id]',
-      handle: '.vc-element-move',
+      handle: '.vc_element-move',
       start: this.startSorting,
       update: app.saveElementOrder,
       change: function(event, ui) {
         ui.placeholder.height(30);
         ui.placeholder.width(ui.placeholder.parent().width());
       },
-      placeholder: 'vc-placeholder',
+      placeholder: 'vc_placeholder',
       tolerance: "pointer",
       over:function (event, ui) {
         var tag = ui.item.data('tag'),
             vc_map = window.parent.vc.map || false,
             parent_tag = ui.placeholder.closest('[data-tag]').data('tag'),
-            allowed_container_element = vc_map[parent_tag].allowed_container_element ? vc_map[parent_tag].allowed_container_element : true;
-        ui.placeholder.removeClass('hidden-placeholder');
+            allowed_container_element = vc_map[parent_tag].allowed_container_element === undefined ? true : vc_map[parent_tag].allowed_container_element;
+        ui.placeholder.removeClass('vc_hidden-placeholder');
         ui.placeholder.css({maxWidth:ui.placeholder.parent().width()});
         if(tag && vc_map) {
           if (!window.parent.vc.checkRelevance(parent_tag, tag)) {
-            ui.placeholder.addClass('hidden-placeholder');
+            ui.placeholder.addClass('vc_hidden-placeholder');
           }
           if(ui.sender) {
-            var $sender_column = ui.sender.closest('.vc-element').removeClass('vc-sorting-over');
-            $sender_column.find('.vc-element').length < 1 && $sender_column.addClass('vc-empty');
+            var $sender_column = ui.sender.closest('.vc_element').removeClass('vc_sorting-over');
+            $sender_column.find('.vc_element').length < 1 && $sender_column.addClass('vc_empty');
           }
-          ui.placeholder.closest('.vc-element').addClass('vc-sorting-over');
+          ui.placeholder.closest('.vc_element').addClass('vc_sorting-over');
           if (vc_map[tag].is_container && !(allowed_container_element === true || allowed_container_element === tag.replace(/_inner$/, ''))) {
-            ui.placeholder.addClass('hidden-placeholder');
+            ui.placeholder.addClass('vc_hidden-placeholder');
           }
         }
       },
-      out: function() {
-        // $(this).closest('.vc-element').removeClass('vc-sorting-over');
+      out: function(event, ui) {
+        ui.placeholder.removeClass('vc_hidden-placeholder');
+        // $(this).closest('.vc_element').removeClass('vc_sorting-over');
       },
       stop:function (event, ui) {
         var tag = ui.item.data('tag'),
-            vc_map = window.parent.vc.map || false
+            vc_map = window.parent.vc.map || false,
             parent_tag = ui.item.parents('[data-tag]:first').data('tag'),
-            allowed_container_element = vc_map[parent_tag].allowed_container_element ? vc_map[parent_tag].allowed_container_element : true;
+            allowed_container_element = vc_map[parent_tag].allowed_container_element ? vc_map[parent_tag].allowed_container_element : true,
+            trig_changed = true,
+            item_model;
         if (!window.parent.vc.checkRelevance(parent_tag, tag)) {
-          ui.placeholder.removeClass('hidden-placeholder');
+          ui.placeholder.removeClass('vc_hidden-placeholder');
           $(this).sortable('cancel');
+          trig_changed = false;
         }
         if (vc_map[tag].is_container && !(allowed_container_element === true || allowed_container_element === tag.replace(/_inner$/, ''))) { // && ui.item.hasClass('wpb_container_block')
-          ui.placeholder.removeClass('hidden-placeholder');
+          ui.placeholder.removeClass('vc_hidden-placeholder');
           $(this).sortable('cancel');
+          trig_changed = false
+        }
+        if(trig_changed) {
+          item_model = parent.vc.shortcodes.get(ui.item.data('modelId'));
+          item_model.view.parentChanged();
         }
         vc_iframe.stopSorting();
       }
@@ -136,7 +146,7 @@ var vc_iframe = {
       forcePlaceholderSize: true,
       tolerance: "pointer",
       items: '> [data-tag=vc_column], > [data-tag=vc_column_inner]',
-      handle: '> .vc-controls .vc-move-vc_column',
+      handle: '> .vc_controls .vc_move-vc_column',
       start: function(event, ui) {
         vc_iframe.startSorting();
         var id = ui.item.data('modelId'),
@@ -154,12 +164,12 @@ var vc_iframe = {
         vc_iframe.stopSorting(event, ui);
       },
       update: app.saveColumnOrder,
-      placeholder: 'vc-placeholder-column',
+      placeholder: 'vc_placeholder-column',
       helper: this.renderPlaceholder
     });
   /*
     $('.vc_element_button', parent.document).draggable({
-      // connectToSortable: '.vc-element-container',
+      // connectToSortable: '.vc_element-container',
       helper: 'clone',
       revert: true,
       cursor:"move"
@@ -176,31 +186,34 @@ var vc_iframe = {
  /* .mouseup(function(){
         $(this).draggable( "disable" );
         $('.wpb_column > .wpb_wrapper').sortable('disable');
-        $('.vc-placeholder', parent.document).remove();
-        // $('.vc-placeholder').remove();
+        $('.vc_placeholder', parent.document).remove();
+        // $('.vc_placeholder').remove();
         $(this).draggable( "enable" );
       });
       */
     $('[data-tag=vc_row]').disableSelection();
     app.setFrameSize();
-    $('#vc-load-new-js-block').appendTo('body');
+    $('#vc_load-new-js-block').appendTo('body');
   };
   vc_iframe.loadCustomCss = function(css) {
     if(!vc_iframe.$custom_style) {
-      $('[data-type=vc-custom-css]').remove();
+      $('[data-type=vc_custom-css]').remove();
       vc_iframe.$custom_style = $('<style class="vc_post_custom_css_style"></style>').appendTo('body');
     }
     vc_iframe.$custom_style.html(css)
   };
   vc_iframe.setCustomShortcodeCss = function(css) {
-    this.$shortcodes_custom_css = $('[data-type=vc-shortcodes-custom-css]');
+    this.$shortcodes_custom_css = $('[data-type=vc_shortcodes-custom-css]');
     if(!this.$shortcodes_custom_css.length) {
-      this.$shortcodes_custom_css = $('<style data-type="vc-shortcodes-custom-css"></style>').prependTo('body');
+      this.$shortcodes_custom_css = $('<style data-type="vc_shortcodes-custom-css"></style>').prependTo('body');
     }
     this.$shortcodes_custom_css.append(css);
   };
   vc_iframe.addInlineScript = function(script) {
     return this.inline_scripts.push(script)-1;
+  };
+  vc_iframe.addInlineScriptBody = function(script) {
+    return this.inline_scripts_body.push(script)-1;
   };
   vc_iframe.loadInlineScripts = function() {
     var script,i = 0;
@@ -210,6 +223,15 @@ var vc_iframe = {
       i++;
     }
     this.inline_scripts = [];
+  };
+  vc_iframe.loadInlineScriptsBody = function() {
+    var script,i = 0;
+    while(this.inline_scripts_body[i]) {
+      $(this.inline_scripts_body[i]).insertAfter('.js_placeholder_inline_' + i);
+      $('.js_placeholder_inline_' + i).remove();
+      i++;
+    }
+    this.inline_scripts_body = [];
   };
   vc_iframe.allowedLoadScript = function(src) {
     var script_url, i, scripts_string, scripts = [], scripts_to_add = [], ls_rc;
@@ -230,7 +252,6 @@ var vc_iframe = {
     }
     return false;
   };
-
   vc_iframe.collectScriptsData = function() {
     $('script[src]').each(function(){
       vc_iframe.allowedLoadScript($(this).attr('src'));
@@ -253,6 +274,7 @@ var vc_iframe = {
             $(this).attr('target','_blank');
         }
     });
+
     window.vc_twitterBehaviour();
     window.vc_teaserGrid();
     window.vc_carouselBehaviour();
@@ -261,12 +283,17 @@ var vc_iframe = {
     window.vc_pinterest();
     window.vc_progress_bar();
     window.vc_waypoints();
-    for(var i in this.activities_list) {
-      this.activities_list[i].call(window);
-    }
-    this.activities_list = [];
+
+    window.vc_google_fonts();
     this.collectScriptsData();
     this.loadInlineScripts();
+    this.loadInlineScriptsBody();
+    for(var i in this.activities_list) {
+       this.activities_list[i].call(window);
+    }
+    this.activities_list = [];
+    $(window).trigger('vc_reload');
+    $(window).trigger('resize');
     return true;
   };
   vc_iframe.addScripts = function($elements) {
@@ -341,7 +368,7 @@ var vc_iframe = {
         activate: function(event, ui) {wpb_prepare_tab_content(event, ui);}
       }); // .tabs('rotate', interval*1000);
     }
-    $(this).find('.vc-element').each(function(){ tabs_array.push(this.id); });
+    $(this).find('.vc_element').each(function(){ tabs_array.push(this.id); });
     $(this).find('.wpb_prev_slide a, .wpb_next_slide a').unbind('click').click(function(e) {
       e.preventDefault();
       if(old_version) {
@@ -381,8 +408,21 @@ var vc_iframe = {
     $controls.sortable({
       axis:(view.model.get('shortcode') === 'vc_tour' ? 'y' : 'x'),
       update: view.stopSorting,
-      items:"> li:not(.add_tab_block)"
+      items:"> li:not(.add_tab_block)"/*,
+        start: function (event, ui) { ui.item.css('margin-top', $(window).scrollTop() ); },
+        beforeStop: function (event, ui) { ui.item.css('margin-top', 0 ); }*/
     });
+      // fix: #1019, from http://stackoverflow.com/questions/2451528/jquery-ui-sortable-scroll-helper-element-offset-firefox-issue
+    var userAgent = navigator.userAgent.toLowerCase();
+
+    if(userAgent.match(/firefox/)) {
+        $controls.bind("sortstart", function (event, ui) {
+            ui.helper.css('margin-top', $(window).scrollTop());
+        });
+        $controls.bind("sortbeforestop", function (event, ui) {
+            ui.helper.css('margin-top', 0);
+        });
+    }
   };
   vc_iframe.buildAccordion = function($el, active) {
     $el.each(function(index) {
@@ -399,13 +439,20 @@ var vc_iframe = {
         $wrapper.accordion('option', 'active', active);
       } else {
         $tabs = $this.find('.wpb_accordion_wrapper').accordion({
-          header: "> .vc-element > div > h3",
+          create: function(event, ui){
+              ui.panel.parent().parent().addClass('vc_active-accordion-tab');
+          },
+          header: "> .vc_element > div > h3",
           autoHeight: false,
           heightStyle: "content",
           active: active_tab,
           collapsible: collapsible,
           navigation: true,
-          activate: vc_accordionActivate,
+          activate: function(event, ui){
+              vc_accordionActivate(event, ui);
+              ui.oldPanel.parent().parent().removeClass('vc_active-accordion-tab');
+              ui.newPanel.parent().parent().addClass('vc_active-accordion-tab');
+          },
           change: function(event, ui){
             if($.fn.isotope!=undefined) {
               ui.newContent.find('.isotope').isotope("layout");
@@ -420,14 +467,14 @@ var vc_iframe = {
   };
   vc_iframe.setAccordionSorting = function(view) {
     $(view.$accordion.find('> .wpb_accordion_wrapper').get(0)).sortable({
-      handle: '.vc-move-vc_accordion_tab',
+      handle: '.vc_move-vc_accordion_tab',
       update: view.stopSorting
     });
   };
   vc_iframe.vc_imageCarousel = function(model_id) {
     var $el = $('[data-model-id=' + model_id + ']'),
         images_count = $el.find('img').length,
-        $carousel = $el.find('[data-ride="vc-carousel"]');
+        $carousel = $el.find('[data-ride="vc_carousel"]');
     if(!$carousel.find('img:first').length) {
       $carousel.carousel($carousel.data());
       return;
@@ -468,7 +515,7 @@ var vc_iframe = {
         slideshow: slideshow,
         slideshowSpeed: sliderTimeout,
         sliderSpeed: sliderSpeed,
-        smoothHeight: false
+        smoothHeight: true
       });
       $gallery.addClass('loaded');
     } else if ( $gallery.hasClass('wpb_slider_nivo') ) {
@@ -533,8 +580,10 @@ var vc_iframe = {
     });
     */
   };
-  $(window).load(function(){
-    if(!parent.vc.loaded) parent.vc.build();
+  $(window).ready(function(){
+    if(!parent.vc.loaded) {
+	    window.setTimeout(function() {parent.vc.build()},10);
+    }
   });
   // vc_iframe.setSortable(window.parent.vc.app);
 })(window.jQuery);

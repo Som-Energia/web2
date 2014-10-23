@@ -59,50 +59,50 @@ vc_map( array(
 	'params' => array(
 		array(
 			'type' => 'colorpicker',
-			'heading' => __( 'Font Color', 'wpb' ),
+			'heading' => __( 'Font Color', 'js_composer' ),
 			'param_name' => 'font_color',
-			'description' => __( 'Select font color', 'wpb' ),
-			'edit_field_class' => 'col-md-6'
+			'description' => __( 'Select font color', 'js_composer' ),
+			'edit_field_class' => 'vc_col-md-6 vc_column'
 		),
 		/*
    array(
         'type' => 'colorpicker',
-        'heading' => __( 'Custom Background Color', 'wpb' ),
+        'heading' => __( 'Custom Background Color', 'js_composer' ),
         'param_name' => 'bg_color',
-        'description' => __( 'Select backgound color for your row', 'wpb' ),
+        'description' => __( 'Select backgound color for your row', 'js_composer' ),
         'edit_field_class' => 'col-md-6'
   ),
   array(
         'type' => 'textfield',
-        'heading' => __( 'Padding', 'wpb' ),
+        'heading' => __( 'Padding', 'js_composer' ),
         'param_name' => 'padding',
-        'description' => __( 'You can use px, em, %, etc. or enter just number and it will use pixels.', 'wpb' ),
+        'description' => __( 'You can use px, em, %, etc. or enter just number and it will use pixels.', 'js_composer' ),
         'edit_field_class' => 'col-md-6'
   ),
   array(
         'type' => 'textfield',
-        'heading' => __( 'Bottom margin', 'wpb' ),
+        'heading' => __( 'Bottom margin', 'js_composer' ),
         'param_name' => 'margin_bottom',
-        'description' => __( 'You can use px, em, %, etc. or enter just number and it will use pixels.', 'wpb' ),
+        'description' => __( 'You can use px, em, %, etc. or enter just number and it will use pixels.', 'js_composer' ),
         'edit_field_class' => 'col-md-6'
   ),
   array(
         'type' => 'attach_image',
-        'heading' => __( 'Background Image', 'wpb' ),
+        'heading' => __( 'Background Image', 'js_composer' ),
         'param_name' => 'bg_image',
-        'description' => __( 'Select background image for your row', 'wpb' )
+        'description' => __( 'Select background image for your row', 'js_composer' )
   ),
   array(
         'type' => 'dropdown',
-        'heading' => __( 'Background Repeat', 'wpb' ),
+        'heading' => __( 'Background Repeat', 'js_composer' ),
         'param_name' => 'bg_image_repeat',
         'value' => array(
-                          __( 'Default', 'wpb' ) => '',
-                          __( 'Cover', 'wpb' ) => 'cover',
-					  __('Contain', 'wpb') => 'contain',
-					  __('No Repeat', 'wpb') => 'no-repeat'
+                          __( 'Default', 'js_composer' ) => '',
+                          __( 'Cover', 'js_composer' ) => 'cover',
+					  __('Contain', 'js_composer') => 'contain',
+					  __('No Repeat', 'js_composer') => 'no-repeat'
 					),
-        'description' => __( 'Select how a background image will be repeated', 'wpb' ),
+        'description' => __( 'Select how a background image will be repeated', 'js_composer' ),
         'dependency' => array( 'element' => 'bg_image', 'not_empty' => true)
   ),
   */
@@ -130,7 +130,15 @@ vc_map( array(
 	'icon' => 'icon-wpb-row',
 	'weight' => 1000,
 	'show_settings_on_create' => false,
+	'description' => __( 'Place content elements inside the row', 'js_composer' ),
 	'params' => array(
+		array(
+			'type' => 'colorpicker',
+			'heading' => __( 'Font Color', 'js_composer' ),
+			'param_name' => 'font_color',
+			'description' => __( 'Select font color', 'js_composer' ),
+			'edit_field_class' => 'vc_col-md-6 vc_column'
+		),
 		array(
 			'type' => 'textfield',
 			'heading' => __( 'Extra class name', 'js_composer' ),
@@ -147,12 +155,33 @@ vc_map( array(
 	),
 	'js_view' => 'VcRowView'
 ) );
+$column_width_list = array(
+	__('1 column - 1/12', 'js_composer') => '1/12',
+	__('2 columns - 1/6', 'js_composer') => '1/6',
+	__('3 columns - 1/4', 'js_composer') => '1/4',
+	__('4 columns - 1/3', 'js_composer') => '1/3',
+	__('5 columns - 5/12', 'js_composer') => '5/12',
+	__('6 columns - 1/2', 'js_composer') => '1/2',
+	__('7 columns - 7/12', 'js_composer') => '7/12',
+	__('8 columns - 2/3', 'js_composer') => '2/3',
+	__('9 columns - 3/4', 'js_composer') => '3/4',
+	__('10 columns - 5/6', 'js_composer') => '5/6',
+	__('11 columns - 11/12', 'js_composer') => '11/12',
+	__('12 columns - 1/1', 'js_composer') => '1/1'
+);
 vc_map( array(
 	'name' => __( 'Column', 'js_composer' ),
 	'base' => 'vc_column',
 	'is_container' => true,
 	'content_element' => false,
 	'params' => array(
+		array(
+			'type' => 'colorpicker',
+			'heading' => __( 'Font Color', 'js_composer' ),
+			'param_name' => 'font_color',
+			'description' => __( 'Select font color', 'js_composer' ),
+			'edit_field_class' => 'vc_col-md-6 vc_column'
+		),
 		array(
 			'type' => 'textfield',
 			'heading' => __( 'Extra class name', 'js_composer' ),
@@ -165,6 +194,22 @@ vc_map( array(
 			'param_name' => 'css',
 			// 'description' => __( 'If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.', 'js_composer' ),
 			'group' => __( 'Design options', 'js_composer' )
+		),
+		array(
+			'type' => 'dropdown',
+			'heading' => __( 'Width', 'js_composer' ),
+			'param_name' => 'width',
+			'value' => $column_width_list,
+			'group' => __( 'Width & Responsiveness', 'js_composer' ),
+			'description' => __( 'Select column width.', 'js_composer' ),
+			'std' => '1/1'
+		),
+		array(
+			'type' => 'column_offset',
+			'heading' => __('Responsiveness', 'js_composer'),
+			'param_name' => 'offset',
+			'group' => __( 'Width & Responsiveness', 'js_composer' ),
+			'description' => __('Adjust column for different screen sizes. Control width, offset and visibility settings.', 'js_composer')
 		)
 	),
 	'js_view' => 'VcColumnView'
@@ -182,6 +227,13 @@ vc_map( array(
 	"is_container" => true,
 	"params" => array(
 		array(
+			'type' => 'colorpicker',
+			'heading' => __( 'Font Color', 'js_composer' ),
+			'param_name' => 'font_color',
+			'description' => __( 'Select font color', 'js_composer' ),
+			'edit_field_class' => 'vc_col-md-6 vc_column'
+		),
+		array(
 			"type" => "textfield",
 			"heading" => __( "Extra class name", "js_composer" ),
 			"param_name" => "el_class",
@@ -194,6 +246,15 @@ vc_map( array(
 			"param_name" => "css",
 			// "description" => __("If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.", "js_composer"),
 			"group" => __( 'Design options', 'js_composer' )
+		),
+		array(
+			'type' => 'dropdown',
+			'heading' => __( 'Width', 'js_composer' ),
+			'param_name' => 'width',
+			'value' => $column_width_list,
+			'group' => __( 'Width & Responsiveness', 'js_composer' ),
+			'description' => __( 'Select column width.', 'js_composer' ),
+			'std' => '1/1'
 		)
 	),
 	"js_view" => 'VcColumnView'
@@ -276,7 +337,7 @@ vc_map( array(
 	'name' => __( 'Separator', 'js_composer' ),
 	'base' => 'vc_separator',
 	'icon' => 'icon-wpb-ui-separator',
-	'show_settings_on_create' => false,
+	'show_settings_on_create' => true,
 	'category' => __( 'Content', 'js_composer' ),
 //"controls"	=> 'popup_delete',
 	'description' => __( 'Horizontal separator line', 'js_composer' ),
@@ -285,16 +346,20 @@ vc_map( array(
 			'type' => 'dropdown',
 			'heading' => __( 'Color', 'js_composer' ),
 			'param_name' => 'color',
-			'value' => getVcShared( 'colors' ),
+			'value' => array_merge( getVcShared( 'colors' ), array( __( 'Custom color', 'js_composer' ) => 'custom' ) ),
 			'std' => 'grey',
 			'description' => __( 'Separator color.', 'js_composer' ),
-			'param_holder_class' => 'vc-colored-dropdown'
+			'param_holder_class' => 'vc_colored-dropdown'
 		),
 		array(
 			'type' => 'colorpicker',
-			'heading' => __( 'Custom Border Color', 'wpb' ),
+			'heading' => __( 'Custom Border Color', 'js_composer' ),
 			'param_name' => 'accent_color',
-			'description' => __( 'Select border color for your element.', 'wpb' )
+			'description' => __( 'Select border color for your element.', 'js_composer' ),
+			'dependency'  => array(
+				'element' => 'color',
+				'value'   => array( 'custom' )
+			),
 		),
 		array(
 			'type' => 'dropdown',
@@ -351,16 +416,20 @@ vc_map( array(
 			'type' => 'dropdown',
 			'heading' => __( 'Color', 'js_composer' ),
 			'param_name' => 'color',
-			'value' => getVcShared( 'colors' ),
+			'value' => array_merge( getVcShared( 'colors' ), array( __( 'Custom color', 'js_composer' ) => 'custom' ) ),
 			'std' => 'grey',
 			'description' => __( 'Separator color.', 'js_composer' ),
-			'param_holder_class' => 'vc-colored-dropdown'
+			'param_holder_class' => 'vc_colored-dropdown'
 		),
 		array(
-			'type' => 'colorpicker',
-			'heading' => __( 'Custom Border Color', 'wpb' ),
-			'param_name' => 'accent_color',
-			'description' => __( 'Select border color for your element.', 'wpb' )
+			'type'        => 'colorpicker',
+			'heading'     => __( 'Custom Color', 'js_composer' ),
+			'param_name'  => 'accent_color',
+			'description' => __( 'Custom separator color for your element.', 'js_composer' ),
+			'dependency'  => array(
+				'element' => 'color',
+				'value'   => array( 'custom' )
+			),
 		),
 		array(
 			'type' => 'dropdown',
@@ -406,7 +475,8 @@ vc_map( array(
 				__( 'Success', 'js_composer' ) => 'alert-success',
 				__( 'Error', 'js_composer' ) => "alert-danger"
 			),
-			'description' => __( 'Select message type.', 'js_composer' )
+			'description' => __( 'Select message type.', 'js_composer' ),
+			'param_holder_class' => 'vc_message-type'
 		),
 		array(
 			'type' => 'dropdown',
@@ -646,7 +716,7 @@ vc_map( array(
 				'value' => array( 'vc_box_border', 'vc_box_border_circle', 'vc_box_outline', 'vc_box_outline_circle' )
 			),
 			'description' => __( 'Border color.', 'js_composer' ),
-			'param_holder_class' => 'vc-colored-dropdown'
+			'param_holder_class' => 'vc_colored-dropdown'
 		),
 		array(
 			'type' => 'checkbox',
@@ -965,15 +1035,15 @@ vc_map( array(
 $tab_id_1 = time() . '-1-' . rand( 0, 100 );
 $tab_id_2 = time() . '-2-' . rand( 0, 100 );
 WPBMap::map( 'vc_tour', array(
-	'name' => __( 'Tour Section', 'js_composer' ),
+	'name' => __( 'Tour', 'js_composer' ),
 	'base' => 'vc_tour',
 	'show_settings_on_create' => false,
 	'is_container' => true,
 	'container_not_allowed' => true,
 	'icon' => 'icon-wpb-ui-tab-content-vertical',
 	'category' => __( 'Content', 'js_composer' ),
-	'wrapper_class' => 'clearfix',
-	'description' => __( 'Tabbed tour section', 'js_composer' ),
+	'wrapper_class' => 'vc_clearfix',
+	'description' => __( 'Vertical tabbed content', 'js_composer' ),
 	'params' => array(
 		array(
 			'type' => 'textfield',
@@ -997,15 +1067,15 @@ WPBMap::map( 'vc_tour', array(
 		)
 	),
 	'custom_markup' => '
-<div class="wpb_tabs_holder wpb_holder clearfix vc_container_for_children">
+<div class="wpb_tabs_holder wpb_holder vc_clearfix vc_container_for_children">
 <ul class="tabs_controls">
 </ul>
 %content%
 </div>'
 ,
 	'default_content' => '
-[vc_tab title="' . __( 'Slide 1', 'js_composer' ) . '" tab_id="' . $tab_id_1 . '"][/vc_tab]
-[vc_tab title="' . __( 'Slide 2', 'js_composer' ) . '" tab_id="' . $tab_id_2 . '"][/vc_tab]
+[vc_tab title="' . __( 'Tab 1', 'js_composer' ) . '" tab_id="' . $tab_id_1 . '"][/vc_tab]
+[vc_tab title="' . __( 'Tab 2', 'js_composer' ) . '" tab_id="' . $tab_id_2 . '"][/vc_tab]
 ',
 	'js_view' => $vc_is_wp_version_3_6_more ? 'VcTabsView' : 'VcTabsView35'
 ) );
@@ -1041,7 +1111,7 @@ vc_map( array(
 	'is_container' => true,
 	'icon' => 'icon-wpb-ui-accordion',
 	'category' => __( 'Content', 'js_composer' ),
-	'description' => __( 'jQuery UI accordion', 'js_composer' ),
+	'description' => __( 'Collapsible content panels', 'js_composer' ),
 	'params' => array(
 		array(
 			'type' => 'textfield',
@@ -1051,9 +1121,9 @@ vc_map( array(
 		),
 		array(
 			'type' => 'textfield',
-			'heading' => __( 'Active tab', 'js_composer' ),
+			'heading' => __( 'Active section', 'js_composer' ),
 			'param_name' => 'active_tab',
-			'description' => __( 'Enter tab number to be active on load or enter false to collapse all tabs.', 'js_composer' )
+			'description' => __( 'Enter section number to be active on load or enter false to collapse all sections.', 'js_composer' )
 		),
 		array(
 			'type' => 'checkbox',
@@ -1074,7 +1144,7 @@ vc_map( array(
 %content%
 </div>
 <div class="tab_controls">
-    <button class="add_tab" title="' . __( 'Add accordion section', 'js_composer' ) . '">' . __( 'Add accordion section', 'js_composer' ) . '</button>
+    <a class="add_tab" title="' . __( 'Add section', 'js_composer' ) . '"><span class="vc_icon"></span> <span class="tab-label">' . __( 'Add section', 'js_composer' ) . '</span></a>
 </div>
 ',
 	'default_content' => '
@@ -1084,7 +1154,7 @@ vc_map( array(
 	'js_view' => 'VcAccordionView'
 ) );
 vc_map( array(
-	'name' => __( 'Accordion Section', 'js_composer' ),
+	'name' => __( 'Section', 'js_composer' ),
 	'base' => 'vc_accordion_tab',
 	'allowed_container_element' => 'vc_row',
 	'is_container' => true,
@@ -1216,7 +1286,7 @@ vc_map( array(
 				'value' => array( 'filtered_grid' ),
 				'callback' => 'wpb_grid_post_types_for_taxonomies_handler'
 			),
-			'description' => __( 'Select taxonomies from.', 'js_composer' ) //TODO: Change description
+			'description' => __( 'Select taxonomies.', 'js_composer' )
 		),
 		array(
 			'type' => 'textfield',
@@ -1375,10 +1445,10 @@ vc_map( array(
 // 'html_template' => dirname(__DIR__).'/composer/shortcodes_templates/vc_posts_grid.php'
 ) );
 
-/* Carousel
+/* Post Carousel
 ---------------------------------------------------------- */
 vc_map( array(
-	'name' => __( 'Carousel', 'vc_extend' ),
+	'name' => __( 'Post Carousel', 'vc_extend' ),
 	'base' => 'vc_carousel',
 	'class' => '',
 	'icon' => 'icon-wpb-vc_carousel',
@@ -1448,7 +1518,7 @@ vc_map( array(
 			'type' => 'textfield',
 			'heading' => __( 'Slides per view', 'js_composer' ),
 			'param_name' => 'slides_per_view',
-			'value' => '4',
+			'value' => '1',
 			'description' => __( 'Set numbers of slides you want to display at the same time on slider\'s container for carousel mode. Also supports for "auto" value, in this case it will fit slides depending on container\'s width. "auto" mode doesn\'t compatible with loop mode.', 'js_composer' )
 		),
 		array(
@@ -1726,7 +1796,7 @@ vc_map( array(
 			'description' => __( 'Text on the button.', 'js_composer' )
 		),
 		array(
-			'type' => 'textfield',
+			'type' => 'href',
 			'heading' => __( 'URL (Link)', 'js_composer' ),
 			'param_name' => 'href',
 			'description' => __( 'Button link.', 'js_composer' )
@@ -1736,7 +1806,7 @@ vc_map( array(
 			'heading' => __( 'Target', 'js_composer' ),
 			'param_name' => 'target',
 			'value' => $target_arr,
-			'dependency' => array( 'element' => 'href', 'not_empty' => true )
+			'dependency' => array( 'element'=>'href', 'not_empty'=>true, 'callback' => 'vc_button_param_target_callback' )
 		),
 		array(
 			'type' => 'dropdown',
@@ -1744,7 +1814,7 @@ vc_map( array(
 			'param_name' => 'color',
 			'value' => $colors_arr,
 			'description' => __( 'Button color.', 'js_composer' ),
-			'param_holder_class' => 'vc-colored-dropdown'
+			'param_holder_class' => 'vc_colored-dropdown'
 		),
 		array(
 			'type' => 'dropdown',
@@ -1775,8 +1845,7 @@ vc_map( array(
 	'base' => 'vc_button2',
 	'icon' => 'icon-wpb-ui-button',
 	'category' => array(
-		__( 'Content', 'js_composer' ),
-		__( 'New elements', 'js_composer' ) ),
+		__( 'Content', 'js_composer' )),
 	'description' => __( 'Eye catching button', 'js_composer' ),
 	'params' => array(
 		array(
@@ -1789,7 +1858,7 @@ vc_map( array(
 			'type' => 'textfield',
 			'heading' => __( 'Text on the button', 'js_composer' ),
 			'holder' => 'button',
-			'class' => 'wpb_button',
+			'class' => 'vc_btn',
 			'param_name' => 'title',
 			'value' => __( 'Text on the button', 'js_composer' ),
 			'description' => __( 'Text on the button.', 'js_composer' )
@@ -1807,7 +1876,7 @@ vc_map( array(
 			'param_name' => 'color',
 			'value' => getVcShared( 'colors' ),
 			'description' => __( 'Button color.', 'js_composer' ),
-			'param_holder_class' => 'vc-colored-dropdown'
+			'param_holder_class' => 'vc_colored-dropdown'
 		),
 		/*array(
         'type' => 'dropdown',
@@ -1830,7 +1899,8 @@ vc_map( array(
 			'param_name' => 'el_class',
 			'description' => __( 'If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.', 'js_composer' )
 		)
-	)
+	),
+	'js_view' => 'VcButton2View'
 ) );
 
 /* Call to Action Button
@@ -1858,7 +1928,7 @@ vc_map( array(
 			'description' => __( 'Text on the button.', 'js_composer' )
 		),
 		array(
-			'type' => 'textfield',
+			'type' => 'href',
 			'heading' => __( 'URL (Link)', 'js_composer' ),
 			'param_name' => 'href',
 			'description' => __( 'Button link.', 'js_composer' )
@@ -1868,7 +1938,7 @@ vc_map( array(
 			'heading' => __( 'Target', 'js_composer' ),
 			'param_name' => 'target',
 			'value' => $target_arr,
-			'dependency' => array( 'element' => 'href', 'not_empty' => true )
+			'dependency' => array( 'element' => 'href', 'not_empty' => true, 'callback' => 'vc_cta_button_param_target_callback' )
 		),
 		array(
 			'type' => 'dropdown',
@@ -1876,7 +1946,7 @@ vc_map( array(
 			'param_name' => 'color',
 			'value' => $colors_arr,
 			'description' => __( 'Button color.', 'js_composer' ),
-			'param_holder_class' => 'vc-colored-dropdown'
+			'param_holder_class' => 'vc_colored-dropdown'
 		),
 		array(
 			'type' => 'dropdown',
@@ -1918,13 +1988,14 @@ vc_map( array(
 	'name' => __( 'Call to Action Button', 'js_composer' ) . ' 2',
 	'base' => 'vc_cta_button2',
 	'icon' => 'icon-wpb-call-to-action',
-	'category' => array( __( 'Content', 'js_composer' ), __( 'New elements', 'js_composer' ) ),
+	'category' => array( __( 'Content', 'js_composer' ) ),
 	'description' => __( 'Catch visitors attention with CTA block', 'js_composer' ),
 	'params' => array(
 		array(
 			'type' => 'textfield',
 			'heading' => __( 'Heading first line', 'js_composer' ),
-			'holder' => 'h2',
+			'admin_label' => true,
+			//'holder' => 'h2',
 			'param_name' => 'h2',
 			'value' => __( 'Hey! I am first heading line feel free to change me', 'js_composer' ),
 			'description' => __( 'Text for the first heading line.', 'js_composer' )
@@ -1932,7 +2003,8 @@ vc_map( array(
 		array(
 			'type' => 'textfield',
 			'heading' => __( 'Heading second line', 'js_composer' ),
-			'holder' => 'h4',
+			//'holder' => 'h4',
+			//'admin_label' => true,
 			'param_name' => 'h4',
 			'value' => '',
 			'description' => __( 'Optional text for the second heading line.', 'js_composer' )
@@ -1960,16 +2032,17 @@ vc_map( array(
 		),
 		array(
 			'type' => 'colorpicker',
-			'heading' => __( 'Custom Background Color', 'wpb' ),
+			'heading' => __( 'Custom Background Color', 'js_composer' ),
 			'param_name' => 'accent_color',
-			'description' => __( 'Select background color for your element.', 'wpb' )
+			'description' => __( 'Select background color for your element.', 'js_composer' )
 		),
 		array(
 			'type' => 'textarea_html',
-			'holder' => 'div',
+			//holder' => 'div',
+			//'admin_label' => true,
 			'heading' => __( 'Promotional text', 'js_composer' ),
 			'param_name' => 'content',
-			'value' => __( '<p>I am promo text. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>', 'js_composer' )
+			'value' => __( 'I am promo text. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'js_composer' )
 		),
 		array(
 			'type' => 'vc_link',
@@ -1999,7 +2072,7 @@ vc_map( array(
 			'param_name' => 'color',
 			'value' => getVcShared( 'colors' ),
 			'description' => __( 'Button color.', 'js_composer' ),
-			'param_holder_class' => 'vc-colored-dropdown'
+			'param_holder_class' => 'vc_colored-dropdown'
 		),
 		/*array(
         'type' => 'dropdown',
@@ -2100,6 +2173,7 @@ vc_map( array(
 			'type' => 'textfield',
 			'heading' => __( 'Map height', 'js_composer' ),
 			'param_name' => 'size',
+			'admin_label' => true,
 			'description' => __( 'Enter map height in pixels. Example: 200 or leave it empty to make map responsive.', 'js_composer' )
 		),
 		/*array(
@@ -2251,7 +2325,7 @@ vc_map( array(
 			'type' => 'exploded_textarea',
 			'heading' => __( 'Graphic values', 'js_composer' ),
 			'param_name' => 'values',
-			'description' => __( 'Input graph values here. Divide values with linebreaks (Enter). Example: 90|Development', 'js_composer' ),
+			'description' => __( 'Input graph values, titles and color here. Divide values with linebreaks (Enter). Example: 90|Development|#e75956', 'js_composer' ),
 			'value' => "90|Development,80|Design,70|Marketing"
 		),
 		array(
@@ -2348,7 +2422,7 @@ vc_map( array(
 			'value' => $colors_arr, //$pie_colors,
 			'description' => __( 'Select pie chart color.', 'js_composer' ),
 			'admin_label' => true,
-			'param_holder_class' => 'vc-colored-dropdown'
+			'param_holder_class' => 'vc_colored-dropdown'
 		),
 		array(
 			'type' => 'textfield',
@@ -2406,103 +2480,6 @@ if ( is_plugin_active( 'contact-form-7/wp-contact-form-7.php' ) ) {
 		)
 	) );
 } // if contact form7 plugin active
-
-if ( is_plugin_active( 'LayerSlider/layerslider.php' ) ) {
-	global $wpdb;
-	$ls = $wpdb->get_results(
-		"
-  SELECT id, name, date_c
-  FROM " . $wpdb->prefix . "layerslider
-  WHERE flag_hidden = '0' AND flag_deleted = '0'
-  ORDER BY date_c ASC LIMIT 999
-  "
-	);
-	$layer_sliders = array();
-	if ( $ls ) {
-		foreach ( $ls as $slider ) {
-			$layer_sliders[$slider->name] = $slider->id;
-		}
-	} else {
-		$layer_sliders[__( 'No sliders found', 'js_composer' )] = 0;
-	}
-	vc_map( array(
-		'base' => 'layerslider_vc',
-		'name' => __( 'Layer Slider', 'js_composer' ),
-		'icon' => 'icon-wpb-layerslider',
-		'category' => __( 'Content', 'js_composer' ),
-		'description' => __( 'Place LayerSlider', 'js_composer' ),
-		'params' => array(
-			array(
-				'type' => 'textfield',
-				'heading' => __( 'Widget title', 'js_composer' ),
-				'param_name' => 'title',
-				'description' => __( 'Enter text which will be used as widget title. Leave blank if no title is needed.', 'js_composer' )
-			),
-			array(
-				'type' => 'dropdown',
-				'heading' => __( 'LayerSlider ID', 'js_composer' ),
-				'param_name' => 'id',
-				'admin_label' => true,
-				'value' => $layer_sliders,
-				'description' => __( 'Select your LayerSlider.', 'js_composer' )
-			),
-			array(
-				'type' => 'textfield',
-				'heading' => __( 'Extra class name', 'js_composer' ),
-				'param_name' => 'el_class',
-				'description' => __( 'If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.', 'js_composer' )
-			)
-		)
-	) );
-} // if layer slider plugin active
-
-if ( is_plugin_active( 'revslider/revslider.php' ) ) {
-	global $wpdb;
-	$rs = $wpdb->get_results(
-		"
-  SELECT id, title, alias
-  FROM " . $wpdb->prefix . "revslider_sliders
-  ORDER BY id ASC LIMIT 999
-  "
-	);
-	$revsliders = array();
-	if ( $rs ) {
-		foreach ( $rs as $slider ) {
-			$revsliders[$slider->title] = $slider->alias;
-		}
-	} else {
-		$revsliders[__( 'No sliders found', 'js_composer' )] = 0;
-	}
-	vc_map( array(
-		'base' => 'rev_slider_vc',
-		'name' => __( 'Revolution Slider', 'js_composer' ),
-		'icon' => 'icon-wpb-revslider',
-		'category' => __( 'Content', 'js_composer' ),
-		'description' => __( 'Place Revolution slider', 'js_composer' ),
-		"params" => array(
-			array(
-				'type' => 'textfield',
-				'heading' => __( 'Widget title', 'js_composer' ),
-				'param_name' => 'title',
-				'description' => __( 'Enter text which will be used as widget title. Leave blank if no title is needed.', 'js_composer' )
-			),
-			array(
-				'type' => 'dropdown',
-				'heading' => __( 'Revolution Slider', 'js_composer' ),
-				'param_name' => 'alias',
-				'admin_label' => true,
-				'value' => $revsliders,
-				'description' => __( 'Select your Revolution Slider.', 'js_composer' )
-			),
-			array(
-				'type' => 'textfield',
-				'heading' => __( 'Extra class name', 'js_composer' ),
-				'param_name' => 'el_class',
-				'description' => __( 'If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.', 'js_composer' )
-			)
-		)
-	) );
-} // if revslider plugin active
 
 if ( is_plugin_active( 'gravityforms/gravityforms.php' ) ) {
 	$gravity_forms_array[__( 'No Gravity forms found.', 'js_composer' )] = '';
@@ -2872,59 +2849,60 @@ vc_map( array(
 
 
 $link_category = array( __( 'All Links', 'js_composer' ) => '' );
-$link_cats = get_terms( 'link_category' );
+$link_cats     = get_terms( 'link_category' );
 if ( is_array( $link_cats ) ) {
 	foreach ( $link_cats as $link_cat ) {
-		$link_category[$link_cat->name] = $link_cat->term_id;
+		$link_category[ $link_cat->name ] = $link_cat->term_id;
 	}
 }
 vc_map( array(
-	'name' => 'WP ' . __( 'Links' ),
-	'base' => 'vc_wp_links',
-	'icon' => 'icon-wpb-wp',
-	'category' => __( 'WordPress Widgets', 'js_composer' ),
-	'class' => 'wpb_vc_wp_widget',
-	'weight' => - 50,
+	'name'        => 'WP ' . __( 'Links' ),
+	'base'        => 'vc_wp_links',
+	'icon'        => 'icon-wpb-wp',
+	'category'    => __( 'WordPress Widgets', 'js_composer' ),
+	'class'       => 'wpb_vc_wp_widget',
+	'content_element' => (bool) get_option( 'link_manager_enabled' ),
+	'weight'      => - 50,
 	'description' => __( 'Your blogroll', 'js_composer' ),
-	'params' => array(
+	'params'      => array(
 		array(
-			'type' => 'dropdown',
-			'heading' => __( 'Link Category', 'js_composer' ),
-			'param_name' => 'category',
-			'value' => $link_category,
+			'type'        => 'dropdown',
+			'heading'     => __( 'Link Category', 'js_composer' ),
+			'param_name'  => 'category',
+			'value'       => $link_category,
 			'admin_label' => true
 		),
 		array(
-			'type' => 'dropdown',
-			'heading' => __( 'Sort by', 'js_composer' ),
+			'type'       => 'dropdown',
+			'heading'    => __( 'Sort by', 'js_composer' ),
 			'param_name' => 'orderby',
-			'value' => array(
-				__( 'Link title', 'js_composer' ) => 'name',
+			'value'      => array(
+				__( 'Link title', 'js_composer' )  => 'name',
 				__( 'Link rating', 'js_composer' ) => 'rating',
-				__( 'Link ID', 'js_composer' ) => 'id',
-				__( 'Random', 'js_composer' ) => 'rand'
+				__( 'Link ID', 'js_composer' )     => 'id',
+				__( 'Random', 'js_composer' )      => 'rand'
 			)
 		),
 		array(
-			'type' => 'checkbox',
-			'heading' => __( 'Options', 'js_composer' ),
+			'type'       => 'checkbox',
+			'heading'    => __( 'Options', 'js_composer' ),
 			'param_name' => 'options',
-			'value' => array(
-				__( 'Show Link Image', 'js_composer' ) => 'images',
-				__( 'Show Link Name', 'js_composer' ) => 'name',
+			'value'      => array(
+				__( 'Show Link Image', 'js_composer' )       => 'images',
+				__( 'Show Link Name', 'js_composer' )        => 'name',
 				__( 'Show Link Description', 'js_composer' ) => 'description',
-				__( 'Show Link Rating', 'js_composer' ) => 'rating'
+				__( 'Show Link Rating', 'js_composer' )      => 'rating'
 			)
 		),
 		array(
-			'type' => 'textfield',
-			'heading' => __( 'Number of links to show', 'js_composer' ),
+			'type'       => 'textfield',
+			'heading'    => __( 'Number of links to show', 'js_composer' ),
 			'param_name' => 'limit'
 		),
 		array(
-			'type' => 'textfield',
-			'heading' => __( 'Extra class name', 'js_composer' ),
-			'param_name' => 'el_class',
+			'type'        => 'textfield',
+			'heading'     => __( 'Extra class name', 'js_composer' ),
+			'param_name'  => 'el_class',
 			'description' => __( 'If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.', 'js_composer' )
 		)
 	)
@@ -3047,6 +3025,108 @@ vc_map( array(
 	)
 ) );
 
+/* Empty Space Element
+---------------------------------------------------------- */
+vc_map( array(
+	'name' => __( 'Empty Space', 'js_composer' ),
+	'base' => 'vc_empty_space',
+	'icon' => 'icon-wpb-ui-empty_space',
+	'show_settings_on_create' => true,
+	'category' => __( 'Content', 'js_composer' ),
+	'description' => __( 'Add spacer with custom height', 'js_composer' ),
+	'params' => array(
+		array(
+			'type' => 'textfield',
+			'heading' => __( 'Height', 'js_composer' ),
+			'param_name' => 'height',
+			'value' => '32px',
+			'admin_label' => true,
+			'description' => __( 'Enter empty space height.', 'js_composer' ),
+		),
+		array(
+			'type' => 'textfield',
+			'heading' => __( 'Extra class name', 'js_composer' ),
+			'param_name' => 'el_class',
+			'description' => __( 'If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.', 'js_composer' ),
+		),
+	),
+) );
+
+/* Custom Heading element
+----------------------------------------------------------- */
+vc_map( array(
+    'name' => __( 'Custom Heading', 'js_composer' ),
+    'base' => 'vc_custom_heading',
+    'icon' => 'icon-wpb-ui-custom_heading',
+    'show_settings_on_create' => true,
+    'category' => __( 'Content', 'js_composer' ),
+    'description' => __( 'Add custom heading text with google fonts', 'js_composer' ),
+    'params' => array(
+        array(
+            'type' => 'textarea',
+            'heading' => __( 'Text', 'js_composer' ),
+            'param_name' => 'text',
+            'admin_label' => true,
+            'value'=> __( 'This is custom heading element with Google Fonts', 'js_composer' ),
+            'description' => __( 'Enter your content. If you are using non-latin characters be sure to activate them under Settings/Visual Composer/General Settings.', 'js_composer' ),
+        ),
+        array(
+            'type' => 'font_container',
+            'param_name' => 'font_container',
+            'value'=>'',
+            'settings'=>array(
+                'fields'=>array(
+                    'tag'=>'h2', // default value h2
+                    'text_align',
+                    'font_size',
+                    'line_height',
+                    'color',
+                    //'font_style_italic'
+                    //'font_style_bold'
+                    //'font_family'
+
+                    'tag_description' => __('Select element tag.','js_composer'),
+                    'text_align_description' => __('Select text alignment.','js_composer'),
+                    'font_size_description' => __('Enter font size.','js_composer'),
+                    'line_height_description' => __('Enter line height.','js_composer'),
+                    'color_description' => __('Select color for your element.','js_composer'),
+                    //'font_style_description' => __('Put your description here','js_composer'),
+                    //'font_family_description' => __('Put your description here','js_composer'),
+                ),
+            ),
+           // 'description' => __( '', 'js_composer' ),
+        ),
+        array(
+            'type' => 'google_fonts',
+            'param_name' => 'google_fonts',
+            'value' => '',// Not recommended, this will override 'settings'. 'font_family:'.rawurlencode('Exo:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic').'|font_style:'.rawurlencode('900 bold italic:900:italic'),
+            'settings' => array(
+                //'no_font_style' // Method 1: To disable font style
+                //'no_font_style'=>true // Method 2: To disable font style
+                'fields'=>array(
+                    'font_family'=>'Abril Fatface:regular', //'Exo:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic',// Default font family and all available styles to fetch
+                    'font_style'=>'400 regular:400:normal', // Default font style. Name:weight:style, example: "800 bold regular:800:normal"
+                    'font_family_description' => __('Select font family.','js_composer'),
+                    'font_style_description' => __('Select font styling.','js_composer')
+                )
+            ),
+           // 'description' => __( '', 'js_composer' ),
+        ),
+        array(
+            'type' => 'textfield',
+            'heading' => __( 'Extra class name', 'js_composer' ),
+            'param_name' => 'el_class',
+            'description' => __( 'If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.', 'js_composer' ),
+        ),
+        array(
+            'type' => 'css_editor',
+            'heading' => __( 'Css', 'js_composer' ),
+            'param_name' => 'css',
+            // 'description' => __( 'If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.', 'js_composer' ),
+            'group' => __( 'Design options', 'js_composer' )
+        )
+    ),
+) );
 
 /*** Visual Composer Content elements refresh ***/
 class VcSharedLibrary {

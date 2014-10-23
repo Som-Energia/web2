@@ -68,25 +68,25 @@ function wpb_getImageBySize( $params = array( 'post_id' => NULL, 'attach_id' => 
 
 function wpb_getColumnControls( $width ) {
 	switch ( $width ) {
-		case "vc_span2" :
+		case "vc_col-md-2" :
 			$w = "1/6";
 			break;
-		case "vc_span3" :
+		case "vc_col-sm-3" :
 			$w = "1/4";
 			break;
-		case "vc_span4" :
+		case "vc_col-sm-4" :
 			$w = "1/3";
 			break;
-		case "vc_span6" :
+		case "vc_col-sm-6" :
 			$w = "1/2";
 			break;
-		case "vc_span8" :
+		case "vc_col-sm-8" :
 			$w = "2/3";
 			break;
-		case "vc_span9" :
+		case "vc_col-sm-9" :
 			$w = "3/4";
 			break;
-		case "vc_span12" :
+		case "vc_col-sm-12" :
 			$w = "1/1";
 			break;
 
@@ -96,29 +96,29 @@ function wpb_getColumnControls( $width ) {
 	return $w;
 }
 
-/* Convert vc_span3 to 1/4
+/* Convert vc_col-sm-3 to 1/4
 ---------------------------------------------------------- */
 function wpb_translateColumnWidthToFractional( $width ) {
 	switch ( $width ) {
-		case "vc_span2" :
+		case "vc_col-sm-2" :
 			$w = "1/6";
 			break;
-		case "vc_span3" :
+		case "vc_col-sm-3" :
 			$w = "1/4";
 			break;
-		case "vc_span4" :
+		case "vc_col-sm-4" :
 			$w = "1/3";
 			break;
-		case "vc_span6" :
+		case "vc_col-sm-6" :
 			$w = "1/2";
 			break;
-		case "vc_span8" :
+		case "vc_col-sm-8" :
 			$w = "2/3";
 			break;
-		case "vc_span9" :
+		case "vc_col-sm-9" :
 			$w = "3/4";
 			break;
-		case "vc_span12" :
+		case "vc_col-sm-12" :
 			$w = "1/1";
 			break;
 
@@ -134,22 +134,22 @@ function wpb_translateColumnsCountToSpanClass( $grid_columns_count ) {
 	$teaser_width = '';
 	switch ( $grid_columns_count ) {
 		case '1' :
-			$teaser_width = 'vc_span12';
+			$teaser_width = 'vc_col-sm-12';
 			break;
 		case '2' :
-			$teaser_width = 'vc_span6';
+			$teaser_width = 'vc_col-sm-6';
 			break;
 		case '3' :
-			$teaser_width = 'vc_span4';
+			$teaser_width = 'vc_col-sm-4';
 			break;
 		case '4' :
-			$teaser_width = 'vc_span3';
+			$teaser_width = 'vc_col-sm-3';
 			break;
 		case '5':
-			$teaser_width = 'vc_span10';
+			$teaser_width = 'vc_col-sm-10';
 			break;
 		case '6' :
-			$teaser_width = 'vc_span2';
+			$teaser_width = 'vc_col-sm-2';
 			break;
 	}
 	//return $teaser_width;
@@ -159,39 +159,40 @@ function wpb_translateColumnsCountToSpanClass( $grid_columns_count ) {
 
 function wpb_translateColumnWidthToSpan( $width, $front = true ) {
 	if ( preg_match( '/^(\d{1,2})\/12$/', $width, $match ) ) {
-		$w = "span" . $match[1];
+		$w = 'vc_col-sm-'.$match[1];
 	} else {
+		$w = 'vc_col-sm-';
 		switch ( $width ) {
 			case "1/6" :
-				$w = "span2";
+				$w .= '2';
 				break;
 			case "1/4" :
-				$w = "span3";
+				$w .= '3';
 				break;
 			case "1/3" :
-				$w = "span4";
+				$w .= '4';
 				break;
 			case "1/2" :
-				$w = "span6";
+				$w .= '6';
 				break;
 			case "2/3" :
-				$w = "span8";
+				$w .= '8';
 				break;
 			case "3/4" :
-				$w = "span9";
+				$w .= '9';
 				break;
 			case "5/6" :
-				$w = "span10";
+				$w .= '10';
 				break;
 			case "1/1" :
-				$w = "span12";
+				$w .= '12';
 				break;
 			default :
 				$w = $width;
 		}
 	}
 	$custom = $front ? get_custom_column_class( $w ) : false;
-	return $custom ? $custom : 'vc_' . $w;
+	return $custom ? $custom : $w;
 }
 
 function wpb_js_remove_wpautop( $content, $autop = false ) {
@@ -383,12 +384,6 @@ if ( ! function_exists( 'wpb_resize' ) ) {
 					'height' => ''
 				);
 			}
-
-			if ( wpb_debug() ) {
-				var_dump( file_exists( $actual_file_path ) );
-				var_dump( $actual_file_path );
-			}
-
 			if ( ! is_string( $new_img_path ) ) {
 				return array(
 					'url' => '',
@@ -436,11 +431,14 @@ function wpb_js_force_send( $args ) {
 	return $args;
 }
 
-
-function vc_get_initerface_version() {
+function vc_get_interface_version() {
 	global $post_id;
 	if ( $post_id === NULL ) return 2;
 	return (int)get_post_meta( $post_id, '_wpb_vc_js_interface_version', true );
+}
+
+function vc_get_initerface_version() {
+	return vc_get_interface_version();
 }
 
 function vc_convert_shortcode( $m ) {
@@ -536,21 +534,21 @@ $vc_row_layouts = array(
 
 function wpb_vc_get_column_width_indent( $width ) {
 	$identy = '11';
-	if ( $width == 'vc_span6' ) {
+	if ( $width == 'vc_col-sm-6' ) {
 		$identy = '12';
-	} elseif ( $width == 'vc_span3' ) {
+	} elseif ( $width == 'vc_col-sm-3' ) {
 		$identy = '14';
-	} elseif ( $width == 'vc_span4' ) {
+	} elseif ( $width == 'vc_col-sm-4' ) {
 		$identy = '13';
-	} elseif ( $width == 'vc_span8' ) {
+	} elseif ( $width == 'vc_col-sm-8' ) {
 		$identy = '23';
-	} elseif ( $width == 'vc_span2' ) {
+	} elseif ( $width == 'vc_col-sm-2' ) {
 		$identy = '16';
-	} elseif ( $width == 'vc_span9' ) {
+	} elseif ( $width == 'vc_col-sm-9' ) {
 		$identy = '34';
-	} elseif ( $width == 'vc_span2' ) {
+	} elseif ( $width == 'vc_col-sm-2' ) {
 		$identy = '16';
-	} elseif ( $width == 'vc_span10' ) {
+	} elseif ( $width == 'vc_col-sm-10' ) {
 		$identy = '56';
 	}
 	return $identy;
@@ -701,6 +699,7 @@ function wpb_js_composer_check_version_schedule_deactivation() {
 	wp_clear_scheduled_hook( 'wpb_check_for_update' );
 	delete_option( 'wpb_js_composer_show_new_version_message' );
 }
+
 /**
  * Helper function to add new third-party adaptation class.
  *
@@ -709,4 +708,60 @@ function wpb_js_composer_check_version_schedule_deactivation() {
  */
 function vc_add_vendor(Vc_Vendor_Interface $vendor) {
 	visual_composer()->vendorsManager()->add($vendor);
+}
+
+/**
+ * Convert string to a valid css class name.
+ *
+ * @since 4.3
+ * @param string $class
+ * @return string
+ */
+function vc_build_safe_css_class( $class ) {
+	return preg_replace( '/\W+/', '', strtolower( str_replace( " ", "_", strip_tags( $class ) ) ) );
+}
+/**
+ * Include template from templates dir.
+ *
+ * @since 4.3
+ * @param $template
+ * @param array $variables - passed variables to the template.
+ */
+function vc_include_template($template, $variables = array(), $once = false) {
+	is_array($variables) && extract($variables);
+	if($once) {
+		require_once vc_template($template);
+	} else {
+		require vc_template($template);
+	}
+}
+/**
+ * if php version < 5.3 this function is required.
+ */
+if(function_exists('lcfirst') === false) {
+	function lcfirst($str) {
+		$str[0] = mb_strtolower($str[0]);
+		return $str;
+	}
+}
+/**
+* VC Convert a value to studly caps case.
+*
+* @since 4.3
+* @param  string  $value
+* @return string
+*/
+function vc_studly($value) {
+	$value = ucwords(str_replace(array('-', '_'), ' ', $value));
+	return str_replace(' ', '', $value);
+}
+/**
+* VC Convert a value to camel case.
+*
+* @since 4.3
+* @param  string  $value
+* @return string
+*/
+function vc_camel_case($value) {
+	return lcfirst(vc_studly($value));
 }

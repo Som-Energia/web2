@@ -67,22 +67,22 @@ class WPBakeryShortCode_VC_Posts_Grid extends WPBakeryShortCode {
 		$teaser_width = '';
 		switch ( $grid_columns_count ) {
 			case '1' :
-				$teaser_width = 'vc_span12';
+				$teaser_width = 'vc_col-sm-12';
 				break;
 			case '2' :
-				$teaser_width = 'vc_span6';
+				$teaser_width = 'vc_col-sm-6';
 				break;
 			case '3' :
-				$teaser_width = 'vc_span4';
+				$teaser_width = 'vc_col-sm-4';
 				break;
 			case '4' :
-				$teaser_width = 'vc_span3';
+				$teaser_width = 'vc_col-sm-3';
 				break;
 			case '5':
-				$teaser_width = 'vc_span10';
+				$teaser_width = 'vc_col-sm-10';
 				break;
 			case '6' :
-				$teaser_width = 'vc_span2';
+				$teaser_width = 'vc_col-sm-2';
 				break;
 		}
 		//return $teaser_width;

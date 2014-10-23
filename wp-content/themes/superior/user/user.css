@@ -5,7 +5,7 @@
 body{
     
     background-attachment: fixed;
-    cursor: url("http://somenergia.coop.mialias.net/wp-content/themes/superior/images/cursors/somenergia.png"), default;
+    cursor: url("/wp-content/themes/superior/images/cursors/somenergia.png"), default;
 }
 body,
 .widget .title > span,
@@ -432,7 +432,7 @@ font-size:12px;line-height:10px;
 .procesgris{background: url(/wp-content/themes/superior/images/ico_oficina.png) no-repeat center right;padding-right: 20px;margin-right: 8%;}
 .procesverd{background: url(/wp-content/themes/superior/images/ico_proces.png) no-repeat center right;padding-right: 20px;}
 
-#hacemos{width: 100%;height: 45px;font-size: 15px;color: #fff;padding: 12px 0px 10px 15px;}
+#hacemos{width: 100%;height: 25px;font-size: 15px;color: #fff;padding: 12px 0px 10px 15px; margin-bottom:20px;}
 .produccion{background: url(/wp-content/themes/superior/images/bgpasos.png) no-repeat right top #bac92a;}
 .transporte{background: url(/wp-content/themes/superior/images/bgpasos.png) no-repeat right top #a0a1a7;}
 .comercializacion{background: url(/wp-content/themes/superior/images/bgpasos.png) no-repeat right top #bac92a;}
@@ -442,7 +442,7 @@ font-size:12px;line-height:10px;
 #dadesheader{background:#5b5b5f;width:100%;height:20px;}
 #dadescontent{width:1140px;margin:0px auto;}
 
-.caixes{width:200px;background:#727176;float:left;margin-right:20px;height:20px;color:#f2f2f2;font-size:11px;vertical-align:middle;padding-left:8px;}
+.caixes{width:200px;background:#727176;float:left;margin-right:20px;height:20px;color:#f2f2f2;font-size:14px;vertical-align:middle;padding-left:8px;}
 #socis{}
 #contractes{margin-right:0px;}
 
@@ -548,7 +548,7 @@ font-size:12px;line-height:10px;
 .procesgris{background: url(/wp-content/themes/superior/images/ico_oficina.png) no-repeat center right;padding-right: 20px;margin-right: 8%;}
 .procesverd{background: url(/wp-content/themes/superior/images/ico_proces.png) no-repeat center right;padding-right: 20px;}
 
-#hacemos{width: 100%;height: 45px;font-size: 15px;color: #fff;padding: 12px 0px 10px 15px;}
+#hacemos{width: 100%;height: 25px;font-size: 15px;color: #fff;padding: 12px 0px 10px 15px; margin-bottom:20px;}
 .produccion{background: url(/wp-content/themes/superior/images/bgpasos.png) no-repeat right top #bac92a;}
 .transporte{background: url(/wp-content/themes/superior/images/bgpasos.png) no-repeat right top #a0a1a7;}
 .comercializacion{background: url(/wp-content/themes/superior/images/bgpasos.png) no-repeat right top #bac92a;}
@@ -558,7 +558,7 @@ font-size:12px;line-height:10px;
 #dadesheader{background:#5b5b5f;width:100%;height:20px;}
 #dadescontent{width:1024px;margin:0px auto;}
 
-.caixes{width:200px;background:#727176;float:left;margin-right:20px;height:20px;color:#f2f2f2;font-size:11px;vertical-align:middle;padding-left:8px;}
+.caixes{width:200px;background:#727176;float:left;margin-right:20px;height:20px;color:#f2f2f2;font-size:14px;vertical-align:middle;padding-left:8px;}
 #socis{}
 #contractes{margin-right:0px;}
 
@@ -665,7 +665,7 @@ font-size:12px;line-height:10px;
 .procesgris{background: url(/wp-content/themes/superior/images/ico_oficina.png) no-repeat center right;padding-right: 20px;margin-right: 8%;}
 .procesverd{background: url(/wp-content/themes/superior/images/ico_proces.png) no-repeat center right;padding-right: 20px;}
 
-#hacemos{width: 100%;height: 45px;font-size: 15px;color: #fff;padding: 12px 0px 10px 15px;}
+#hacemos{width: 100%;height: 25px;font-size: 15px;color: #fff;padding: 12px 0px 10px 15px; margin-bottom:20px;}
 .produccion{background: url(/wp-content/themes/superior/images/bgpasos.png) no-repeat right top #bac92a;}
 .transporte{background: url(/wp-content/themes/superior/images/bgpasos.png) no-repeat right top #a0a1a7;}
 .comercializacion{background: url(/wp-content/themes/superior/images/bgpasos.png) no-repeat right top #bac92a;}
@@ -784,7 +784,7 @@ font-size:12px;line-height:10px;
 .procesgris{background: url(/wp-content/themes/superior/images/ico_oficina.png) no-repeat center right;padding-right: 20px;margin-right: 8%;}
 .procesverd{background: url(/wp-content/themes/superior/images/ico_proces.png) no-repeat center right;padding-right: 20px;}
 
-#hacemos{width: 100%;height: 45px;font-size: 15px;color: #fff;padding: 12px 0px 10px 15px;}
+#hacemos{width: 100%;height: 25px;font-size: 15px;color: #fff;padding: 12px 0px 10px 15px; margin-bottom:20px;}
 .produccion{background: url(/wp-content/themes/superior/images/bgpasos.png) no-repeat right top #bac92a;}
 .transporte{background: url(/wp-content/themes/superior/images/bgpasos.png) no-repeat right top #a0a1a7;}
 .comercializacion{background: url(/wp-content/themes/superior/images/bgpasos.png) no-repeat right top #bac92a;}
@@ -906,7 +906,7 @@ margin-left: -10px}
 .procesgris{background: url(/wp-content/themes/superior/images/ico_oficina.png) no-repeat center right;padding-right: 20px;margin-right: 8%;}
 .procesverd{background: url(/wp-content/themes/superior/images/ico_proces.png) no-repeat center right;padding-right: 20px;}
 
-#hacemos{width: 100%;height: 45px;font-size: 15px;color: #fff;padding: 12px 0px 10px 15px;}
+#hacemos{width: 100%;height: 25px;font-size: 15px;color: #fff;padding: 12px 0px 10px 15px; margin-bottom:20px;}
 .produccion{background: url(/wp-content/themes/superior/images/bgpasos.png) no-repeat right top #bac92a;}
 .transporte{background: url(/wp-content/themes/superior/images/bgpasos.png) no-repeat right top #a0a1a7;}
 .comercializacion{background: url(/wp-content/themes/superior/images/bgpasos.png) no-repeat right top #bac92a;}

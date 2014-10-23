@@ -6,7 +6,7 @@ class WPBakeryShortCode_VC_Facebook extends WPBakeryShortCode {
             'url' => ''
         ), $atts));
         if ( $url == '') $url = get_permalink();
-        $css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'vc-social-placeholder fb_like wpb_content_element vc-socialtype-' . $type, $this->settings['base'], $atts );
+        $css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'vc_social-placeholder fb_like wpb_content_element vc_socialtype-' . $type, $this->settings['base'], $atts );
         return '<a href="'.$url.'" class="'.$css_class.'"></a>';
     }
 }

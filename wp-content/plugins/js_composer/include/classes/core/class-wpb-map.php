@@ -132,10 +132,10 @@ class WPBMap {
 		$settings = self::getSettings();
 		self::$user_sc = self::$user_categories = self::$user_sorted_sc = array();
 		foreach ( self::$sc as $name => $values ) {
-			if ( ! isset( $settings[self::$user_role]['shortcodes'] )
+			if ( in_array( $name, array( 'vc_column', 'vc_row', 'vc_row_inner', 'vc_column_inner' ) ) || ! isset( $settings[self::$user_role]['shortcodes'] )
 			  || ( isset( $settings[self::$user_role]['shortcodes'][$name] ) && (int)$settings[self::$user_role]['shortcodes'][$name] == 1 )
 			) {
-				if ( $name != 'vc_column' && ( ! isset( $values['content_element'] ) || $values['content_element'] === true ) ) {
+				if ( ! isset( $values['content_element'] ) || $values['content_element'] === true ) {
 					$categories = isset( $values['category'] ) ? $values['category'] : '_other_category_';
 					$values['_category_ids'] = array();
 					if ( is_array( $categories ) ) {
@@ -401,6 +401,7 @@ class WPBMap {
 			}
 		} else {
 			self::$sc[$name][$setting_name] = $value;
+			visual_composer()->updateShortcodeSetting($name, $setting_name, $value);
 		}
 		return self::$sc;
 	}

@@ -1,5 +1,71 @@
 /* Call to action
 ---------------------------------------------------------- */
+.vc_call_to_action {
+    background-color: @vc_call_to_action_2_bg;
+    border: 2px solid @vc_call_to_action_2_bg;
+    padding: 2em;
+    border-radius: 5px;
+    *:last-child {
+        margin-bottom: 0;
+    }
+    &.vc_cta_ {
+        &rounded {
+        //default style
+        }
+        &square {
+            border-radius: 0;
+        }
+        &square_outlined {
+            border-radius: 0;
+            background: none !important;
+        //border-width: 2px;
+        }
+        &round {
+            border-radius: 50px;
+        }
+        &outlined {
+            background: none !important;
+        }
+    }
+    hgroup {
+        h2, h4 {
+            margin: 0;
+            clear: none;
+        }
+        + p {
+              margin-top: 1em;
+          }
+    }
+    &.vc_cta_btn_pos {
+        &_right {
+            .vc_cta_btn {
+                float: right;
+                margin-left: 2em;
+            }
+        }
+        &_left {
+            .vc_cta_btn {
+                float: left;
+                margin-right: 2em;
+            }
+        }
+        &_bottom {
+        //text-align: center;
+        }
+    }
+//Button colors variations
+// &.vc_cta_blue {
+//   .vc_cta_variants(@blue);
+// }
+    }
+// .vc_cta_variants(@color) {
+//   //border-color: rgba(red(@color), green(@color), blue(@color), 0.5);
+//   //background-color: rgba(red(@color), green(@color), blue(@color), 0.05);
+//   &.vc_cta_outlined,
+//   &.vc_cta_square_outlined {
+//     //color: @color;
+//   }
+// }
 .wpb_call_to_action {
 	position: relative;
 	background-color: @vc_call_to_action_bg;

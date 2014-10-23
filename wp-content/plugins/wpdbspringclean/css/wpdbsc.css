@@ -1,0 +1,28 @@
+.wpdbsc_loading { 
+	margin:0 5px;
+}
+
+.search-res {
+	color: #D54E21;
+}
+
+.wpdbsc_blue_box{
+    margin: 10px 0 15px;
+    background-color: #F0F9FF;
+    border-color: #1166BB;
+    color: #1166BB;
+    border-radius: 3px 3px 3px 3px;
+    border-style: solid;
+    border-width: 1px;   
+    padding: 0 0 0 1em;
+    line-height: 20px;
+}
+
+.wpdbsc_info_with_icon {
+    background-image: url("../img/info-icon.png");
+    background-repeat: no-repeat;
+    color: #1166BB;
+    padding-left: 20px;
+    margin-top: 20px;
+    font-size: 14px;
+}

@@ -14,10 +14,10 @@
  *
  * @since   4.0
  */
-Class Vc_Frontend_Editor {
+Class Vc_Frontend_Editor implements Vc_Editor_Interface {
 	protected $dir;
 	protected $tag_index = 1;
-	protected $post_shortcodes = array();
+	public $post_shortcodes = array();
 	protected $template_content = '';
 	protected static $enabled_inline = true;
 	protected $settings = array(
@@ -33,7 +33,6 @@ Class Vc_Frontend_Editor {
 		'editor_height' => 360
 	);
 	protected static $brand_url = 'http://vc.wpbakery.com/?utm_campaign=VCplugin_header&utm_source=vc_user&utm_medium=frontend_editor';
-
 	public function init() {
 		$this->addHooks();
 		/**
@@ -52,12 +51,11 @@ Class Vc_Frontend_Editor {
 			$this->buildPage();
 		}
 		// Load required vendors classes;
-		visual_composer()->vendorsManager()->load();
+		// visual_composer()->vendorsManager()->load();
 	}
 
 	public function addHooks() {
 		add_action( 'wp_ajax_vc_load_shortcode', array( &$this, 'loadShortcodes' ) );
-		add_action( 'wp_ajax_vc_inline_template', array( &$this, 'renderTemplate' ) );
 		add_filter( 'page_row_actions', array( &$this, 'renderRowAction' ) );
 		add_filter( 'post_row_actions', array( &$this, 'renderRowAction' ) );
 		add_shortcode( 'vc_container_anchor', 'vc_container_anchor' );
@@ -93,12 +91,16 @@ Class Vc_Frontend_Editor {
 	}
 
 	public function addContentAnchor( $content = '' ) {
-		return '<span id="vc-inline-anchor" style="display:none !important;"></span>' . $content;
+		do_shortcode($content);
+		return '<span id="vc_inline-anchor" style="display:none !important;"></span>'; // . $content;
 	}
 
 	public static function getInlineUrl( $url = '', $id = '' ) {
 		$the_ID = ( strlen( $id ) > 0 ? $id : get_the_ID() );
-		return admin_url() . 'edit.php?vc_action=vc_inline&post_id=' . $the_ID . '&post_type=' . get_post_type( $the_ID ) . ( strlen( $url ) > 0 ? '&url=' . rawurlencode( $url ) : '' );
+		return apply_filters( 'vc_get_inline_url', admin_url() .
+			'edit.php?vc_action=vc_inline&post_id=' .
+			$the_ID . '&post_type=' . get_post_type( $the_ID ) .
+			( strlen( $url ) > 0 ? '&url=' . rawurlencode( $url ) : '' ) );
 	}
 
 	function wrapperStart() {
@@ -116,7 +118,6 @@ Class Vc_Frontend_Editor {
 	public static function getBrandUrl() {
 		return self::$brand_url;
 	}
-
 	public static function shortcodesRegexp() {
 		$tagnames = array_keys( WPBMap::getShortCodes() );
 		$tagregexp = join( '|', array_map( 'preg_quote', $tagnames ) );
@@ -161,10 +162,12 @@ Class Vc_Frontend_Editor {
 		$this->post = get_post( $this->post_id );
 		$GLOBALS['post'] = $this->post;
 	}
-
+    function post() {
+		!isset($this->post) && $this->setPost();
+		return $this->post;
+    }
 	function renderEditor() {
 		global $current_user;
-		require_once vc_path_dir( 'TEMPLATES_DIR', 'backend_editor/layouts.php' );
 		get_currentuserinfo();
 		$this->current_user = $current_user;
 		$this->post_url = get_permalink( $this->post_id );
@@ -182,55 +185,62 @@ Class Vc_Frontend_Editor {
 
 		$this->post_type = get_post_type_object( $this->post->post_type );
 		$this->url = $this->post_url . ( preg_match( '/\?/', $this->post_url ) ? '&' : '?' ) . 'vc_editable=true';
+		$this->url = apply_filters('vc_frontend_editor_iframe_url', $this->url);
 		$this->enqueueAdmin();
 		$this->enqueueMappedShortcode();
 		wp_enqueue_media( array( 'post' => $this->post_id ) );
 		remove_all_actions( 'admin_notices', 3 );
 		remove_all_actions( 'network_admin_notices', 3 );
 
-		$this->nav_bar = new WPBakeryVisualComposerNavBar();
-		$this->template_menu = new WPBakeryVisualComposerTemplate_r();
-
 		$this->post_custom_css = get_post_meta( $this->post_id, '_wpb_post_custom_css', true );
 
 		if ( ! defined( 'IFRAME_REQUEST' ) ) define( 'IFRAME_REQUEST', true );
-
+		/**
+		 * @deprecated vc_admin_inline_editor action hook
+		 */
 		do_action( 'vc_admin_inline_editor' );
+		/**
+		 * new one
+		 */
+		do_action( 'vc_frontend_editor_render' );
 
 		add_filter( 'admin_title', array( &$this, 'setEditorTitle' ) );
-		$this->navbar_buttons = apply_filters( 'vc_nav_front_controls', $this->getLeftButtons() );
-
+		// $this->navbar_buttons = apply_filters( 'vc_nav_front_controls', $this->getLeftButtons() );
 		$this->render( 'editor' );
 		die();
 	}
-
+	/*
 	function getLeftButtons() {
 		return array(
-			array( 'add_element', '<li class="vc-show-mobile"><a href="#" class="vc_element_button" data-model-id="vc_element" id="vc-add-new-element" title="' . __( 'Add new element', 'js_composer' ) . '"></a></li>' ),
-			// array('add_row', '<li><a href="#" class="vc_row_button" data-tag="vc_row" id="vc-add-new-row">'.__('Add row', 'js_composer').'</a></li>'),
-			array( 'templates', '<li><a href="#" class="vc_templates_button"  id="vc-templates-editor-button" title="' . __( 'Templates', 'js_composer' ) . '"></a></li>' )
+			array( 'add_element', '<li class="vc_show-mobile"><a href="#" class="vc_element_button" data-model-id="vc_element" id="vc_add-new-element" title="' . __( 'Add new element', 'js_composer' ) . '"></a></li>' ),
+			// array('add_row', '<li><a href="#" class="vc_row_button" data-tag="vc_row" id="vc_add-new-row">'.__('Add row', 'js_composer').'</a></li>'),
+			array( 'templates', '<li><a href="#" class="vc_templates_button"  id="vc_templates-editor-button" title="' . __( 'Templates', 'js_composer' ) . '"></a></li>' )
 		);
 	}
-
+	*/
 	function setEditorTitle( $admin_title ) {
 		return sprintf( __( 'Edit %s with Visual Composer', 'js_composer' ), $this->post_type->labels->singular_name );
 	}
 
 	function render( $template ) {
-		$template = vc_template( 'frontend_editor/' . $template . '.tpl.php' );
-		require $template;
+		vc_include_template( 'editors/frontend_' . $template . '.tpl.php', array('editor' => $this) );
 	}
 
 	function renderEditButton( $link ) {
 		if ( $this->showButton() ) {
-			return $link . ' <a href="' . self::getInlineUrl() . '" id="vc-load-inline-editor" class="vc-inline-link">' . __( 'Edit with Visual Composer', 'js_composer' ) . '</a>';
+			return $link . ' <a href="' . self::getInlineUrl() . '" id="vc_load-inline-editor" class="vc_inline-link">' . __( 'Edit with Visual Composer', 'js_composer' ) . '</a>';
 		}
-        return $link;
+
+		return $link;
 	}
 
 	function renderRowAction( $actions ) {
 		$post = get_post();
-		if ( $this->showButton( $post->ID ) ) $actions['edit_vc'] = '<a href="' . $this->getInlineUrl( '', $post->ID ) . '">' . __( 'Edit with Visual Composer', 'js_composer' ) . '</a>';
+		if ( $this->showButton( $post->ID ) ) {
+			$actions['edit_vc'] = '<a
+		href="' . $this->getInlineUrl( '', $post->ID ) . '">' . __( 'Edit with Visual Composer', 'js_composer' ) . '</a>';
+		}
+
 		return $actions;
 	}
 
@@ -258,10 +268,10 @@ Class Vc_Frontend_Editor {
 			if ( $this->showButton( get_the_ID() ) ) {
 				$wp_admin_bar->add_menu( array(
 					// 'parent' => $root_menu,
-					'id' => 'vc-inline-admin-bar-link',
+					'id' => 'vc_inline-admin-bar-link',
 					'title' => __( 'Edit with Visual Composer', "js_composer" ),
 					'href' => self::getInlineUrl(),
-					'meta' => array( 'class' => 'vc-inline-link' )
+					'meta' => array( 'class' => 'vc_inline-link' )
 				) );
 			}
 		}
@@ -274,23 +284,10 @@ Class Vc_Frontend_Editor {
 	function getTemplateContent() {
 		return apply_filters( 'vc_inline_template_content', $this->template_content );
 	}
-
-	function renderTemplate() {
-		$this->template_id = vc_post_param( 'template_id' );
-		if ( empty( $this->template_id ) ) die( '0' );
-		$option_name = 'wpb_js_templates';
-		$saved_templates = get_option( $option_name );
-		$this->setTemplateContent( $saved_templates[$this->template_id]['template'] );
-		$this->enqueueRequired();
-		$this->render( 'template' );
-		die();
-	}
-
 	function renderTemplates() {
 		$this->render( 'templates' );
 		die();
 	}
-
 	function loadTinyMceSettings() {
 		if ( ! class_exists( '_WP_Editors' ) )
 			require( ABSPATH . WPINC . '/class-wp-editor.php' );
@@ -307,7 +304,7 @@ Class Vc_Frontend_Editor {
 		wp_enqueue_script( 'jquery-ui-autocomplete' );
 		wp_enqueue_script( 'wpb_composer_front_js' );
 		wp_enqueue_style( 'js_composer_front' );
-		wp_enqueue_style( 'vc_inline_css', vc_asset_url( 'css/js_composer_pe.css' ) );
+		wp_enqueue_style( 'vc_inline_css', vc_asset_url( 'css/js_composer_frontend_editor_iframe.css' ) );
 		wp_enqueue_script( 'jquery-ui-sortable' );
 		wp_enqueue_script( 'jquery-ui-draggable' );
 		wp_enqueue_script( 'waypoints' );
@@ -315,7 +312,8 @@ Class Vc_Frontend_Editor {
 		wp_enqueue_style( 'js_composer_custom_css' );
 
 		wp_enqueue_script( 'wpb_php_js', vc_asset_url( 'lib/php.default/php.default.min.js' ), array( 'jquery' ), WPB_VC_VERSION, true );
-		wp_enqueue_script( 'vc_inline_iframe_js', vc_asset_url( 'js/frontend_editor/vc_page_editable.js' ), array( 'jquery', 'jquery-ui-sortable', 'jquery-ui-draggable' ), '1.0', true );
+        wp_enqueue_script( 'vc_inline_iframe_js', vc_asset_url( 'js/frontend_editor/vc_page_editable.js' ), array( 'jquery', 'jquery-ui-sortable', 'jquery-ui-draggable' ), WPB_VC_VERSION, true );
+        do_action('vc_load_iframe_jscss');
 	}
 
 	function loadShortcodes() {
@@ -354,21 +352,27 @@ Class Vc_Frontend_Editor {
 	}
 
 	function renderShortcodes( $shortcodes ) {
-		$this->enqueueRequired();
-		foreach ( $shortcodes as $shortcode ) {
-			if ( isset( $shortcode['id'] ) && isset( $shortcode['string'] ) ) {
-				echo '<div data-type="element" data-model-id="' . $shortcode['id'] . '">';
-				$shortcode_settings = WPBMap::getShortCode( $shortcode['tag'] );
-				$is_container = ( isset( $shortcode_settings['is_container'] ) && $shortcode_settings['is_container'] === true ) || ( isset( $shortcode_settings['as_parent'] ) && $shortcode_settings['as_parent'] !== false );
-				if ( $is_container ) $shortcode['string'] = preg_replace( '/\]/', '][vc_container_anchor]', $shortcode['string'], 1 );
-				echo '<div class="vc-element"' . self::cleanStyle() . ' data-container="' . $is_container . '" data-model-id="' . $shortcode['id'] . '">' . $this->wrapperStart() . do_shortcode( stripslashes( $shortcode['string'] ) ) . $this->wrapperEnd() . '</div>';
-				echo '</div>';
-			}
-		}
+        $this->enqueueRequired();
+        $output = '';
+        foreach ( $shortcodes as $shortcode ) {
+            if ( isset( $shortcode['id'] ) && isset( $shortcode['string'] ) ) {
+                $output .= '<div data-type="element" data-model-id="' . $shortcode['id'] . '">';
+                $shortcode_settings = WPBMap::getShortCode( $shortcode['tag'] );
+                $is_container = ( isset( $shortcode_settings['is_container'] ) && $shortcode_settings['is_container'] === true ) || ( isset( $shortcode_settings['as_parent'] ) && $shortcode_settings['as_parent'] !== false );
+                if ( $is_container ) {
+                    $shortcode['string'] = preg_replace( '/\]/', '][vc_container_anchor]', $shortcode['string'], 1 );
+                }
+                $output .= '<div class="vc_element"' . self::cleanStyle() . ' data-container="' . $is_container . '" data-model-id="' . $shortcode['id'] . '">' . $this->wrapperStart() . do_shortcode( stripslashes( $shortcode['string'] ) ) . $this->wrapperEnd() . '</div>';
+                $output .= '</div>';
+            }
+        }
+        echo apply_filters( 'vc_front_render_shortcodes', $output );
 	}
 
 	function filterAdminBodyClass( $string ) {
-		return $string . ( strlen( $string ) > 0 ? ' ' : '' ) . 'vc-editor vc-inline-shortcode-edit-form';
+		$string .= ( strlen( $string ) > 0 ? ' ' : '' ) . 'vc_editor vc_inline-shortcode-edit-form';
+		if( vc_settings()->get( 'not_responsive_css' ) === '1') $string .= ' vc_responsive_disabled';
+		return $string;
 	}
 
 	function adminFile( $path ) {
@@ -389,7 +393,7 @@ Class Vc_Frontend_Editor {
 		wp_enqueue_script( 'jquery-ui-draggable' );
 		wp_enqueue_script( 'jquery-ui-accordion' );
 		wp_enqueue_script( 'jquery-ui-autocomplete' );
-		wp_enqueue_script( 'vc_inline_bootstap_js', vc_asset_url( 'lib/bootstrap/js/bootstrap.min.js' ), array( 'jquery' ), WPB_VC_VERSION, true );
+		wp_enqueue_script( 'vc_bootstrap_js', vc_asset_url( 'lib/bootstrap3/dist/js/bootstrap.min.js' ), array( 'jquery' ), WPB_VC_VERSION, true );
 		wp_enqueue_script( 'farbtastic' );
 		// wp_enqueue_script('isotope');
 		wp_enqueue_script( 'wpb_scrollTo_js' );
@@ -400,13 +404,15 @@ Class Vc_Frontend_Editor {
 		wp_enqueue_script( 'wpb_js_composer_js_atts' );
 		wp_enqueue_script( 'wpb_jscomposer_media_editor_js' );
 		wp_enqueue_script( 'wpb_jscomposer_autosuggest_js' );
+		wp_enqueue_script( 'webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js' ); // Google Web Font CDN
 		wp_enqueue_script( 'vc_inline_shortcodes_builder_js', vc_asset_url( 'js/frontend_editor/shortcodes_builder.js' ), array( 'jquery', 'underscore', 'backbone', 'wpb_js_composer_js_tools' ), WPB_VC_VERSION, true );
 		wp_enqueue_script( 'vc_inline_models_js', vc_asset_url( 'js/frontend_editor/models.js' ), array( 'vc_inline_shortcodes_builder_js' ), WPB_VC_VERSION, true );
-		wp_enqueue_script( 'vc_inline_panels_js', vc_asset_url( 'js/frontend_editor/panels.js' ), array( 'vc_inline_models_js' ), WPB_VC_VERSION, true );
+		wp_enqueue_script( 'vc_inline_panels_js', vc_asset_url( 'js/editors/panels.js' ), array( 'vc_inline_models_js' ), WPB_VC_VERSION, true );
 		wp_enqueue_script( 'vc_inline_js', vc_asset_url( 'js/frontend_editor/frontend_editor.js' ), array( 'vc_inline_panels_js' ), WPB_VC_VERSION, true );
 		wp_enqueue_script( 'vc_inline_custom_view_js', vc_asset_url( 'js/frontend_editor/custom_views.js' ), array( 'vc_inline_shortcodes_builder_js', 'vc_inline_panels_js' ), WPB_VC_VERSION, true );
 		wp_enqueue_script( 'vc_inline_build_js', vc_asset_url( 'js/frontend_editor/build.js' ), array( 'vc_inline_custom_view_js' ), WPB_VC_VERSION, true );
-		wp_enqueue_style( 'vc_inline_css', vc_asset_url( 'css/js_composer_fe.css' ) );
+		wp_enqueue_style( 'vc_inline_css', vc_asset_url( 'css/js_composer_frontend_editor.css' ), array(), WPB_VC_VERSION );
+		wp_enqueue_script( 'ace-editor' );
 	}
 
 	/**
@@ -435,7 +441,7 @@ Class Vc_Frontend_Editor {
 	}
 
 	function outputShortcodeSettings( $element ) {
-		echo '<div class="vc-element-settings wpb-edit-form" data-id="' . $element['id'] . '">';
+		echo '<div class="vc_element-settings wpb-edit-form" data-id="' . $element['id'] . '">';
 		$shortCode = stripslashes( $element['shortcode'] );
 		$this->removeShortCode( $element['tag'] );
 		$settings = WPBMap::getShortCode( $element['tag'] );
@@ -445,8 +451,8 @@ Class Vc_Frontend_Editor {
 	}
 
 	function getPageShortcodes() {
-		$post = get_post( $this->post_id );
-		$content = $post->post_content;
+		$post = $this->post();
+		$content = apply_filters( 'vc_frontend_get_page_shortcodes_post_content', $post->post_content );
 		$not_shortcodes = preg_split( '/' . self::shortcodesRegexp() . '/', $content );
 		foreach ( $not_shortcodes as $string ) {
 			if ( strlen( trim( $string ) ) > 0 ) {
@@ -455,7 +461,10 @@ Class Vc_Frontend_Editor {
 		}
 		// $content = preg_replace('/^([^\[]+)|([^\]]+)$/', '[vc_column_text width="1/1" el_position="first last"]$1$2[/vc_column_text]', $content);
 		// $output = wpb_js_remove_wpautop( $content );
-		echo $this->parseShortcodesString( $content );
+		// Preg replace <script> tag with placeholder not to call scripts once it called.
+		$pattern = array('/\<script([^\>]*)\>/', '/\<\/script([^\>]*)\>/');
+		$replace = array('<style$1>/** vc_js-placeholder **/', '</style$1><!-- vc_js-placeholder -->');
+		echo preg_replace( $pattern, $replace, $this->parseShortcodesString( $content )) ;
 	}
 
 	function getTemplateShortcodes() {
@@ -494,13 +503,13 @@ Class Vc_Frontend_Editor {
 	function toString( $shortcode, $content ) {
 		$shortcode_settings = WPBMap::getShortCode( $shortcode['tag'] );
 		$is_container = ( isset( $shortcode_settings['is_container'] ) && $shortcode_settings['is_container'] === true ) || ( isset( $shortcode_settings['as_parent'] ) && $shortcode_settings['as_parent'] !== false );
-		return do_shortcode( '<div class="vc-element" data-tag="' . $shortcode['tag'] . '" data-model-id="' . $shortcode['id'] . '"' . self::cleanStyle() . '>' . $this->wrapperStart()
+		return do_shortcode( '<div class="vc_element" data-tag="' . $shortcode['tag'] . '" data-model-id="' . $shortcode['id'] . '"' . self::cleanStyle() . '>' . $this->wrapperStart()
 		  . '[' . $shortcode['tag'] . ' ' . $shortcode['attrs_query'] . ']' . ( $is_container ? '[vc_container_anchor]' : '' ) . $this->parseShortcodesString( $content, $is_container, $shortcode['id'] ) . '[/' . $shortcode['tag'] . ']' . $this->wrapperEnd() . '</div>' );
 	}
 }
 if ( ! function_exists( 'vc_container_anchor' ) ) {
 	function vc_container_anchor() {
-		return '<span class="vc-container-anchor"></span>';
+		return '<span class="vc_container-anchor"></span>';
 	}
 }
 

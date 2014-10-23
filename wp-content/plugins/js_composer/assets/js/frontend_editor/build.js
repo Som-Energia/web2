@@ -10,7 +10,7 @@ if(_.isUndefined(vc)) var vc = {};
 (function ($) {
   "use strict";
   vc.createPreLoader = function() {
-    vc.$preloader = $('#vc-preloader');
+    vc.$preloader = $('#vc_preloader');
 
   };
   vc.removePreLoader = function() {
@@ -25,24 +25,23 @@ if(_.isUndefined(vc)) var vc = {};
 
     $('#wpadminbar').remove();
     $('body').attr('data-vc', true);
-    vc.post_id = $('#vc-post-id').val();
+    vc.post_id = $('#vc_post-id').val();
     vc.is_mobile = $('body.mobile').length > 0;
-    vc.title = $('#vc-title-saved').val();
+    vc.title = $('#vc_title-saved').val();
     // Create Modals & panels
-    vc.add_element_block_view = new vc.AddElementBlockView({el: '#vc-add-element-dialog'});
-    vc.edit_element_block_view = new vc.EditElementPanelView({el: '#vc-properties-panel'});
-    vc.post_settings_view = new vc.PostSettingsPanelView({el: '#vc-post-settings-panel'});
-    vc.templates_editor_view = new vc.TemplatesEditorPanelView({el: '#vc-templates-editor'});
+    vc.add_element_block_view = new vc.AddElementBlockView({el: '#vc_add-element-dialog'});
+    vc.edit_element_block_view = new vc.EditElementPanelView({el: '#vc_properties-panel'});
+    vc.post_settings_view = new vc.PostSettingsPanelView({el: '#vc_post-settings-panel'});
+    vc.templates_editor_view = new vc.TemplatesEditorPanelView({el: '#vc_templates-editor'});
     vc.app = new vc.View();
     vc.buildRelevance();
+    if($('body').hasClass('vc_responsive_disabled')) vc.responsive_disabled = true;
     // Build Frame {{
-    vc.$frame_wrapper = $('#vc-inline-frame-wrapper');
-    vc.$frame = $('#vc-inline-frame');
+    vc.$frame_wrapper = $('#vc_inline-frame-wrapper');
+    vc.$frame = $('#vc_inline-frame');
     vc.setFrameSize('100%');
     vc.frame = new vc.FrameView({el: $(vc.$frame.get(0).contentWindow.document).find('body').get(0)});
     vc.app.render();
-    vc.$page.html($('#vc-template-post-content').html());
-    vc.frame.render();
     // }}
     // Build content of the page
     vc.builder.buildFromContent();

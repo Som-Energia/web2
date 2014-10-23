@@ -22,9 +22,30 @@ function wpb_remove( $shortcode ) {
 	vc_remove_element( $shortcode );
 }
 
-
+/**
+ * Add new shortcode param.
+ *
+ * @since 4.3
+ *
+ * @param $shortcode - tag for shortcode
+ * @param $attributes - attribute settings
+ */
 function vc_add_param( $shortcode, $attributes ) {
 	WPBMap::addParam( $shortcode, $attributes );
+}
+
+/**
+ * Mass shortcode params adding function
+ *
+ * @since 4.3
+ *
+ * @param $shortcode - tag for shortcode
+ * @param $attributes - list of attributes arrays
+ */
+function vc_add_params($shortcode, $attributes) {
+	foreach($attributes as $attr) {
+		vc_add_param($shortcode, $attr);
+	}
 }
 
 /* Backwards compatibility  **/
@@ -165,5 +186,47 @@ if ( ! function_exists( 'vc_set_template_dir' ) ) {
 	 */
 	function vc_set_template_dir( $dir ) {
 		vc_set_shortcodes_templates_dir( $dir );
+	}
+}
+function set_vc_is_inline($value = true) {
+	global $vc_is_inline;
+	$vc_is_inline = $value;
+}
+
+/**
+ * New Vc now called Frontend editor
+ * @deprecated
+ * @return Vc_Frontend_Editor
+ */
+function new_vc() {
+	return vc_frontend_editor();
+}
+
+/**
+ * Disable frontend editor for VC
+ * @param bool $disable
+ */
+function vc_disable_frontend( $disable = true ) {
+	vc_frontend_editor()->disableInline( $disable );
+}
+
+/**
+ * Check is front end enabled.
+ * @return bool
+ */
+function vc_enabled_frontend() {
+	return vc_frontend_editor()->inlineEnabled();
+}
+
+if ( ! function_exists( 'vc_add_default_templates' ) ) {
+	/**
+	 * Add custom template in default templates list
+	 *
+	 * @param array $data | template data (name, content, custom_class, image_path)
+	 * @since 4.3
+	 * @return bool
+	 */
+	function vc_add_default_templates( $data ) {
+		return visual_composer()->templatesEditor()->addDefaultTemplates( $data );
 	}
 }

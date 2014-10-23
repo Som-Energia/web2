@@ -9,6 +9,7 @@ Class Vc_Vendors_Manager {
 	}
 	public function init() {
 		require_once vc_path_dir('VENDORS_DIR', '_autoload.php');
+		$this->load();
 	}
 	public function add(Vc_Vendor_Interface $vendor) {
 		$this->vendors[] = $vendor;

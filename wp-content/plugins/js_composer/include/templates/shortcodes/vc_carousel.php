@@ -116,36 +116,36 @@ if ( (int)$autoplay > 0 ) $options['autoplay'] = (int)$autoplay;
 $options['mode'] = $mode;
 // $options['calculateHeight'] = true;
 $css_class = $this->settings['base'] . ' wpb_content_element vc_carousel_slider_' . $slides_per_view . ' vc_carousel_' . $mode . ( empty( $el_class ) ? '' : ' ' . $el_class );
-$carousel_id = 'vc-carousel-' . WPBakeryShortCode_Vc_Carousel::getCarouselIndex();
+$carousel_id = 'vc_carousel-' . WPBakeryShortCode_Vc_Carousel::getCarouselIndex();
 ?>
 <div class="<?php echo apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, $css_class, $this->settings['base'], $atts ) ?>">
 	<div class="wpb_wrapper">
 		<?php echo  wpb_widget_title( array( 'title' => $title, 'extraclass' => 'wpb_gallery_heading' ) ) ?>
-		<div id="<?php echo $carousel_id ?>" data-ride="vc-carousel"
+		<div id="<?php echo $carousel_id ?>" data-ride="vc_carousel"
 			 data-wrap="<?php echo $wrap === 'yes' ? 'true' : 'false' ?>"
 			 data-interval="<?php echo $autoplay == 'yes' ? $speed : 0 ?>" data-auto-height="true"
 			 data-mode="<?php echo $mode ?>" data-partial="<?php echo $partial_view === 'yes' ? 'true' : 'false' ?>"
 			 data-per-view="<?php echo $slides_per_view ?>"
-			 data-hide-on-end="<?php echo $autoplay == 'yes' ? 'false' : 'true' ?>" class="vc-carousel vc-slide">
+			 data-hide-on-end="<?php echo $autoplay == 'yes' ? 'false' : 'true' ?>" class="vc_carousel vc_slide">
 			<?php if ( $hide_pagination_control !== 'yes' ): ?>
 			<!-- Indicators -->
-			<ol class="vc-carousel-indicators">
+			<ol class="vc_carousel-indicators">
 				<?php for ( $i = 0; $i < count( $posts ); $i ++ ): ?>
 				<li data-target="#<?php echo $carousel_id ?>" data-slide-to="<?php echo $i ?>"></li>
 				<?php endfor; ?>
 			</ol>
 			<?php endif; ?>
 			<!-- Wrapper for slides -->
-			<div class="vc-carousel-inner">
-				<div class="vc-carousel-slideline">
-					<div class="vc-carousel-slideline-inner">
+			<div class="vc_carousel-inner">
+				<div class="vc_carousel-slideline">
+					<div class="vc_carousel-slideline-inner">
 						<?php foreach ( $posts as $post ): ?>
 						<?php
 						$blocks_to_build = $post->custom_user_teaser === true ? $post->custom_teaser_blocks : $teaser_blocks;
 						$block_style = isset( $post->bgcolor ) ? ' style="background-color: ' . $post->bgcolor . '"' : '';
 						?>
-						<div class="vc-item vc_slide_<?php echo $post->post_type ?>"<?php echo $block_style ?>>
-							<div class="vc-inner">
+						<div class="vc_item vc_slide_<?php echo $post->post_type ?>"<?php echo $block_style ?>>
+							<div class="vc_inner">
 								<?php foreach ( $blocks_to_build as $block_data ): ?>
 								<?php include $this->getBlockTemplate() ?>
 								<?php endforeach; ?>
@@ -157,10 +157,10 @@ $carousel_id = 'vc-carousel-' . WPBakeryShortCode_Vc_Carousel::getCarouselIndex(
 			</div>
 			<?php if ( $hide_prev_next_buttons !== 'yes' ): ?>
 			<!-- Controls -->
-			<a class="vc-left vc-carousel-control" href="#<?php echo $carousel_id ?>" data-slide="prev">
+			<a class="vc_left vc_carousel-control" href="#<?php echo $carousel_id ?>" data-slide="prev">
 				<span class="icon-prev"></span>
 			</a>
-			<a class="vc-right vc-carousel-control" href="#<?php echo $carousel_id ?>" data-slide="next">
+			<a class="vc_right vc_carousel-control" href="#<?php echo $carousel_id ?>" data-slide="next">
 				<span class="icon-next"></span>
 			</a>
 			<?php endif; ?>

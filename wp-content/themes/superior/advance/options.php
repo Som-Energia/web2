@@ -1874,7 +1874,7 @@ Powered by <a target="_blank" href="http://wordpress.org/">WordPress&trade;</a>.
 			'facebook' => array(
                 'name' => 'Facebook',
                 'value' => '#',
-				'pos'  => 0
+				'pos'  => 1
             ),
 			'flickr' => array(
                 'name' => 'Flickr',

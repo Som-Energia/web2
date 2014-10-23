@@ -1,8 +1,55 @@
+10.09.2014 - ver 4.3.4
+   - WP 4.0 improvements
+   - Cloning row with tabs fixed
+   - Cloning single tab in frontend editor fixed
+   - Untranslated strings found and now outputed with __() and _e()
+   - Custom CSS in Settings page converted > to special char fixed
+   - IE8 compatibility improved. vc-ie8.css added. Thanks to AJ Clarke
+   - Using front-end editor turns off the comments fixed
+   - Persian translation added. Thanks to: Muhammad Ali - http://bestit.org
+
+19.08.2014 - ver 4.3.3
+   - Edit elements in Accordion fixed
+   - Design Options: border params are not saved if you don't enter all 4 border widths
+   - Inner row margins updated for better UI
+   - Fixed layout highlighting setting with the same mask (case 1/3 + 2/3 and 2/3 + 1/3)
+   - Advanced Custom Fields + VC now can work together (without js error)
+   - ACE Editor and Option tree now work together (without js error)
+   - pt_BR locale updated
+   - de_DE locale file updated
+
+04.08.2014 - ver 4.3.2
+   - Force custom css regeneration upon plugin update. This will fix problem for users who used custom Design options and experienced "broken layout"
+
+31.07.2014 - ver 4.3.1
+   - Obsolete vc_spanX classes removed (caused problems for some users)
+   - Fixed: "llegal offset type in ... shortcodes.php"
+   - French translation updated
+
+29.07.2014 - ver 4.3
+   - UX improvements in Backend editor
+   - New: Offset option is added for columns
+   - New: Now you can add any number of columns inside row (it will be placed to the next line if there is not enough of space)
+   - New: Clone for columns
+   - New: Control your layout accross multiple devices. Now you can set different column width for mobile and desktop layouts
+   - New: Hide Columns on particular device
+   - New: Added support for mqTranslate (qTranslate fork which works with WP 3.9+)
+   - New: Row can be minimized in backend (to save space)
+   - New: Empty space content element
+   - New: Custom Heading content element
+   - New: Predefined layouts
+   - New: CSS syntax highlight added for Custom CSS option
+   - Fully reworked css for frontend and backend editor. Modular and divided across multiple less files
+   - CSS loading is moved to the wp_head();
+   - Other small fixes and improvements
+
+
 12.06.2014 - ver 4.2.3
    - Isotope library updated
    - Flexslider next/prev arrows fixed (font added)
    - Single image now can accept relative urls
-   - Improvents with third party plugins
+   - Improvements with third party plugins
+
 
 03.06.2014 - ver 4.2.2
    - Tabs: Auto generated IDs are back
@@ -391,7 +438,7 @@
    
 27.07.2012 - ver 3.2.2
    - jQuery UI CSS facelifted, now should look great in every design.
-   - LESS files for jQuery UI now available in assets/ui-custom-theme/less
+   - LESS files for jQuery UI now available in assets/css/ui-custom-theme/less
    
 24.07.2012 - ver 3.2.1
    - jQuery Tabs switching fixed

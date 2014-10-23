@@ -11,6 +11,13 @@ Version: 1.9.1
 */
 
 /*! normalize.css v1.0.2 | MIT License | git.io/normalize */
+
+#hacemos{width: 100%;height: 25px;font-size: 15px;color: #fff;padding: 12px 0px 10px 15px;margin-bottom:15px;}
+.produccion{background: url(/wp-content/themes/superior/images/bgpasos.png) no-repeat right top #bac92a;}
+.transporte{background: url(/wp-content/themes/superior/images/bgpasos.png) no-repeat right top #a0a1a7;}
+.comercializacion{background: url(/wp-content/themes/superior/images/bgpasos.png) no-repeat right top #bac92a;}
+
+
 article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary{display:block}
 audio,canvas,video{display:inline-block;*display:inline;*zoom:1}
 audio:not([controls]){display:none;height:0}
@@ -3319,13 +3326,13 @@ div.twitter-tweet-rendered{
 .wpb_accordion .wpb_accordion_wrapper .ui-state-default .ui-icon, .wpb_accordion .wpb_accordion_wrapper .ui-state-active .ui-icon,
 .wpb_toggle:before{
     position: absolute;
-    top: 1px;
-    left: 0;
-    bottom: 0;
-    height: auto;
-    width: 40px;
-    border-right: 1px solid #EEE;
-    background: none;
+top: 11px;
+left: 8px;
+bottom: 0;
+height: auto;
+width: 23px;
+/* border-right: 1px solid #EEE; */
+/* background: none; */
 }
 .wpb_toggle:before{
     top: 0;
@@ -3361,7 +3368,7 @@ div.twitter-tweet-rendered{
     position: static;
     font-size: 16px;
     background-color: #FBFBFB;
-    margin-left: -40px;
+    margin-left: 0px;
     padding-left: 20px;
     border-top: 1px solid #E1E1E1;
     -webkit-border-top-left-radius: 3px;

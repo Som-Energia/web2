@@ -7,7 +7,8 @@
 
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="msvalidate.01" content="4702D5FDCFBB8361253BB57A250B3946" />
+<meta name='yandex-verification' content='60656b00e7faf76e' />
 
 <title><?php wp_title( '|', true, 'right' ); ?></title>
 
@@ -16,7 +17,7 @@
 <?php a13_favicon(); ?>
 
 <script src="<?php echo get_template_directory_uri(); ?>/js/modernizr.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 
 <?php
     global $apollo13;
@@ -72,13 +73,13 @@
 switch (ICL_LANGUAGE_CODE) {	
 	case 'ca':
 	$soci='Número de socis/es:';
-	$contracte='Número de contractes';
+	$contracte='Número de contractes:';
 	$oficina='Oficina virtual';
 	break;
 
 	case 'eu':
-	$soci='Bazkideen zenbakia:';
-	$contracte='Kontratuen zenbakia:';
+	$soci='Bazkide kopurua:';
+	$contracte='Kontratu kopurua:';
 	$oficina='Bulego birtuala';
 	break;
 	
@@ -89,8 +90,8 @@ switch (ICL_LANGUAGE_CODE) {
 	break;
 	
 	default:
-	$soci='Número de socios/as';
-	$contracte='Número de contratos';
+	$soci='Número de socios/as:';
+	$contracte='Número de contratos:';
 	$oficina='Oficina virtual';
 	break;
 } 
@@ -101,9 +102,9 @@ switch (ICL_LANGUAGE_CODE) {
 
 <div id="dadesheader">
 <div id="dadescontent">
-<div id="socis" class="caixes"><span class="icosocios"></span> <?= $soci ?> <span id="partners"><img src="/wp-content/themes/superior/images/loading.gif"></span></div>
-<div id="contractes" class="caixes"><span class="icocontratos"></span> <?= $contracte ?> <span id="contracts"><img src="/wp-content/themes/superior/images/loading.gif"></span></div>
-<div id="oficina"><a href="http://oficinavirtual.somenergia.coop" target="_blank"><span class="icooficina"></span> <?= $oficina ?></a></div>
+<div id="socis" class="caixes"><span class="icosocios"></span> <span class="textsoci"><?= $soci ?></span> <span id="partners"><img src="/wp-content/themes/superior/images/loading.gif"></span></div>
+<div id="contractes" class="caixes"><span class="icocontratos"></span> <span class="textcontratos"><?= $contracte ?></span> <span id="contracts"><img src="/wp-content/themes/superior/images/loading.gif"></span></div>
+<div id="oficina"><a href="http://oficinavirtual.somenergia.coop" target="_blank"><span class="icooficina"></span> <span class="textficina"><?= $oficina ?></span></a></div>
 </div>
 </div>
     </header>

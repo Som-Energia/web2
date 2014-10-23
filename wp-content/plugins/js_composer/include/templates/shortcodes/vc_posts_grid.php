@@ -126,7 +126,7 @@ $this->setLinktarget( $grid_link_target );
 			<?php if ( $filter === 'yes' && ! empty( $this->filter_categories ) ):
 			$categories_array = $this->getFilterCategories();
 			?>
-			<ul class="categories_filter vc_span12 vc_clearfix">
+			<ul class="categories_filter vc_col-sm-12 vc_clearfix">
 				<li class="active"><a href="#" data-filter="*"><?php _e( 'All', 'js_composer' ) ?></a></li>
 				<?php foreach ( $this->getFilterCategories() as $cat ): ?>
 				<li><a href="#"
@@ -153,11 +153,11 @@ $this->setLinktarget( $grid_link_target );
 					?>
 					<li
 					  class="isotope-item <?php echo apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, $li_span_class, 'vc_teaser_grid_li', $atts ) . $post->categories_css ?>"<?php echo $block_style ?>>
-                        <div class="isotope-inner">
-                        <?php foreach ( $blocks_to_build as $block_data ): ?>
-                            <?php include $this->getBlockTemplate() ?>
+						<div class="isotope-inner">
+						<?php foreach ( $blocks_to_build as $block_data ): ?>
+							<?php include $this->getBlockTemplate() ?>
 						<?php endforeach; ?>
-                        </div>
+						</div>
 					</li> <?php echo $this->endBlockComment( 'single teaser' ); ?>
 					<?php endforeach; ?>
 				<?php else: ?>

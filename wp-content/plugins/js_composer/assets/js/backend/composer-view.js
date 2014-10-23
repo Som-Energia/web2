@@ -10,6 +10,18 @@
     var i18n = window.i18nLocale,
         store = vc.storage,
         Shortcodes = vc.shortcodes;
+   vc.builder = {
+       toString: function(model, type) {
+           var params = model.get('params'),
+               content = _.isString(params.content) ? params.content : '';
+           return wp.shortcode.string({
+               tag: model.get('shortcode'),
+               attrs: _.omit(params, 'content'),
+               content: content,
+               type:_.isString(type) ? type : ''
+           });
+       }
+   };
     /**
      * Default view for shortcode as block inside Visual composer design mode.
      * @type {*}
@@ -22,13 +34,35 @@
         use_default_content:false,
         params:{},
         events:{
-            'click .column_delete':'deleteShortcode',
-            'click .column_add':'addElement',
-            'click .column_edit, .column_edit_trigger':'editElement',
-            'click .column_clone':'clone'
+            'click .column_delete,.vc_control-btn-delete':'deleteShortcode',
+            'click .column_add,.vc_control-btn-prepend':'addElement',
+            'click .column_edit,.vc_control-btn-edit, .column_edit_trigger':'editElement',
+            'click .column_clone,.vc_control-btn-clone':'clone',
+            'mousemove': 'checkControlsPosition'
         },
         removeView:function () {
+          vc.closeActivePanel(this.model);
             this.remove();
+        },
+        checkControlsPosition: function() {
+            if(!this.$controls_buttons) return;
+            var window_top, control_top, element_position_top, new_position,
+                element_height = this.$el.height(),
+                window_height = $(window).height();
+            if(element_height > window_height) {
+                window_top = $(window).scrollTop();
+                control_top = this.$controls_buttons.offset().top;
+                element_position_top = this.$el.offset().top;
+                new_position =  (window_top - element_position_top) + $(window).height()/2;
+                if(new_position > 40 && new_position < element_height) {
+                    this.$controls_buttons.css('top',  new_position);
+                } else if(new_position > element_height) {
+                    this.$controls_buttons.css('top',  element_height - 40);
+
+                } else {
+                    this.$controls_buttons.css('top',  40);
+                }
+            }
         },
         initialize:function () {
             this.model.bind('destroy', this.removeView, this);
@@ -80,8 +114,8 @@
             this.renderContent();
         },
         render:function () {
-            if ($('#vc-shortcode-template-' + this.model.get('shortcode')).is('script')) {
-                this.html2element(_.template($('#vc-shortcode-template-' + this.model.get('shortcode')).html(), this.model.toJSON()));
+            if ($('#vc_shortcode-template-' + this.model.get('shortcode')).is('script')) {
+                this.html2element(_.template($('#vc_shortcode-template-' + this.model.get('shortcode')).html(), this.model.toJSON()));
             } else {
                 var params = this.model.get('params');
                 $.ajax({
@@ -98,6 +132,8 @@
                         this.html2element(html);
                     });
             }
+            this.model.view = this;
+            this.$controls_buttons = this.$el.find('.vc_controls > :first');
             return this;
         },
         renderContent:function () {
@@ -174,23 +210,24 @@
                         $img.attr('src', value);
                       }
                     } else {
-                      $wrapper.children('[name=' + p.param_name + ']').html(value);
+                      $wrapper.children('[name=' + p.param_name + ']').html(value ? value : '');
                     }
                     if ($admin_label.length) {
-                        if (_.isObject(p.value) && !_.isArray(p.value) && p.type == 'checkbox') {
+                        if(value === '' || _.isUndefined(value)) {
+                          $admin_label.hide().addClass('hidden-label');
+                        } else {
+                          if (_.isObject(p.value) && !_.isArray(p.value) && p.type == 'checkbox') {
                             inverted_value = _.invert(p.value);
                             label_value = _.map(value.split(/[\s]*\,[\s]*/),function (val) {
-                                return _.isString(inverted_value[val]) ? inverted_value[val] : val;
+                              return _.isString(inverted_value[val]) ? inverted_value[val] : val;
                             }).join(', ');
-                        } else if (_.isObject(p.value) && !_.isArray(p.value)) {
+                          } else if (_.isObject(p.value) && !_.isArray(p.value)) {
                             inverted_value = _.invert(p.value);
                             label_value = _.isString(inverted_value[value]) ? inverted_value[value] : value;
+                          }
+                          $admin_label.html('<label>' + $admin_label.find('label').text() + '</label>: ' + label_value);
+                          $admin_label.show().removeClass('hidden-label');
                         }
-                        $admin_label.html('<label>' + $admin_label.find('label').text() + '</label>: ' + label_value);
-                        if (value !== '' && !_.isUndefined(value))
-                            $admin_label.show().removeClass('hidden-label');
-                        else
-                            $admin_label.hide().addClass('hidden-label');
                     }
                 }, this);
             }
@@ -215,12 +252,12 @@
 
         addElement:function (e) {
             _.isObject(e) && e.preventDefault();
-            new ElementBlockView({model:{position_to_add:!_.isObject(e) || !$(e.currentTarget).closest('.bottom-controls').hasClass('bottom-controls') ? 'start' : 'end'}}).show(this);
+            // new ElementBlockView({model:{position_to_add:!_.isObject(e) || !$(e.currentTarget).closest('.bottom-controls').hasClass('bottom-controls') ? 'start' : 'end'}}).show(this);
+          vc.add_element_block_view.render(this.model, !_.isObject(e) || !$(e.currentTarget).closest('.bottom-controls').hasClass('bottom-controls'));
         },
         editElement:function (e) {
             if (_.isObject(e)) e.preventDefault();
-            vc.edit_element_block_view = new SettingsView({model:this.model});
-            vc.edit_element_block_view.show();
+          vc.edit_element_block_view.render(this.model);
         },
         clone:function (e) {
             if (_.isObject(e)) e.preventDefault();
@@ -238,449 +275,23 @@
         }
         // }}
     });
-    /**
-     * Post custom css
-     * @type {Number}
-     */
-    var PostCustomCssBlockView = vc.post_custom_css_block_view = Backbone.View.extend({
-      tagName:'div',
-      className:'wpb_bootstrap_modals',
-      template:_.template($('#wpb-post-custom-css-modal-template').html() || '<div></div>'),
-      events: {
-        'click .wpb_save_edit_form': 'save',
-        'keydown .wpb_custom_post_css_editor': 'addTab'
-      },
-      initialize: function() {
-
-      },
-      render: function() {
-        this.$field = $('#wpb_custom_post_css_field');
-        $('body').append(this.$el.html(this.template()));
-        this.$editor = this.$el.find('.wpb_custom_post_css_editor');
-        this.$editor.val(this.$field.val());
-      },
-      addTab: function(e) {
-        if(e.keyCode === 9) {
-          // get caret position/selection
-          var el = this.$editor.get(0),
-              start = el.selectionStart,
-              end = el.selectionEnd;
-            this.$editor.val(this.$editor.val().substring(0, start)
-            + "\t"
-            + this.$editor.val().substring(end));
-          el.selectionStart = el.selectionEnd = start + 1;
-          // prevent the focus lose
-          e.preventDefault();
-        }
-      },
-      save: function() {
-        this.setAlertOnDataChange();
-        this.$field.val(this.$editor.val());
-        this.close();
-      },
-      show:function () {
-        this.render();
-        this.$el.modal('show');
-      },
-      close:function () {
-        this.$el.modal('hide');
-      },
-      /**
-       * Set alert if custom css data differs from saved data.
-       */
-      setAlertOnDataChange: function() {
-        if(vc.saved_custom_css !== this.$editor.val() && window.tinymce) {
-          window.tinymce.get('content').isNotDirty = false;
-        }
-      }
-    });
-    /**
-     * Elements list
-     * @type {*}
-     */
-    vc.element_start_index = 0;
-    var ElementBlockView = vc.element_block_view = Backbone.View.extend({
-        tagName:'div',
-        className:'wpb_bootstrap_modals',
-        template:_.template($('#wpb-elements-list-modal-template').html() || '<div></div>'),
-        data_saved:false,
-        events:{
-            'click [data-element]':'createElement',
-            'click .close':'close',
-            'hidden':'removeView',
-            'shown':'setupShown',
-            'click .wpb-content-layouts-container .isotope-filter a':'filterElements',
-            'keyup #vc_elements_name_filter':'filterElements'
-        },
-        initialize:function () {
-            if (_.isUndefined(this.model)) this.model = {position_to_add:'end'};
-        },
-        render:function () {
-            var that = this,
-                $container = this.container.$content,
-                item_selector,
-                $list,
-                tag,
-                not_in;
-            $('body').append(this.$el.html(this.template()));
-            $list = this.$el.find('.wpb-elements-list'),
-            item_selector = '.wpb-layout-element-button',
-            tag = this.container.model ? this.container.model.get('shortcode') : 'vc_column',
-            not_in = this._getNotIn(tag);
-            // New vision
-            var as_parent = tag && !_.isUndefined(vc.map[tag].as_parent) ? vc.map[tag].as_parent : false;
-            if (_.isObject(as_parent)) {
-                var parent_selector = [];
-                if (_.isString(as_parent.only)) {
-                    parent_selector.push(_.reduce(as_parent.only.replace(/\s/, '').split(','), function (memo, val) {
-                        return memo + ( _.isEmpty(memo) ? '' : ',') + '[data-element="' + val.trim() + '"]';
-                    }, ''));
-                }
-                if (_.isString(as_parent.except)) {
-                    parent_selector.push(_.reduce(as_parent.except.replace(/\s/, '').split(','), function (memo, val) {
-                        return memo  + ':not([data-element="' + val.trim() + '"])';
-                    }, ''));
-                }
-                item_selector += parent_selector.join(',');
-            } else {
-                if(not_in) item_selector = not_in;
-            }
-            // OLD fashion
-            if (tag !== false && tag !== false && !_.isUndefined(vc.map[tag].allowed_container_element)) {
-                if (vc.map[tag].allowed_container_element === false) {
-                    item_selector += ':not([data-is-container=true])';
-                } else if (_.isString(vc.map[tag].allowed_container_element)) {
-                    item_selector += ':not([data-is-container=true]), [data-element="' + vc.map[tag].allowed_container_element + '"]';
-                }
-            }
-            $('.wpb-content-layouts', $list).isotope({
-                itemSelector:item_selector,
-                layoutMode:'fitRows',
-                filter:null
-            });
-            $(item_selector, $list).addClass('isotope-item');
-            $('.wpb-content-layouts', $list).isotope('reloadItems');
-            $('.wpb-content-layouts-container .isotope-filter a:first', $list).trigger('click');
-            $('[data-filter]', this.$el).each(function () {
-                if (!$($(this).data('filter') + ':visible', $list).length) {
-                  $(this).parent().hide();
-                } else {
-                  $(this).parent().show();
-                }
-            });
-            return this;
-        },
-        _getNotIn:_.memoize(function (tag) {
-            var selector = _.reduce(vc.map, function (memo, shortcode) {
-                var separator = _.isEmpty(memo) ? '' : ',';
-                if (_.isObject(shortcode.as_child)) {
-                    if (_.isString(shortcode.as_child.only)) {
-                        if (!_.contains(shortcode.as_child.only.replace(/\s/, '').split(','), tag)) {
-                            memo += separator + '.wpb-layout-element-button:not([data-element="' + shortcode.base + '"])';
-                        }
-                    }
-                    if (_.isString(shortcode.as_child.except)) {
-                        if (_.contains(shortcode.as_child.except.replace(/\s/, '').split(','), tag)) {
-                            memo += separator + '.wpb-layout-element-button:not([data-element="' + shortcode.base + '"])';
-                        }
-                    }
-                } else if (shortcode.as_child === false) {
-                    memo += separator + '.wpb-layout-element-button:not([data-element="' + shortcode.base + '"])';
-                }
-                return memo;
-            }, '');
-            return selector;
-        }),
-        filterElements:function (e) {
-            e.stopPropagation();
-            var $list = this.$el.find('.wpb-elements-list'),
-                $control = $(e.currentTarget),
-                filter = '',
-                name_filter = $('#vc_elements_name_filter').val();
-            if ($control.is('[data-filter]')) {
-                $('.wpb-content-layouts-container .isotope-filter .active', $list).removeClass('active');
-                $control.parent().addClass('active');
-                filter = $control.data('filter');
-                $('#vc_elements_name_filter').val('');
-            } else if (name_filter.length > 0) {
-                filter = ":containsi('" + name_filter + "')";
-                $('.wpb-content-layouts-container .isotope-filter .active', $list).removeClass('active');
-            } else if(name_filter.length == 0) {
-                $('.wpb-content-layouts-container .isotope-filter [data-filter="*"]').parent().addClass('active');
-            }
-            $('.wpb-content-layouts', $list).isotope({ filter:filter });
-        },
-        createElement:function (e) {
-            var model, column, row;
-            if (_.isObject(e)) e.preventDefault();
-            var $button = $(e.currentTarget);
-            if (this.container.$content.is('#visual_composer_content')) {
-                row = Shortcodes.create({shortcode:'vc_row'});
-                column = Shortcodes.create({shortcode:'vc_column', params:{width:'1/1'}, parent_id:row.id, root_id:row.id });
-                if ($button.data('element') != 'vc_row') {
-                    model = Shortcodes.create({
-                        shortcode:$button.data('element'),
-                        parent_id:column.id,
-                        params:vc.getDefaults($button.data('element')),
-                        root_id:row.id
-                    });
-                } else {
-                    model = row;
-                }
-            } else {
-                if ($button.data('element') == 'vc_row') {
-                    row = model = Shortcodes.create({
-                        shortcode:'vc_row_inner',
-                        parent_id:this.container.model.id,
-                        order:(this.model.position_to_add == 'start' ? this.getFirstPositionIndex() : Shortcodes.getNextOrder())
-                    });
-                    Shortcodes.create({shortcode:'vc_column_inner', params:{width:'1/1'}, parent_id:row.id, root_id:row.id });
-                } else {
-                    model = Shortcodes.create({
-                        shortcode:$button.data('element'),
-                        parent_id:this.container.model.id,
-                        order:(this.model.position_to_add == 'start' ? this.getFirstPositionIndex() : Shortcodes.getNextOrder()),
-                        params:vc.getDefaults($button.data('element')),
-                        root_id:this.container.model.get('root_id')
-                    });
-                }
-            }
-            this.selected_model = _.isBoolean(vc.map[$button.data('element')].show_settings_on_create) && vc.map[$button.data('element')].show_settings_on_create === false ? false : model;
-            this.$el.modal('hide');
-            this.close();
-
-        },
-        getFirstPositionIndex:function () {
-            vc.element_start_index -= 1;
-            return vc.element_start_index;
-        },
-        removeView:function () {
-            if (this.selected_model && this.selected_model.get('shortcode') != 'vc_row' && this.selected_model.get('shortcode') != 'vc_row_inner') {
-                vc.edit_element_block_view = new SettingsView({model:this.selected_model});
-                vc.edit_element_block_view.show();
-            }
-            this.remove();
-        },
-        setupShown:function () {
-            if(!vc.is_mobile) $('#vc_elements_name_filter').focus();
-        },
-        show:function (container) {
-          this.container = container;
-          this.render();
-          $(window).bind('resize.ModalView', this.setSize);
-          this.setSize();
-          this.$el.modal('show');
-        },
-        close:function () {
-            $(window).unbind('resize.ModalView');
-            this.$el.modal('hide');
-        },
-        setSize: function() {
-          var height = $(window).height() - 143;
-          this.$el.find('.modal-body').css('maxHeight', height);
-        }
-    });
-    var SettingsView = Backbone.View.extend({
-        tagName:'div',
-        className:'wpb_bootstrap_modals',
-        template:_.template($('#wpb-element-settings-modal-template').html() || '<div></div>'),
-        textarea_html_checksum:'',
-        dependent_elements:{},
-        mapped_params:{},
-        events:{
-            'click .wpb_save_edit_form':'save',
-            // 'click .close':'close',
-            'hidden':'remove',
-            'hide':'askSaveData',
-            'shown':'loadContent'
-        },
-        content: function() {
-          return this.$content;
-        },
-        window: function() {
-          return window;
-        },
-        initialize:function () {
-            var tag = this.model.get('shortcode'),
-                params = _.isObject(vc.map[tag]) && _.isArray(vc.map[tag].params) ? vc.map[tag].params : [];
-            _.bindAll(this, 'hookDependent');
-            this.dependent_elements = {};
-            this.mapped_params = {};
-            _.each(params, function (param) {
-                this.mapped_params[param.param_name] = param;
-            }, this);
-        },
-        render:function () {
-            $('body').append(this.$el.html(this.template()));
-            this.$content = this.$el.find('.modal-body > div');
-            return this;
-        },
-        initDependency:function () {
-            // setup dependencies
-            _.each(this.mapped_params, function (param) {
-                if (_.isObject(param) && _.isObject(param.dependency) && _.isString(param.dependency.element)) {
-                    var $masters = $('[name=' + param.dependency.element + '].wpb_vc_param_value', this.$content),
-                        $slave = $('[name= ' + param.param_name + '].wpb_vc_param_value', this.$content);
-                    _.each($masters, function (master) {
-                        var $master = $(master),
-                            rules = param.dependency;
-                        if (!_.isArray(this.dependent_elements[$master.attr('name')])) this.dependent_elements[$master.attr('name')] = [];
-                        this.dependent_elements[$master.attr('name')].push($slave);
-                        $master.bind('keyup change', this.hookDependent);
-                        this.hookDependent({currentTarget:$master}, [$slave]);
-                        if (_.isString(rules.callback)) {
-                            window[rules.callback].call(this);
-                        }
-                    }, this);
-                }
-            }, this);
-        },
-        hookDependent:function (e, dependent_elements) {
-            var $master = $(e.currentTarget),
-                $master_container = $master.closest('.vc_row-fluid'),
-                master_value,
-                is_empty;
-            dependent_elements = _.isArray(dependent_elements) ? dependent_elements : this.dependent_elements[$master.attr('name')],
-            master_value = $master.is(':checkbox') ? _.map(this.$content.find('[name=' + $(e.currentTarget).attr('name') + '].wpb_vc_param_value:checked'),
-                    function (element) {
-                    return $(element).val();
-                })
-                    : $master.val();
-            is_empty = $master.is(':checkbox') ? !this.$content.find('[name=' + $master.attr('name') + '].wpb_vc_param_value:checked').length
-                    : !master_value.length;
-            if($master_container.hasClass('vc-dependent-hidden')) {
-                _.each(dependent_elements, function($element) {
-                    $element.closest('.vc_row-fluid').addClass('vc-dependent-hidden');
-                });
-            } else {
-                _.each(dependent_elements, function ($element) {
-                    var param_name = $element.attr('name'),
-                        rules = _.isObject(this.mapped_params[param_name]) && _.isObject(this.mapped_params[param_name].dependency) ? this.mapped_params[param_name].dependency : {},
-                        $param_block = $element.closest('.vc_row-fluid');
-                    if (_.isBoolean(rules.not_empty) && rules.not_empty === true && !is_empty) { // Check is not empty show dependent Element.
-                        $param_block.removeClass('vc-dependent-hidden');
-                    } else if (_.isBoolean(rules.is_empty) && rules.is_empty === true && is_empty) {
-                        $param_block.removeClass('vc-dependent-hidden');
-                    } else if (_.intersection((_.isArray(rules.value) ? rules.value : [rules.value]), (_.isArray(master_value) ? master_value : [master_value])).length) {
-                        $param_block.removeClass('vc-dependent-hidden');
-                    } else {
-                        $param_block.addClass('vc-dependent-hidden')
-                    }
-                    $element.trigger('change');
-                }, this);
-            }
-            return this;
-        },
-        loadContent:function () {
-            $.ajax({
-                type:'POST',
-                url:window.ajaxurl,
-                data:{
-                    action:'wpb_show_edit_form',
-                    element:this.model.get('shortcode'),
-                    post_id: $('#post_ID').val(),
-                    shortcode:store.createShortcodeString(this.model.toJSON()) // TODO: do it on server-side
-                },
-                context:this
-            }).done(function (data) {
-                    this.$content.html(data);
-                    this.$el.find('h3').text(this.$content.find('> [data-title]').data('title'));
-                    this.initDependency();
-                });
-        },
-        save:function (e) {
-            if (_.isObject(e)) e.preventDefault();
-            var params = this.getParams();
-            this.model.save({params:params});
-            if(parseInt(Backbone.VERSION)=== 0) {
-                this.model.trigger('change:params', this.model);
-            }
-            this.data_saved = true;
-            this.close();
-            return this;
-        },
-        getParams: function() {
-            var attributes_settings = this.mapped_params;
-            this.params = jQuery.extend(true, {}, this.model.get('params'));
-            _.each(attributes_settings, function (param) {
-                this.params[param.param_name] = vc.atts.parse.call(this, param);
-            }, this);
-            _.each(vc.edit_form_callbacks, function(callback){
-              callback.call(this);
-            }, this);
-            return this.params;
-        },
-        getCurrentParams: function() {
-            var attributes_settings = this.mapped_params,
-                params = jQuery.extend(true, {}, this.model.get('params'));
-            _.each(attributes_settings, function (param) {
-                if(_.isUndefined(params[param.param_name])) params[param.param_name] = '';
-                if(param.type === "textarea_html") params[param.param_name] = params[param.param_name].replace(/\n/g, '');
-            }, this);
-            return params;
-        },
-        show:function () {
-            this.render();
-            $(window).bind('resize.ModalView', this.setSize);
-            this.setSize();
-            this.$el.modal('show');
-        },
-        _killEditor:function () {
-            if(!_.isUndefined(window.tinyMCE)) {
-                $('textarea.textarea_html', this.$el).each(function () {
-                    var id = $(this).attr('id');
-                    if(tinymce.majorVersion === "4") {
-                      window.tinyMCE.execCommand('mceRemoveEditor', true, id);
-                    } else {
-                      window.tinyMCE.execCommand("mceRemoveControl", true, id);
-                    }
-                    // window.tinyMCE.execCommand('mceAddEditor', false, id);
-                    // window.tinymce.activeEditor = tinymce.get('content');
-                    // $('#wp-fullscreen-save .button').attr('onclick', 'wp.editor.fullscreen.save()').addClass('button-primary');
-                });
-            }
-        },
-        dataNotChanged: function() {
-            var current_params = this.getCurrentParams(),
-                new_params = this.getParams();
-            return _.isEqual(current_params, new_params);
-        },
-        askSaveData:function () {
-            if (this.data_saved || this.dataNotChanged() || confirm(window.i18nLocale.if_close_data_lost)) {
-                this._killEditor();
-                this.data_saved = true;
-                $(window).unbind('resize.ModalView');
-              return true;
-            }
-            return false;
-        },
-        close:function () {
-            if (this.askSaveData()) {
-                this.$el.modal('hide');
-            }
-        },
-        setSize: function() {
-            var height = $(window).height() - 250;
-            this.$el.find('.modal-body').css('maxHeight', height);
-        }
-    });
 
     var VisualComposer = Backbone.View.extend({
         el:$('#wpb_visual_composer'),
         views:{},
         events:{
             "click #wpb-add-new-row":'createRow',
-            "click #wpb-custom-post-css":'showPostCustomCss',
-            'click #wpb-add-new-element, .add-element-to-layout':'addElement',
-            'click .add-text-block-to-content':'addTextBlock',
+            'click #vc_post-settings-button': 'editSettings',
+            'click #vc_add-new-element, .vc_add-element-button, .vc_add-element-not-empty-button':'addElement',
+            'click .vc_add-text-block-button':'addTextBlock',
             'click .wpb_switch-to-composer':'switchComposer',
-            'click #wpb_save_template_button':'saveTemplate',
-            'click [data-template_id]':'loadTemplate',
-            'click .wpb_remove_template':'removeTemplate',
-            'click #wpb-save-post':'save'
+            'click #vc_templates-editor-button': 'openTemplatesEditor',
+            'click [data-template_name]':'loadDefaultTemplate',
+            'click #wpb-save-post':'save',
+            'click .vc_control-preview':'preview'
         },
         initialize:function () {
-            this.accessPolicy = $('.wpb_js_composer_group_access_show_rule').val();
+            this.accessPolicy = $('.vc_js_composer_group_access_show_rule').val();
             if (this.accessPolicy == 'no') return false;
             this.buildRelevance();
             _.bindAll(this, 'switchComposer', 'dropButton', 'processScroll', 'updateRowsSorting', 'updateElementsSorting');
@@ -692,8 +303,8 @@
         render:function () {
             var front = '';
             if (this.accessPolicy !== 'only') {
-                if(vc_frontend_enabled) front = '<span class="vc-spacer"></span><a class="wpb_switch-to-front-composer" href="' + $('#wpb-edit-inline').attr('href') +'">' + window.i18nLocale.main_button_title_frontend_editor + '</a>';
-                this.$buttonsContainer = $('<div class="composer-switch"><span class="logo-icon"></span><span class="vc-spacer"></span><a class="wpb_switch-to-composer" href="#">' + window.i18nLocale.main_button_title_backend_editor + '</a>' + front + '</div>').insertAfter('div#titlediv');
+                if(vc_frontend_enabled) front = '<span class="vc_spacer"></span><a class="wpb_switch-to-front-composer" href="' + $('#wpb-edit-inline').attr('href') +'">' + window.i18nLocale.main_button_title_frontend_editor + '</a>';
+                this.$buttonsContainer = $('<div class="composer-switch"><span class="logo-icon"></span><span class="vc_spacer"></span><a class="wpb_switch-to-composer" href="#">' + window.i18nLocale.main_button_title_backend_editor + '</a>' + front + '</div>').insertAfter('div#titlediv');
                 // this.$switchButton = $('<a class="wpb_switch-to-composer button-primary" href="#">' + window.i18nLocale.main_button_title + '</a>').insertAfter('div#titlediv').wrap('<p class="composer-switch" />');
                 this.$switchButton = this.$buttonsContainer.find('.wpb_switch-to-composer');
                 this.$switchButton.click(this.switchComposer);
@@ -702,23 +313,32 @@
             this.$content = $("#visual_composer_content");
             this.$post = $('#postdivrich');
             this.$vcStatus = $('#wpb_vc_js_status');
-            this.$loading_block = $('.vc_loading_block');
+            this.$loading_block = $('#vc_logo');
+            vc.add_element_block_view = new vc.AddElementBlockViewBackendEditor({el: '#vc_add-element-dialog'});
+            vc.edit_element_block_view = new vc.EditElementPanelView({el: '#vc_properties-panel'});
+            vc.templates_editor_view = new vc.TemplatesEditorPanelViewBackendEditor({el: '#vc_templates-editor'});
+            vc.post_settings_view = new vc.PostSettingsPanelViewBackendEditor({el: '#vc_post-settings-panel'});
             this.setSortable();
             this.setDraggable();
             vc.is_mobile = $('body.mobile').length > 0;
             vc.saved_custom_css = $('#wpb_custom_post_css_field').val();
+            vc.updateSettingsBadge();
             return this;
         },
         addAll:function () {
             this.views = {};
             this.$content.removeClass('loading').html('');
-            Shortcodes.each(function (shortcode) {
+            this.addChild(false);
+            this.checkEmpty();
+            this.$loading_block.removeClass('vc_ajax-loading');
+            this.$metablock_content.removeClass('vc_loading-shortcodes');
+        },
+        addChild: function(parent_id) {
+            _.each(vc.shortcodes.where({parent_id: parent_id}), function (shortcode) {
                 this.appendShortcode(shortcode);
                 this.setSortable();
+                this.addChild(shortcode.get('id'));
             }, this);
-
-            this.checkEmpty();
-            this.$loading_block.hide();
         },
         getView:function (model) {
             var view;
@@ -804,72 +424,6 @@
             this.setSortable();
             this.setNotEmpty();
         },
-        /**
-         * Remove template from server database.
-         * @param e - Event object
-         */
-        removeTemplate:function (e) {
-            e.preventDefault();
-            var $button = $(e.currentTarget);
-            var template_name = $button.closest('.wpb_template_li').find('a').text();
-            var answer = confirm(window.i18nLocale.confirm_deleting_template.replace('{template_name}', template_name));
-            if (answer) {
-                // this.reloadTemplateList(data);
-                $.post(window.ajaxurl, {
-                    action:'wpb_delete_template',
-                    template_id:$button.attr('rel')
-                });
-                $button.closest('.wpb_template_li').remove();
-            }
-        },
-        /**
-         * Load saved template from server.
-         * @param e - Event object
-         */
-        loadTemplate:function (e) {
-            e.preventDefault();
-            var $button = $(e.currentTarget);
-            $.ajax({
-                type:'POST',
-                url:window.ajaxurl,
-                data:{
-                    action:'wpb_load_template_shortcodes',
-                    template_id:$button.attr('data-template_id')
-                }
-            }).done(function (shortcodes) {
-                    _.each(vc.filters.templates, function (callback) {
-                        shortcodes = callback(shortcodes);
-                    });
-                    vc.storage.append(shortcodes);
-                    Shortcodes.fetch({reset: true});
-                });
-        },
-        /**
-         * Save current shortcode design as template with title.
-         * @param e - Event object
-         */
-        saveTemplate:function (e) {
-            e.preventDefault();
-            var name = window.prompt(window.i18nLocale.please_enter_templates_name, ''),
-                shortcodes = '',
-                data;
-
-            if (_.isString(name) && name.length) {
-                shortcodes = vc.storage.getContent();
-                data = {
-                    action:'wpb_save_template',
-                    template:shortcodes,
-                    template_name:name
-                };
-
-                this.reloadTemplateList(data);
-            }
-        },
-        reloadTemplateList:function (data) {
-            $.post(window.ajaxurl, data, function (html) {
-                $('.wpb_templates_list').html(html);
-            });
-        },
         addTextBlock:function (e) {
             e.preventDefault();
             var row = Shortcodes.create({shortcode:'vc_row'}),
@@ -889,19 +443,27 @@
          * Add Element with a help of modal view.
          */
         addElement:function (e) {
-            if (_.isObject(e)) e.preventDefault();
-            new ElementBlockView({model:{position_to_add:'end'}}).show(this);
+          _.isObject(e) && e.preventDefault();
+          vc.add_element_block_view.render(false);
         },
-        showPostCustomCss: function(e) {
-          if (_.isObject(e)) e.preventDefault();
-          new PostCustomCssBlockView().show();
-
+        openTemplatesEditor: function(e) {
+          e && e.preventDefault();
+          vc.templates_editor_view.render().show();
+        },
+        loadDefaultTemplate: function(e) {
+          e && e.preventDefault();
+          vc.templates_editor_view.loadDefaultTemplate(e);
+          // $("#vc_no-content-helper").remove(); // TODO check P vs S
+        },
+        editSettings: function(e) {
+          e && e.preventDefault();
+          vc.post_settings_view.render().show();
         },
         sortingStarted:function (event, ui) {
-            $('#visual_composer_content').addClass('sorting-started');
+            $('#visual_composer_content').addClass('vc_sorting-started');
         },
         sortingStopped:function (event, ui) {
-            $('#visual_composer_content').removeClass('sorting-started');
+            $('#visual_composer_content').removeClass('vc_sorting-started');
         },
         updateElementsSorting:function (event, ui) {
             _.defer(function (app, event, ui) {
@@ -937,6 +499,13 @@
                 });
             }, this);
         },
+        renderPlaceholder: function(event, element) {
+          var tag = $(element).data('element_type'),
+            $helper = $('<div class="vc_helper vc_helper-' + tag + '"><i class="vc_element-icon'
+              + ( vc.map[tag].icon ? ' ' + vc.map[tag].icon : '' )
+              + '"></i> ' + vc.map[tag].name + '</div>').prependTo('body');
+          return $helper;
+        },
         setSortable:function () {
             var that = this;
             $('.wpb_main_sortable').sortable({
@@ -955,30 +524,35 @@
                 }
             });
             $('.wpb_column_container').sortable({
-                forcePlaceholderSize:true,
+                forcePlaceholderSize: true,
+                forceHelperSize: false,
                 connectWith:".wpb_column_container",
-                placeholder:"widgets-placeholder",
-                // cursorAt: { left: 10, top : 20 },
-                cursor:"move",
+                placeholder:"vc_placeholder",
                 items:"> div.wpb_sortable", //wpb_sortablee
-                distance:0.5,
+                helper: this.renderPlaceholder,
+                distance: 3,
+                scroll: true,
+                scrollSensitivity: 70,
+                cursor: 'move',
+                cursorAt: {top: 20, left: 16},
                 tolerance:'pointer',
                 start:function () {
-                    $('#visual_composer_content').addClass('sorting-started');
+                    $('#visual_composer_content').addClass('vc_sorting-started');
                     $('.vc_not_inner_content').addClass('dragging_in');
                 },
                 stop:function (event, ui) {
-                    $('#visual_composer_content').removeClass('sorting-started');
+                    $('#visual_composer_content').removeClass('vc_sorting-started');
                     $('.dragging_in').removeClass('dragging_in');
-                    var tag = ui.item.data('element_type');
-                    var parent_tag = ui.item.parent().closest('[data-element_type]').data('element_type');
-                    var allowed_container_element = !_.isUndefined(vc.map[parent_tag].allowed_container_element) ? vc.map[parent_tag].allowed_container_element : true;
+                    var tag = ui.item.data('element_type'),
+                        parent_tag = ui.item.parent().closest('[data-element_type]').data('element_type'),
+                        allowed_container_element = !_.isUndefined(vc.map[parent_tag].allowed_container_element) ? vc.map[parent_tag].allowed_container_element : true;
                     if (!vc.check_relevance(parent_tag, tag)) {
                         $(this).sortable('cancel');
                     }
                     if (vc.map[ui.item.data('element_type')].is_container && !(allowed_container_element === true || allowed_container_element === ui.item.data('element_type').replace(/_inner$/, ''))) { // && ui.item.hasClass('wpb_container_block')
                         $(this).sortable('cancel');
                     }
+                    $('.vc_sorting-empty-container').removeClass('vc_sorting-empty-container');
                 },
                 update:this.updateElementsSorting,
                 over:function (event, ui) {
@@ -986,24 +560,29 @@
                         parent_tag = ui.placeholder.closest('[data-element_type]').data('element_type'),
                         allowed_container_element = !_.isUndefined(vc.map[parent_tag].allowed_container_element) ? vc.map[parent_tag].allowed_container_element : true;
                     if (!vc.check_relevance(parent_tag, tag)) {
-                        ui.placeholder.addClass('hidden-placeholder');
+                        ui.placeholder.addClass('vc_hidden-placeholder');
                         return false;
                     }
                     if (vc.map[ui.item.data('element_type')].is_container && !(allowed_container_element === true || allowed_container_element === ui.item.data('element_type').replace(/_inner$/, ''))) {
-                        ui.placeholder.addClass('hidden-placeholder');
+                        ui.placeholder.addClass('vc_hidden-placeholder');
                         return false;
                     }
-                    ui.placeholder.removeClass('hidden-placeholder');
+                    if(ui.sender.length && !ui.sender.find('[data-element_type]:visible').length) {
+                      ui.sender.addClass('vc_sorting-empty-container');
+                    }
+                    ui.placeholder.removeClass('vc_hidden-placeholder'); // .parent().removeClass('vc_empty-container');
                     ui.placeholder.css({maxWidth:ui.placeholder.parent().width()});
                 }
             });
             return this;
         },
         setNotEmpty:function () {
-            this.$metablock_content.removeClass('empty-composer');
+            // this.$metablock_content.removeClass('empty-composer');
+            $('#vc_no-content-helper').addClass('vc_not-empty');
         },
         setIsEmpty:function () {
-            this.$metablock_content.addClass('empty-composer');
+            // this.$metablock_content.addClass('empty-composer');
+            $('#vc_no-content-helper').removeClass('vc_not-empty')
         },
         checkEmpty:function (model) {
             if (_.isObject(model) && model.get('parent_id') !== false && model.get('parent_id') != model.id) {
@@ -1021,14 +600,14 @@
             if (this.status == 'shown') {
               if (this.accessPolicy !== 'only') {
                 !_.isUndefined(this.$switchButton) && this.$switchButton.text(window.i18nLocale.main_button_title_backend_editor);
-                !_.isUndefined(this.$buttonsContainer) && this.$buttonsContainer.removeClass('vc-backend-status');
+                !_.isUndefined(this.$buttonsContainer) && this.$buttonsContainer.removeClass('vc_backend-status');
               }
               this.close();
               this.status = 'closed';
             } else {
               if (this.accessPolicy !== 'only') {
                 !_.isUndefined(this.$switchButton) && this.$switchButton.text(window.i18nLocale.main_button_title_revert);
-                !_.isUndefined(this.$buttonsContainer) && this.$buttonsContainer.addClass('vc-backend-status');
+                !_.isUndefined(this.$buttonsContainer) && this.$buttonsContainer.addClass('vc_backend-status');
               }
               this.show();
                 this.status = 'shown';
@@ -1051,7 +630,8 @@
         },
         setLoading:function () {
             this.setNotEmpty();
-            this.$loading_block.show();
+            this.$loading_block.addClass('vc_ajax-loading');
+            this.$metablock_content.addClass('vc_loading-shortcodes');
         },
         close:function () {
             this.$vcStatus.val("false");
@@ -1065,27 +645,33 @@
             }
         },
         setNavTop:function () {
-            this.navTop = $('#wpb_visual_composer-elements').length && $('#wpb_visual_composer-elements').offset().top - 28;
+          this.navTop = this.$nav.length && this.$nav.offset().top - 28;
         },
         save:function () {
             $('#wpb-save-post').text(window.i18nLocale.loading);
             $('#publish').click();
         },
+        preview:function() {
+            $('#post-preview').click();
+        },
         navOnScroll:function () {
             var $win = $(window);
+            this.$nav = $('#vc_navbar'); // $('#wpb_visual_composer-elements');
             this.setNavTop();
-            this.$nav = $('#wpb_visual_composer-elements');
             this.processScroll();
             $win.unbind('scroll.composer').on('scroll.composer', this.processScroll);
         },
         processScroll:function (e) {
-            this.scrollTop = $(window).scrollTop();
-            if (this.scrollTop >= this.navTop && !this.isFixed) {
+            if( !this.navTop || this.navTop < 0) {
+                this.setNavTop();
+            }
+            this.scrollTop = $(window).scrollTop() + 80;
+            if ( this.navTop > 0 && this.scrollTop >= this.navTop && !this.isFixed) {
                 this.isFixed = 1;
-                this.$nav.addClass('subnav-fixed');
-            } else if (this.scrollTop <= this.navTop && this.isFixed) {
+                this.$nav.addClass('vc_subnav-fixed');
+            } else if ( this.scrollTop <= this.navTop && this.isFixed) {
                 this.isFixed = 0;
-                this.$nav.removeClass('subnav-fixed');
+                this.$nav.removeClass('vc_subnav-fixed');
             }
         },
         buildRelevance:function () {

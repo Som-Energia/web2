@@ -20,28 +20,30 @@ class WPBakeryShortCode_VC_Row extends WPBakeryShortCode {
 ---------------------------------------------------------- */
 	public function getColumnControls( $controls, $extended_css = '' ) {
 		global $vc_row_layouts;
-		$controls_start = '<div class="controls controls_row clearfix">';
+		$controls_start = '<div class="controls controls_row vc_clearfix">';
 		$controls_end = '</div>';
 
 		//Create columns
-		$controls_center_start = '<span class="vc_row_layouts">';
-		$controls_layout = '';
+		$controls_layout = '<span class="vc_row_layouts vc_control">';
 		foreach ( $vc_row_layouts as $layout ) {
-			$controls_layout .= '<a class="set_columns ' . $layout['icon_class'] . '" data-cells="' . $layout['cells'] . '" data-cells-mask="' . $layout['mask'] . '" title="' . $layout['title'] . '"></a> ';
+			$controls_layout .= '<a class="vc_control-set-column set_columns ' . $layout['icon_class'] . '" data-cells="' . $layout['cells'] . '" data-cells-mask="' . $layout['mask'] . '" title="' . $layout['title'] . '"></a> ';
 		}
-		$controls_layout .= '<br/><a class="set_columns custom_columns" data-cells="custom" data-cells-mask="custom" title="' . __( 'Custom layout', 'js_composer' ) . '">' . __( 'Custom layout', 'js_composer' ) . '</a> ';
-		$controls_move = ' <a class="column_move" href="#" title="' . __( 'Drag row to reorder', 'js_composer' ) . '"></a>';
-		$controls_delete = '<a class="column_delete" href="#" title="' . __( 'Delete this row', 'js_composer' ) . '"></a>';
-		$controls_edit = ' <a class="column_edit" href="#" title="' . __( 'Edit this row', 'js_composer' ) . '"></a>';
-		$controls_clone = ' <a class="column_clone" href="#" title="' . __( 'Clone this row', 'js_composer' ) . '"></a>';
+		$controls_layout .= '<br/><a class="vc_control-set-column set_columns custom_columns" data-cells="custom" data-cells-mask="custom" title="' . __( 'Custom layout', 'js_composer' ) . '">' . __( 'Custom', 'js_composer' ) . '</a> ';
+		$controls_layout .= '</span>';
+
+		$controls_move = ' <a class="vc_control column_move" href="#" title="' . __( 'Drag row to reorder', 'js_composer' ) . '"><i class="vc_icon"></i></a>';
+		$controls_add = ' <a class="vc_control column_add" href="#" title="' . __( 'Add column', 'js_composer' ) . '"><i class="vc_icon"></i></a>';
+		$controls_delete = '<a class="vc_control column_delete" href="#" title="' . __( 'Delete this row', 'js_composer' ) . '"><i class="vc_icon"></i></a>';
+		$controls_edit = ' <a class="vc_control column_edit" href="#" title="' . __( 'Edit this row', 'js_composer' ) . '"><i class="vc_icon"></i></a>';
+		$controls_clone = ' <a class="vc_control column_clone" href="#" title="' . __( 'Clone this row', 'js_composer' ) . '"><i class="vc_icon"></i></a>';
+		$controls_toggle = ' <a class="vc_control column_toggle" href="#" title="' . __( 'Toggle row', 'js_composer' ) . '"><i class="vc_icon"></i></a>';
 		$controls_center_end = '</span>';
 
 		$row_edit_clone_delete = '<span class="vc_row_edit_clone_delete">';
-		$row_edit_clone_delete .= $controls_delete . $controls_clone . $controls_edit;
-		$row_edit_clone_delete .= '</span>';
+		$row_edit_clone_delete .= $controls_delete . $controls_clone . $controls_edit . $controls_toggle;
 
 		//$column_controls_full =  $controls_start. $controls_move . $controls_center_start . $controls_layout . $controls_delete . $controls_clone . $controls_edit . $controls_center_end . $controls_end;
-		$column_controls_full = $controls_start . $controls_move . $controls_center_start . $controls_layout . $controls_center_end . $row_edit_clone_delete . $controls_end;
+		$column_controls_full = $controls_start . $controls_move . $controls_layout . $controls_add  . $row_edit_clone_delete . $controls_end;
 
 		return $column_controls_full;
 	}
@@ -58,7 +60,7 @@ class WPBakeryShortCode_VC_Row extends WPBakeryShortCode {
 			$output .= '<div' . $this->customAdminBockParams() . ' data-element_type="' . $this->settings["base"] . '" class="wpb_' . $this->settings['base'] . ' wpb_sortable">';
 			$output .= str_replace( "%column_size%", 1, $column_controls );
 			$output .= '<div class="wpb_element_wrapper">';
-			$output .= '<div class="vc_row-fluid wpb_row_container vc_container_for_children">';
+			$output .= '<div class="vc_row vc_row-fluid wpb_row_container vc_container_for_children">';
 			if ( $content == '' && ! empty( $this->settings["default_content_in_template"] ) ) {
 				$output .= do_shortcode( shortcode_unautop( $this->settings["default_content_in_template"] ) );
 			} else {

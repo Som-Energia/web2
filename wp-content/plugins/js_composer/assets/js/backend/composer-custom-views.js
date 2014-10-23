@@ -18,12 +18,15 @@
             'click > .controls .column_add':'addElement',
             'click > .controls .column_edit':'editElement',
             'click > .controls .column_clone':'clone',
-            'click > .controls .column_move':'moveElement'
+            'click > .controls .column_move':'moveElement',
+            'click > .controls .column_toggle': 'toggleElement',
+            'click > .wpb_element_wrapper .vc_controls': 'openClosedRow'
         },
-        _convertRowColumns:function (layout) {
+        convertRowColumns:function (layout) {
             var layout_split = layout.toString().split(/\_/),
                 columns = Shortcodes.where({parent_id:this.model.id}),
                 new_columns = [],
+                new_layout = [],
                 new_width = '';
             _.each(layout_split, function (value, i) {
                 var column_data = _.map(value.toString().split(''), function (v, i) {
@@ -36,6 +39,7 @@
                     new_width = column_data[0] + '/' + column_data[1] + '' + column_data[2];
                 else
                     new_width = column_data[0] + '/' + column_data[1];
+                new_layout.push(new_width);
                 new_column_params = _.extend(!_.isUndefined(columns[i]) ? columns[i].get('params') : {}, {width: new_width}),
                 vc.storage.lock();
                 new_column = Shortcodes.create({shortcode:(this.model.get('shortcode') === 'vc_row_inner' ? 'vc_column_inner' : 'vc_column'), params:new_column_params, parent_id:this.model.id});
@@ -64,43 +68,54 @@
                 shortcode.destroy();
             }, this);
             this.model.save();
+            this.setActiveLayoutButton('' + layout);
             // this.sizeRows();
-            return false;
+            return new_layout;
         },
         changeShortcodeParams:function (model) {
-          var image, params = model.get('params'),
-              $column_edit = this.$el.find('> .controls .column_edit');
           window.VcRowView.__super__.changeShortcodeParams.call(this, model);
+
+          this.buildDesignHelpers();
+        },
+        buildDesignHelpers: function() {
+          var css = this.model.getParam('css'),
+              $column_toggle = this.$el.find('> .controls .column_toggle'),
+              image, color, $image, $color;
           this.$el.find('> .controls .vc_row_color').remove();
           this.$el.find('> .controls .vc_row_image').remove();
-          if(!_.isEmpty(params.bg_color)) {
-              $('<span class="vc_row_color" style="background-color: ' + params.bg_color + '" title="' + i18nLocale.row_background_color + '"></span>').insertAfter($column_edit);
+          var matches = css.match(/background\-image:\s*url\(([^\)]+)\)/)
+          if(matches && !_.isUndefined(matches[1])) {
+            image = matches[1];
           }
-          if(!_.isEmpty(params.bg_image)) {
-            image = $('<span class="vc_row_image" style="background-image: url(' + $('.vc_loading_block > img').attr('src') + ');" title="' + i18nLocale.row_background_image + '"></span>')
-            image.insertAfter($column_edit);
-            $.ajax({
-              type:'POST',
-              url:window.ajaxurl,
-              data:{
-                action:'wpb_single_image_src',
-                content: params.bg_image,
-                size: 'thumbnail'
-              },
-              dataType:'html'
-            }).done(function (url) {
-                image.css({backgroundImage: 'url(' + url + ')'});
-              });
-          } else {
-
+          var matches = css.match(/background\-color:\s*([^\s\;]+)\b/)
+          if(matches && !_.isUndefined(matches[1])) {
+            color = matches[1];
           }
-
+          var matches = css.match(/background:\s*([^\s]+)\b\s*url\(([^\)]+)\)/)
+          if(matches && !_.isUndefined(matches[1])) {
+            color = matches[1];
+            image = matches[2];
+          }
+          if(image) {
+            $('<span class="vc_row_image" style="background-image: url(' + image + ');" title="' + i18nLocale.row_background_image + '"></span>')
+              .insertAfter($column_toggle);
+          }
+          if(color) {
+            $('<span class="vc_row_color" style="background-color: ' + color + '" title="' + i18nLocale.row_background_color + '"></span>')
+              .insertAfter($column_toggle);
+          }
+        },
+        addElement: function(e) {
+          e && e.preventDefault();
+          var new_column = Shortcodes.create({shortcode:(this.model.get('shortcode') === 'vc_row_inner' ? 'vc_column_inner' : 'vc_column'), params:{}, parent_id:this.model.id});
+          this.setActiveLayoutButton();
+          this.$el.removeClass('vc_collapsed-row');
         },
         _getCurrentLayoutString: function() {
             var layouts = [];
             $('> .wpb_vc_column, > .wpb_vc_column_inner', this.$content).each(function () {
                 var width = $(this).data('width');
-                layouts.push(_.isUndefined(width) ? '1/1' : width);
+                layouts.push(!width ? '1/1' : width);
             });
             return layouts.join(' + ');
         },
@@ -117,11 +132,11 @@
                     items:"> [data-element_type=vc_column], > [data-element_type=vc_column_inner]", //wpb_sortablee
                     distance:0.5,
                     start:function (event, ui) {
-                        $('#visual_composer_content').addClass('sorting-started');
+                        $('#visual_composer_content').addClass('vc_sorting-started');
                         ui.placeholder.width(ui.item.width());
                     },
                     stop:function (event, ui) {
-                        $('#visual_composer_content').removeClass('sorting-started');
+                        $('#visual_composer_content').removeClass('vc_sorting-started');
                     },
                     update:function () {
                         var $columns = $("> [data-element_type=vc_column], > [data-element_type=vc_column_inner]", that.$content);
@@ -135,7 +150,7 @@
                     },
                     over:function (event, ui) {
                         ui.placeholder.css({maxWidth:ui.placeholder.parent().width()});
-                        ui.placeholder.removeClass('hidden-placeholder');
+                        ui.placeholder.removeClass('vc_hidden-placeholder');
                         // if (ui.item.hasClass('not-column-inherit') && ui.placeholder.parent().hasClass('not-column-inherit')) {
                         //     ui.placeholder.addClass('hidden-placeholder');
                         // }
@@ -176,23 +191,33 @@
             if(sum!==12) return false;
             return return_cells.join('_');
         },
+        setActiveLayoutButton: function(column_layout) {
+          if( !column_layout ) {
+            var layout = [];
+            layout =
+            column_layout = _.map(vc.shortcodes.where({parent_id: this.model.get('id')}), function(model){
+              var width = model.getParam('width');
+              return !width ? '11' : width.replace(/\//, '');
+            }).join('_');
+          }
+          this.$el.find('> .controls .vc_active').removeClass('vc_active');
+          var $button = this.$el.find('> .controls [data-cells-mask=' + vc_get_column_mask(column_layout) + '][data-cells='+column_layout+']');
+          if($button.length) {
+            $button.addClass('vc_active');
+          } else {
+            this.$el.find('> .controls [data-cells-mask=custom]').addClass('vc_active');
+          }
+        },
+        layoutEditor: function() {
+          if(_.isUndefined(vc.row_layout_editor)) vc.row_layout_editor = new vc.RowLayoutEditorPanelViewBackend({el: $('#vc_row-layout-panel')});
+          return vc.row_layout_editor;
+        },
         setColumns:function (e) {
             if (_.isObject(e)) e.preventDefault();
             var $button = $(e.currentTarget);
             if($button.data('cells')==='custom') {
-                var cells = window.prompt(window.i18nLocale.enter_custom_layout, this._getCurrentLayoutString());
-                if(_.isString(cells)) {
-                    if((cells = this.validateCellsList(cells))!==false) {
-                        this.change_columns_layout = true;
-                        this._convertRowColumns(cells);
-                        this.$el.find('> .controls .vc_active').removeClass('vc_active');
-                        $button.addClass('vc_active');
+                this.layoutEditor().render(this.model).show();
                     } else {
-                        window.alert(window.i18nLocale.wrong_cells_layout);
-                    }
-                }
-                return;
-            }
             if(vc.is_mobile) {
               var $parent = $button.parent();
               if(!$parent.hasClass('vc_visible')) {
@@ -203,19 +228,17 @@
                 });
               }
             }
-            if ($button.is('.vc_active')) {
-              return false;
-            }
-
-            this.$el.find('> .controls .vc_active').removeClass('vc_active');
-            $button.addClass('vc_active');
+                if (!$button.is('.vc_active')) {
             this.change_columns_layout = true;
                 _.defer(function (view, cells) {
-                    view._convertRowColumns(cells);
+                    view.convertRowColumns(cells);
                 }, this, $button.data('cells'));
+                }
+            }
+            this.$el.removeClass('vc_collapsed-row');
         },
-        sizeRows:function () {
-            var max_height = 35;
+        sizeRows: function () {
+            var max_height = 45;
             $('> .wpb_vc_column, > .wpb_vc_column_inner', this.$content).each(function () {
                 var content_height = $(this).find('> .wpb_element_wrapper > .wpb_column_container').css({minHeight:0}).height();
                 if (content_height > max_height) max_height = content_height;
@@ -232,24 +255,34 @@
             this.setSorting();
         },
         changedContent:function (view) {
-            this.sizeRows();
+            // this.sizeRows();
             if (this.change_columns_layout) return this;
-            var column_layout = [];
-            $('> .wpb_vc_column, > .wpb_vc_column_inner', this.$content).each(function () {
-                var width = $(this).data('width');
-                column_layout.push(_.isUndefined(width) ? '11' : width.replace('/', ''));
-            });
-            this.$el.find('> .controls .vc_active').removeClass('vc_active');
-            var $button = this.$el.find('> .controls [data-cells-mask=' + vc_get_column_mask(column_layout.join('_')) + ']');
-            if($button.length) {
-               $button.addClass('vc_active');
-            } else {
-                this.$el.find('> .controls [data-cells-mask=custom]').addClass('vc_active');
-            }
-            this.sizeRows();
+            this.setActiveLayoutButton();
+            // this.sizeRows();
         },
         moveElement:function (e) {
             e.preventDefault();
+        },
+        toggleElement: function(e) {
+            e && e.preventDefault();
+            var $control = $(e.currentTarget);
+            this.$el.toggleClass('vc_collapsed-row');
+            // this.setParentSize();
+        },
+        openClosedRow: function(e) {
+          var $control;
+          this.$el.removeClass('vc_collapsed-row');
+          // this.setParentSize();
+        },
+        setParentSize: function() {
+          if(this.model.get('shortcode') === 'vc_row_inner') {
+              var $parent = this.$el.parents('[data-element_type=vc_row]:first'),
+                  parent_id;
+              if($parent.length) {
+                parent_id = $parent.data('modelId');
+                parent_id && vc.app.views[parent_id].sizeRows();
+              }
+          }
         }
     });
 
@@ -259,8 +292,9 @@
             'click > .controls .column_add':'addElement',
             'click > .controls .column_edit':'editElement',
             'click > .controls .column_clone':'clone',
-            'click > .wpb_element_wrapper > .empty_container':'addToEmpty'
+            'click > .wpb_element_wrapper > .vc_empty-container':'addToEmpty'
         },
+        current_column_width: false,
         initialize:function (options) {
             window.VcColumnView.__super__.initialize.call(this, options);
             _.bindAll(this, 'setDropable', 'dropButton');
@@ -272,13 +306,68 @@
         },
         render:function () {
             window.VcColumnView.__super__.render.call(this);
-            this.$el.attr('data-width', this.model.get('params').width);
+            this.current_column_width = this.model.get('params').width || '1/1';
+            this.$el.attr('data-width', this.current_column_width);
             this.setEmpty();
             return this;
         },
+        changeShortcodeParams: function(model) {
+          window.VcColumnView.__super__.changeShortcodeParams.call(this, model);
+          this.setColumnClasses();
+          this.buildDesignHelpers();
+        },
+        buildDesignHelpers: function() {
+            var css = this.model.getParam('css'),
+                $column_toggle = this.$el.find('> .vc_controls .column_add').get(0),
+                image, color, $image, $color;
+            this.$el.find('> .vc_controls .vc_column_color').remove();
+            this.$el.find('> .vc_controls .vc_column_image').remove();
+            var matches = css.match(/background\-image:\s*url\(([^\)]+)\)/)
+            if(matches && !_.isUndefined(matches[1])) {
+                image = matches[1];
+            }
+            var matches = css.match(/background\-color:\s*([^\s\;]+)\b/)
+            if(matches && !_.isUndefined(matches[1])) {
+                color = matches[1];
+            }
+            var matches = css.match(/background:\s*([^\s]+)\b\s*url\(([^\)]+)\)/)
+            if(matches && !_.isUndefined(matches[1])) {
+                color = matches[1];
+                image = matches[2];
+            }
+            if(image) {
+                $('<span class="vc_column_image" style="background-image: url(' + image + ');" title="' + i18nLocale.column_background_image + '"></span>')
+                    .insertBefore($column_toggle);
+            }
+            if(color) {
+                $('<span class="vc_column_color" style="background-color: ' + color + '" title="' + i18nLocale.column_background_color + '"></span>')
+                    .insertBefore($column_toggle);
+            }
+        },
+        setColumnClasses: function() {
+            var offset = this.model.getParam('offset') || '',
+              width = this.model.getParam('width') || '1/1',
+              css_class_width = this.convertSize(width), current_css_class_width;
+            this.current_offset_class && this.$el.removeClass(this.current_offset_class);
+            if(this.current_column_width!== width) {
+              current_css_class_width = this.convertSize(this.current_column_width);
+              this.$el
+                .attr('data-width', width)
+                .removeClass(current_css_class_width)
+                .addClass(css_class_width);
+              this.current_column_width = width;
+            }
+            if(offset.match(/vc_col\-sm\-\d+/)) {
+                this.$el.removeClass(css_class_width);
+            }
+            if(!_.isEmpty(offset)) {
+                this.$el.addClass(offset);
+            }
+            this.current_offset_class = offset;
+        },
         addToEmpty:function (e) {
             e.preventDefault();
-            if ($(e.target).hasClass('empty_container')) this.addElement(e);
+            if ($(e.target).hasClass('vc_empty-container')) this.addElement(e);
         },
         setDropable:function () {
             this.$content.droppable({
@@ -297,12 +386,12 @@
             }
         },
         setEmpty:function () {
-            this.$el.addClass('empty_column');
-            this.$content.addClass('empty_container');
+            this.$el.addClass('vc_empty-column');
+            this.$content.addClass('vc_empty-container');
         },
         unsetEmpty:function () {
-            this.$el.removeClass('empty_column');
-            this.$content.removeClass('empty_container');
+            this.$el.removeClass('vc_empty-column');
+            this.$content.removeClass('vc_empty-container');
         },
         checkIsEmpty:function () {
             if (Shortcodes.where({parent_id:this.model.id}).length) {
@@ -310,12 +399,14 @@
             } else {
                 this.setEmpty();
             }
+          /*
             if (this.model.get('parent_id')) {
                 var row_view = vc.app.views[this.model.get('parent_id')];
                 if (row_view.model.get('shortcode').match(/^vc\_row/)) {
                     row_view.sizeRows();
                 }
             }
+            */
             window.VcColumnView.__super__.checkIsEmpty.call(this);
         },
         /**
@@ -325,6 +416,36 @@
             var row = Shortcodes.create({shortcode:'vc_row_inner', parent_id:this.model.id});
             Shortcodes.create({shortcode:'vc_column_inner', params:{width:'1/1'}, parent_id:row.id });
             return row;
+        },
+        convertSize: function(width) {
+            var prefix = 'vc_col-sm-',
+                numbers = width ? width.split('/') : [1,1],
+                range = _.range(1,13),
+                num = !_.isUndefined(numbers[0]) && _.indexOf(range, parseInt(numbers[0], 10)) >=0 ? parseInt(numbers[0], 10) : false,
+                dev = !_.isUndefined(numbers[1]) && _.indexOf(range, parseInt(numbers[1], 10)) >=0 ? parseInt(numbers[1], 10) : false;
+            if(num!==false && dev!==false) {
+                return prefix + (12*num/dev);
+            }
+            return prefix + '12';
+        },
+        deleteShortcode:function (e) {
+          var parent_id = this.model.get('parent_id'),
+              parent;
+          if (_.isObject(e)) e.preventDefault();
+          var answer = confirm(window.i18nLocale.press_ok_to_delete_section);
+          if( answer !== true) return false;
+          this.model.destroy();
+          if( parent_id && !vc.shortcodes.where({parent_id: parent_id}).length ) {
+            parent = vc.shortcodes.get(parent_id);
+	        if ( ! _.contains( ['vc_column', 'vc_column_inner'], parent.get('shortcode') ) ) {
+		       parent.destroy();
+	        }
+          } else if(parent_id) {
+            parent = vc.shortcodes.get(parent_id);
+            if(parent && parent.view && parent.view.setActiveLayoutButton) {
+              parent.view.setActiveLayoutButton();
+            }
+          }
         }
     });
 
@@ -332,9 +453,9 @@
         adding_new_tab:false,
         events:{
             'click .add_tab':'addTab',
-            'click > .controls .column_delete':'deleteShortcode',
-            'click > .controls .column_edit':'editElement',
-            'click > .controls .column_clone':'clone'
+            'click > .vc_controls .column_delete, > .vc_controls .vc_control-btn-delete':'deleteShortcode',
+            'click > .vc_controls .column_edit, > .vc_controls .vc_control-btn-edit':'editElement',
+            'click > .vc_controls .column_clone,> .vc_controls .vc_control-btn-clone':'clone'
         },
         render:function () {
             window.VcAccordionView.__super__.render.call(this);
@@ -385,11 +506,11 @@
 
     window.VcAccordionTabView = window.VcColumnView.extend({
         events:{
-            'click > [data-element_type] > .controls .column_delete':'deleteShortcode',
-            'click > [data-element_type] > .controls .column_add':'addElement',
-            'click > [data-element_type] > .controls .column_edit':'editElement',
-            'click > [data-element_type] > .controls .column_clone':'clone',
-            'click > [data-element_type] > .wpb_element_wrapper > .empty_container':'addToEmpty'
+            'click > .vc_controls .column_delete,.wpb_vc_accordion_tab > .vc_controls .vc_control-btn-delete':'deleteShortcode',
+            'click > .vc_controls .column_add,.wpb_vc_accordion_tab >  .vc_controls .vc_control-btn-prepend':'addElement',
+            'click > .vc_controls .column_edit,.wpb_vc_accordion_tab >  .vc_controls .vc_control-btn-edit':'editElement',
+            'click > .vc_controls .column_clone,.wpb_vc_accordion_tab > .vc_controls .vc_control-btn-clone':'clone',
+            'click > [data-element_type] > .wpb_element_wrapper > .vc_empty-container':'addToEmpty'
         },
         setContent:function () {
             this.$content = this.$el.find('> [data-element_type] > .wpb_element_wrapper > .vc_container_for_children');
@@ -402,12 +523,12 @@
             }
         },
         setEmpty:function () {
-            $('> [data-element_type]', this.$el).addClass('empty_column');
-            this.$content.addClass('empty_container');
+            $('> [data-element_type]', this.$el).addClass('vc_empty-column');
+            this.$content.addClass('vc_empty-container');
         },
         unsetEmpty:function () {
-            $('> [data-element_type]', this.$el).removeClass('empty_column');
-            this.$content.removeClass('empty_container');
+            $('> [data-element_type]', this.$el).removeClass('vc_empty-column');
+            this.$content.removeClass('vc_empty-container');
         }
     });
     window.VcMessageView = vc.shortcode_view.extend({
@@ -479,13 +600,30 @@
             }
         }
     });
+    window.VcButton2View = vc.shortcode_view.extend({events:function () {
+        return _.extend({'click button':'buttonClick'
+        }, window.VcToggleView.__super__.events);
+    },
+        buttonClick:function (e) {
+            e.preventDefault();
+        },
+        changeShortcodeParams:function (model) {
+            var params = model.get('params');
+            window.VcButton2View.__super__.changeShortcodeParams.call(this, model);
+            if (_.isObject(params)) {
+                var el_class = (params.color?'vc_btn_'+params.color:'') + ' ' + (params.color?'vc_btn-'+params.color:'') + ' ' + (params.size?'vc_btn-'+params.size:'')+ ' ' + (params.size?'vc_btn_'+params.size:'') + ' ' + (params.style?'vc_btn_'+params.style:'');
+                this.$el.find('.wpb_element_wrapper').removeClass(el_class);
+                this.$el.find('button.title').attr({ "class":"title textfield vc_btn  " + el_class });
+            }
+        }
+    });
     window.VcTabsView = vc.shortcode_view.extend({
         new_tab_adding:false,
         events:{
             'click .add_tab':'addTab',
-            'click > .controls .column_delete':'deleteShortcode',
-            'click > .controls .column_edit':'editElement',
-            'click > .controls .column_clone':'clone'
+            'click > .vc_controls .vc_control-btn-delete':'deleteShortcode',
+            'click > .vc_controls .vc_control-btn-edit':'editElement',
+            'click > .vc_controls .vc_control-btn-clone':'clone'
         },
         initialize:function (params) {
             window.VcTabsView.__super__.initialize.call(this, params);
@@ -508,7 +646,7 @@
         addTab:function (e) {
             e.preventDefault();
             this.new_tab_adding = true;
-            var tab_title = this.model.get('shortcode') === 'vc_tour' ? window.i18nLocale.slide : window.i18nLocale.tab,
+            var tab_title = window.i18nLocale.tab,
                 tabs_count = this.$tabs.find('[data-element_type=vc_tab]').length,
                 tab_id = (+new Date() + '-' + tabs_count + '-' + Math.floor(Math.random() * 11));
             vc.shortcodes.create({shortcode:'vc_tab', params:{title:tab_title, tab_id:tab_id}, parent_id:this.model.id});
@@ -545,8 +683,8 @@
             }
             if (view.model.get('cloned') === true) {
                 var cloned_from = view.model.get('cloned_from'),
-                    $after_tab = $('[href=#tab-' + cloned_from.params.tab_id + ']', this.$content).parent(),
-                    $new_tab = $("<li><a href='#tab-" + params.tab_id + "'>" + params.title + "</a></li>").insertAfter($after_tab);
+                    $tab_controls = $('.tabs_controls > .add_tab_block', this.$content),
+	                $new_tab = $("<li><a href='#tab-" + params.tab_id + "'>" + params.title + "</a></li>").insertBefore($tab_controls);
                 this.$tabs.tabs('refresh');
                 this.$tabs.tabs("option", 'active', $new_tab.index());
             } else {
@@ -571,8 +709,15 @@
             return model_clone;
         }
     });
-
+    // TODO: window.VcColumnView
     window.VcTabView = window.VcColumnView.extend({
+        events:{
+          'click > .vc_controls .vc_control-btn-delete':'deleteShortcode',
+          'click > .vc_controls .vc_control-btn-prepend':'addElement',
+          'click > .vc_controls .vc_control-btn-edit':'editElement',
+          'click > .vc_controls .vc_control-btn-clone':'clone',
+          'click > .wpb_element_wrapper > .vc_empty-container':'addToEmpty'
+        },
         render:function () {
             var params = this.model.get('params');
             window.VcTabView.__super__.render.call(this);
@@ -588,31 +733,38 @@
             window.VcTabView.__super__.ready.call(this, e);
             this.$tabs = this.$el.closest('.wpb_tabs_holder');
             var params = this.model.get('params');
-            if(params)
             return this;
         },
         changeShortcodeParams:function (model) {
             var params = model.get('params');
-            window.VcAccordionTabView.__super__.changeShortcodeParams.call(this, model);
+            window.VcTabView.__super__.changeShortcodeParams.call(this, model);
             if (_.isObject(params) && _.isString(params.title) && _.isString(params.tab_id)) {
                 $('.ui-tabs-nav [href=#tab-' + params.tab_id + ']').text(params.title);
             }
         },
         deleteShortcode:function (e) {
-            if (_.isObject(e)) e.preventDefault();
-            var answer = confirm(window.i18nLocale.press_ok_to_delete_section);
+            _.isObject(e) && e.preventDefault();
+            var answer = confirm(window.i18nLocale.press_ok_to_delete_section),
+                parent_id = this.model.get('parent_id');
             if (answer !== true) return false;
             this.model.destroy();
+            if(!vc.shortcodes.where({parent_id: parent_id}).length) {
+              vc.shortcodes.get(parent_id).destroy();
+              return false;
+            }
             var params = this.model.get('params'),
                 current_tab_index = $('[href=#tab-' + params.tab_id + ']', this.$tabs).parent().index();
             $('[href=#tab-' + params.tab_id + ']').parent().remove();
-            this.$tabs.tabs('refresh');
             var tab_length = this.$tabs.find('.ui-tabs-nav li:not(.add_tab_block)').length;
+            if(tab_length > 0) {
+                this.$tabs.tabs('refresh');
+            }
             if (current_tab_index < tab_length) {
                 this.$tabs.tabs("option", "active", current_tab_index);
-            } else if(tab_length>0) {
-                this.$tabs.tabs("option", "active", tab_length-1);
+            } else if (tab_length > 0) {
+                this.$tabs.tabs("option", "active", tab_length - 1);
             }
+
         },
         cloneModel:function (model, parent_id, save_order) {
             var shortcodes_to_resort = [],

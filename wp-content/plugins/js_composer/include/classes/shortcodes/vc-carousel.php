@@ -21,7 +21,6 @@ class WPBakeryShortCode_Vc_Carousel extends WPBakeryShortCode_VC_Posts_Grid {
 	}
 
 	public static function getCarouselIndex() {
-		return self::$carousel_index ++;
+		return self::$carousel_index ++ . '-' . time();
 	}
-
 }

@@ -22,47 +22,128 @@ function getCookie(c_name) {
         return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
     };
     window.vc_get_column_size = function ($column) {
-        if ($column.hasClass("vc_span12")) //full-width
+        if ($column.hasClass("vc_col-sm-12")) //full-width
             return "1/1";
-        else if ($column.hasClass("vc_span11")) //three-fourth
+        else if ($column.hasClass("vc_col-sm-11")) //three-fourth
             return "11/12";
-        else if ($column.hasClass("vc_span10")) //three-fourth
+        else if ($column.hasClass("vc_col-sm-10")) //three-fourth
             return "4/6";
-        else if ($column.hasClass("vc_span9")) //three-fourth
+        else if ($column.hasClass("vc_col-sm-9")) //three-fourth
             return "3/4";
-        else if ($column.hasClass("vc_span8")) //three-fourth
+        else if ($column.hasClass("vc_col-sm-8")) //three-fourth
             return "5/6";
-        else if ($column.hasClass("vc_span8")) //two-third
+        else if ($column.hasClass("vc_col-sm-8")) //two-third
             return "2/3";
-        else if ($column.hasClass("vc_span7")) // 7/12
+        else if ($column.hasClass("vc_col-sm-7")) // 7/12
             return "7/12";
-        else if ($column.hasClass("vc_span6")) //one-half
+        else if ($column.hasClass("vc_col-sm-6")) //one-half
             return "1/2";
-        else if ($column.hasClass("vc_span5")) //one-half
+        else if ($column.hasClass("vc_col-sm-5")) //one-half
             return "5/12";
-        else if ($column.hasClass("vc_span4")) // one-third
+        else if ($column.hasClass("vc_col-sm-4")) // one-third
             return "1/3";
-        else if ($column.hasClass("vc_span3")) // one-fourth
+        else if ($column.hasClass("vc_col-sm-3")) // one-fourth
             return "1/4";
-        else if ($column.hasClass("vc_span2")) // one-fourth
+        else if ($column.hasClass("vc_col-sm-2")) // one-fourth
             return "1/6";
-        else if ($column.hasClass("vc_span1")) // one-fourth
+        else if ($column.hasClass("vc_col-sm-1")) // one-fourth
             return "1/12";
         else
             return false;
     };
-    $('#vc-license-activation-close').click(function(e){
+    $('#vc_license-activation-close').click(function(e){
       e.preventDefault();
       window.setCookie('vchideactivationmsg', 1, 14);
       $(this).parent().slideUp();
     });
 
 
+    /** Custom Css EDITOR
+     *
+     */
+    window.Vc_postSettingsEditor = Backbone.View.extend({
+        $editor: false,
+        sel: 'wpb_csseditor',
+        initialize: function(sel) {
+            if(sel && sel.length > 0) {
+                this.sel = sel;
+            }
+            this.ace_enabled = true;
+        },
+        setTextarea: function() {
+            this.ace_enabled = false;
+        },
+        setAce: function() {
+            this.ace_enabled = true;
+        },
+        aceEnabled: function() {
+            return  this.ace_enabled && window.ace && window.ace.edit;
+        },
+        setEditor: function(value) {
+            if( this.aceEnabled() ) {
+                this.setEditorAce(value);
+            } else {
+                this.setEditorTextarea(value);
+            }
+            return this.$editor;
+        },
+        focus: function() {
+            if( this.aceEnabled() ) {
+                this.$editor.focus();
+                var count = this.$editor.session.getLength();
+                this.$editor.gotoLine(count, this.$editor.session.getLine(count - 1).length);
+            } else {
+                this.$editor.focus();
+            }
+        },
+        setEditorAce: function(value) {
+            if(!this.$editor) {
+                this.$editor = ace.edit(this.sel);
+                this.$editor.getSession().setMode("ace/mode/css");
+                this.$editor.setTheme("ace/theme/chrome");
+            }
+            this.$editor.setValue(value);
+            this.$editor.clearSelection();
+            this.$editor.focus();
+            var count = this.$editor.getSession().getLength();
+            this.$editor.gotoLine(count, this.$editor.getSession().getLine(count-1).length);
+            return this.$editor;
+        },
+        setEditorTextarea: function(value) {
+            if(!this.$editor) {
+                this.$editor = $('<textarea></textarea>').css({'width':'100%','height':'100%','minHeight':'300px'});
+                $('#'+this.sel).html("").append(this.$editor).css({'overflowLeft':'hidden','width':'100%','height':'100%'});
+            }
+            this.$editor.val(value);
+            this.$editor.focus();
+            this.$editor.parent().css({'overflow':'auto'});
+            return this.$editor;
+        },
+        setSize: function() {
+            var height = $(window).height() - 380; // @fix ACE editor
+            if(this.aceEnabled()) {
+                $('#'+this.sel).css({'height':height,'minHeight':height});
+            } else {
+                this.$editor.parent().css({'height':height,'minHeight':height});
+                this.$editor.css({'height':'98%','width':'98%'});
+            }
+        },
+        getEditor: function() {
+            return this.$editor;
+        },
+        getValue: function() {
+            if( this.aceEnabled() ) {
+                return this.$editor.getValue();
+            } else {
+                return this.$editor.val();
+            }
+        }
+    });
 })(window.jQuery);
 
 
 function vc_convert_column_size(width) {
-    var prefix = 'vc_span',
+    var prefix = 'vc_col-sm-',
         numbers = width ? width.split('/') : [1,1],
         range = _.range(1,13),
         num = !_.isUndefined(numbers[0]) && _.indexOf(range, parseInt(numbers[0], 10)) >=0 ? parseInt(numbers[0], 10) : false,
@@ -166,28 +247,31 @@ var wpb_grid_post_types_for_taxonomies_handler = function () {
 var wpb_single_image_img_link_dependency_callback = function () {
     var $img_link_large = this.$content.find('#img_link_large-yes'),
         $ = jQuery,
-        $img_link_target = this.$content.find('[name=img_link_target]').parents('.vc-shortcode-param:first'),
+        $img_link_target = this.$content.find('[name=img_link_target]').parents('.vc_shortcode-param:first'),
         params = this.model.get('params'),
-        old_param_value = '';
+        old_param_value = '',
+        $link_field = $('.wpb-edit-form [name=link]');
     this.$content.find('#img_link_large-yes').change(function () {
         var checked = $(this).is(':checked');
         if (checked) {
             $img_link_target.show();
         } else {
-            if ($('.wpb-edit-form [name=link]').val().length > 0) {
+            if ( $link_field.val().length > 0 &&  $link_field.val() !== 'http://') {
                 $img_link_target.show();
             } else {
                 $img_link_target.hide();
             }
         }
     });
-    $('.wpb-edit-form [name=link]').change(function () {
-        if ($(this).val().length > 0) {
+    var key_up_callback =  _.debounce(function () {
+        var val = $(this).val();
+        if (val.length > 0 &&  val !== 'http://' && val !== 'https://') {
             $img_link_target.show();
         } else {
             $img_link_target.hide();
         }
-    });
+    }, 300);
+    $link_field.keyup(key_up_callback).trigger('keyup');
     if (this.$content.find('#img_link_large-yes').is(':checked')) {
         $img_link_target.show();
     } else {
@@ -205,6 +289,36 @@ var wpb_single_image_img_link_dependency_callback = function () {
   vc.edit_form_callbacks.push(function() {
     if(this.params.img_link) this.params.img_link = '';
   });
+};
+
+var vc_button_param_target_callback = function () {
+    var $ = jQuery,
+        $link_target = this.$content.find('[name=target]').parents('.vc_shortcode-param:first'),
+        $link_field = $('.wpb-edit-form [name=href]');
+    var key_up_callback =  _.debounce(function () {
+        var val = $(this).val();
+        if (val.length > 0 && val !== 'http://' && val !== 'https://' ) {
+            $link_target.show();
+        } else {
+            $link_target.hide();
+        }
+    }, 300);
+    $link_field.keyup(key_up_callback).trigger('keyup');
+};
+
+var vc_cta_button_param_target_callback = function () {
+    var $ = jQuery,
+        $link_target = this.$content.find('[name=target]').parents('.vc_shortcode-param:first'),
+        $link_field = $('.wpb-edit-form [name=href]');
+    var key_up_callback =  _.debounce(function () {
+        var val = $(this).val();
+        if (val.length > 0 && val !== 'http://' && val !== 'https://' ) {
+            $link_target.show();
+        } else {
+            $link_target.hide();
+        }
+    }, 300);
+    $link_field.keyup(key_up_callback).trigger('keyup');
 };
 
 var vc_wpnop = function(content) {

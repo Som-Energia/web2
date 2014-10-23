@@ -63,6 +63,10 @@
       return this.models.length ? _.first(this.models) : false;
     },
     buildFromContent: function() {
+      var content = $('#vc_template-post-content').html()
+                      .replace(/\<style([^\>]*)\>\/\*\* vc_js\-placeholder \*\*\//g, '<script$1>')
+                      .replace(/\<\/style([^\>]*)\>\<\!\-\- vc_js\-placeholder \-\-\>/g, '</script$1>');
+      try {vc.$page.html(content); } catch(e) {}
       _.each(vc.post_shortcodes, function(shortcode){
         var $block = vc.$page.find('[data-model-id=' + shortcode.id + ']'),
           $parent = $block.parents('[data-model-id]'),
@@ -79,6 +83,7 @@
       }, this);
       vc.frame.setSortable();
       this.checkNoContent();
+      vc.frame.render();
       vc.frame_window.vc_iframe.reload();
     },
     buildFromTemplate: function(html, data) {
@@ -128,7 +133,7 @@
             id: shortcode.id,
             shortcode: shortcode.tag,
             params: params,
-            parent_id: $parent.hasClass('vc-element') ? $parent.data('modelId') : false,
+            parent_id: $parent.hasClass('vc_element') ? $parent.data('modelId') : false,
             from_template: true
           });
         this._renderBlockCallback($block.get(0));
@@ -149,19 +154,27 @@
       vc.setFrameSize();
     },
     renderShortcode: function($html, model) {
-      var match, view_name = this.getView(model), inner_html = $html.html(), update_inner,
-          js_re = /[^\"](<script\b[^>]+src[^>]+>|<script\b[^>]*>([\s\S]*?)<\/script>)/gm;
-      vc.last_inner = inner_html;
-      while ((match = js_re.exec(inner_html)) != null) {
-          var key = vc.frame.addInlineScript(match[0]);
-          inner_html = inner_html.replace(match[0], '<span class="js_placeholder_' + key +'"></span>');
-        update_inner = true;
-      }
-      if(update_inner) $html.html(inner_html);
-      !model.get('from_content') && !model.get('from_template') && this.placeContainer($html, model);
-      model.view = new view_name({model: model, el: $html}).render();
-      this.notifyParent(model.get('parent_id'));
-      model.view.rendered();
+        var match, view_name = this.getView(model), inner_html = $html, update_inner;
+        //js_re = /[^\"](<script\b[^>]+src[^>]+>|<script\b[^>]*>([\s\S]*?)<\/script>)/gm;
+        vc.last_inner = inner_html.html();
+        $('script', inner_html).each(function () {
+            if ($(this).attr('src')) {
+                var key = vc.frame.addInlineScript($(this));
+                $('<span class="js_placeholder_' + key + '"></span>').insertAfter($(this));
+                update_inner = true;
+            } else {
+                var key_inline = vc.frame.addInlineScriptBody($(this));
+                //$(this).html('<span class="js_placeholder_inline_' + key_inline + '"></span>');
+                $('<span class="js_placeholder_inline_' + key_inline + '"></span>').insertAfter($(this));
+                update_inner = true;
+            }
+            $(this).remove();
+        });
+        if (update_inner) $html.html(inner_html.html());
+        !model.get('from_content') && !model.get('from_template') && this.placeContainer($html, model);
+        model.view = new view_name({model: model, el: $html}).render();
+        this.notifyParent(model.get('parent_id'));
+        model.view.rendered();
     },
     getView: function(model) {
       var view = model.setting('is_container') || model.setting('as_parent') ? InlineShortcodeViewContainer : InlineShortcodeView;
@@ -182,7 +195,7 @@
           if(model.view) {
             model.view.$el.insertAfter(old_view.$el);
             if(vc.shortcodes.where({parent_id: model.get('id')}).length) {
-              old_view.content().find('> *').appendTo(model.view.content());
+              old_view.content().find('> *').appendTo(model.view.content()); // TODO: refactor for better life. #1151
             }
             old_view.remove();
             vc.frame_window.vc_iframe.loadScripts();
@@ -255,25 +268,26 @@
       vc.shortcodes.sort();
       return this.modelsToString(vc.shortcodes.where({parent_id: false}));
     },
+	getTitle: function() {
+		return vc.title;
+	},
     checkNoContent: function() {
       vc.frame.noContent(!vc.shortcodes.length ? true : false);
     },
     save: function(status) {
       var string = this.getContent(),
-        data = {
-          action: $('#hiddenaction').val(),
-          originalaction: $('#originalaction').val(),
-          _wpnonce: $('#_wpnonce').val(),
-          user_ID: $('#user-id').val(),
-          content: string,
-          post_ID: vc.post_id,
-          wpb_vc_post_custom_css: vc.$custom_css.val()
-        };
+        post_data = $('#post').serializeArray();
+	    var data = {};
+	    for(var x in post_data) {
+		    data[post_data[x].name] = post_data[x].value;
+	    }
+	    data['vc_post_custom_css'] = vc.$custom_css.val();
+	    data['content'] = string;
       if(status) {
         data.post_status = status;
-        $('.vc_button_save_draft').hide(100) && $('#vc-button-update').text(window.i18nLocale.update_all);
+        $('.vc_button_save_draft').hide(100) && $('#vc_button-update').text(window.i18nLocale.update_all);
       }
-      if(vc.update_title) data.post_title = vc.title;
+      if(vc.update_title) data.post_title = this.getTitle();
       this.ajax(data, 'post.php')
         .done(function(){
           vc.unsetDataChanged();

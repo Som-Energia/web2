@@ -43,8 +43,8 @@ if(_.isUndefined(window.vc)) var vc = {atts: {}};
     $simplify: false,
     events: {
       'click .icon-remove': 'removeImage',
-      'click .vc-add-image': 'addBackgroundImage',
-      'change .vc-simplify': 'changeSimplify'
+      'click .vc_add-image': 'addBackgroundImage',
+      'change .vc_simplify': 'changeSimplify'
       // 'change [data-attribute]': 'attributeChanged'
     },
     initialize: function() {
@@ -57,12 +57,12 @@ if(_.isUndefined(window.vc)) var vc = {atts: {}};
       if(this.simplify) {
         $control = $(e.currentTarget);
         attr_name = $control.data('attribute');
-        this.$el.find('[data-attribute=' + attr_name +']:not(.vc-top)').val($control.val());
+        this.$el.find('[data-attribute=' + attr_name +']:not(.vc_top)').val($control.val());
       }
     },
     render: function(value) {
       this.attrs = {};
-      this.$simplify = this.$el.find('.vc-simplify');
+      this.$simplify = this.$el.find('.vc_simplify');
       _.isString(value) && this.parse(value);
       // wp.media.vc_css_editor.init(this);
       return this;
@@ -74,28 +74,28 @@ if(_.isUndefined(window.vc)) var vc = {atts: {}};
     addBackgroundImage: function(e) {
       e.preventDefault();
       if (this.image_media)
-        return this.image_media.open('vc-editor');
+        return this.image_media.open('vc_editor');
       this.image_media = wp.media({
-        state:'vc-single-image',
+        state:'vc_single-image',
         states:[ new wp.media.controller.VcCssSingleImage().setCssEditor(this) ]
       });
-      this.image_media.on('toolbar:create:vc-single-image', function (toolbar) {
+      this.image_media.on('toolbar:create:vc_single-image', function (toolbar) {
         this.createSelectToolbar(toolbar, {
           text: window.i18nLocale.set_image
         });
       }, this.image_media);
 
-      this.image_media.state('vc-single-image').on('select', this.setBgImage);
-      this.image_media.open('vc-editor');
+      this.image_media.state('vc_single-image').on('select', this.setBgImage);
+      this.image_media.open('vc_editor');
     },
     setBgImage: function() {
       var selection = this.get('selection').single();
-      selection && this._css_editor.$el.find('.vc-background-image .vc-image').html(_.template($('#vc-css-editor-image-block').html(), selection.attributes, _.extend({variable: 'img'}, template_options)));
+      selection && this._css_editor.$el.find('.vc_background-image .vc_image').html(_.template($('#vc_css-editor-image-block').html(), selection.attributes, _.extend({variable: 'img'}, template_options)));
     },
     setCurrentBgImage: function(value) {
       var image_regexp = /([^\?]+)(\?id=\d+){0,1}/, url = '', id = '', image_split;
       if(value.match(/^\d+$/)) {
-        this.$el.find('.vc-background-image .vc-image').html(_.template($('#vc-css-editor-image-block').html(), {url: preloader_url, id: value, css_class: 'vc-preview'}, _.extend({variable: 'img'}, template_options)));
+        this.$el.find('.vc_background-image .vc_image').html(_.template($('#vc_css-editor-image-block').html(), {url: preloader_url, id: value, css_class: 'vc_preview'}, _.extend({variable: 'img'}, template_options)));
         $.ajax({
           type:'POST',
           url:window.ajaxurl,
@@ -107,13 +107,13 @@ if(_.isUndefined(window.vc)) var vc = {atts: {}};
           dataType:'html',
           context:this
         }).done(function (url) {
-            this.$el.find('.vc-ce-image').attr('src', url + '?id=' + value).removeClass('vc-preview');
+            this.$el.find('.vc_ce-image').attr('src', url + '?id=' + value).removeClass('vc_preview');
           });
       } else if(value.match(image_regexp)) {
         image_split = value.split(image_regexp);
         url = image_split[1];
         if(image_split[2]) id = image_split[2].replace(/[^\d]+/, '');
-        this.$el.find('.vc-background-image .vc-image').html(_.template($('#vc-css-editor-image-block').html(), {url: url, id: id}, _.extend({variable: 'img'}, template_options)));
+        this.$el.find('.vc_background-image .vc_image').html(_.template($('#vc_css-editor-image-block').html(), {url: url, id: id}, _.extend({variable: 'img'}, template_options)));
       }
     },
     changeSimplify: function(e) {
@@ -127,14 +127,14 @@ if(_.isUndefined(window.vc)) var vc = {atts: {}};
     simplifiedMode: function(enable) {
       if(enable) {
         this.simplify = true;
-        this.$el.addClass('vc-simplified');
+        this.$el.addClass('vc_simplified');
       } else {
         this.simplify = false;
-        this.$el.removeClass('vc-simplified');
+        this.$el.removeClass('vc_simplified');
         _.each(this.layouts, function(attr){
           if(attr === 'border-width') attr = 'border';
-          var $control = $('[data-attribute=' + attr +'].vc-top');
-          this.$el.find('[data-attribute=' + attr +']:not(.vc-top)').val($control.val());
+          var $control = $('[data-attribute=' + attr +'].vc_top');
+          this.$el.find('[data-attribute=' + attr +']:not(.vc_top)').val($control.val());
         }, this);
       }
     },
@@ -144,10 +144,10 @@ if(_.isUndefined(window.vc)) var vc = {atts: {}};
       $control.parent().remove();
     },
     getBackgroundImage: function() {
-      return this.$el.find('.vc-ce-image').data('imageId');
+      return this.$el.find('.vc_ce-image').data('imageId');
     },
     parseAtts: function(string) {
-        var border_regex =  /(\d+\S*)\s+(\w+)\s+([\d\w#\(,]+)/,
+	    var border_regex =  /(\d+\S*)\s+(\w+)\s+([\d\w#\(,]+)/,
             background_regex = /^([^\s]+)\s+url\(([^\)]+)\)([\d\w]+\s+[\d\w]+){0,1}$/,
             background_size = false;
          _.map(string.split(';'), function(val){
@@ -187,8 +187,16 @@ if(_.isUndefined(window.vc)) var vc = {atts: {}};
             }, this);
             this.$el.find('[name=border_style]').val(border_split[2]);
             this.$el.find('[name=border_color]').val(border_split[3]).trigger('change');
-          } else if(name.match(/^[\w\-\d]+$/) && value) {
-            this.$el.find('[name=' + name.replace(/\-+/g, '_') + ']').val(value);
+          } else if (name.indexOf('border') != -1 && value) {
+	        if (name.indexOf('style') != -1) {
+		      this.$el.find('[name=border_style]').val(value);
+	        } else if (name.indexOf('color') != -1) {
+		      this.$el.find('[name=border_color]').val(value).trigger('change');
+	        } else if (name.match(/^[\w\-\d]+$/)) {
+		        this.$el.find('[name=' + name.replace(/\-+/g, '_') + ']').val(value);
+	        }
+          } else if (name.match(/^[\w\-\d]+$/) && value) {
+	        this.$el.find('[name=' + name.replace(/\-+/g, '_') + ']').val(value);
           }
         }, this);
     },
@@ -208,7 +216,7 @@ if(_.isUndefined(window.vc)) var vc = {atts: {}};
     },
     getBackground: function() {
       var color = this.$el.find('[name=background_color]').val(),
-          image  = this.$el.find('.vc-background-image img').attr('src'),
+          image  = this.$el.find('.vc_background-image img').attr('src'),
           style = this.$el.find('[name=background_style]').val();
       if(color && image) {
         this.attrs['background'] = color + ' ' + 'url(' + image + ')';
@@ -232,15 +240,17 @@ if(_.isUndefined(window.vc)) var vc = {atts: {}};
     getBorder: function() {
       var style = this.$el.find('[name=border_style]').val(),
           color = this.$el.find('[name=border_color]').val();
-      if(style && color && this.attrs['border-width'] && this.attrs['border-width'].match(/^\d+\S+$/)) {
+      var sides = ['left','right','top','bottom'];
+      if (style && color && this.attrs['border-width'] && this.attrs['border-width'].match(/^\d+\S+$/)) {
         this.attrs.border = this.attrs['border-width'] + ' ' + style + ' ' + color;
         this.attrs['border-width'] = undefined;
       } else {
-        if(color) this.attrs['border-color'] = color;
-        if(style) this.attrs['border-style'] = style;
-      }
-      if(color.match(/^rgba/)) {
-        this.attrs['*border-color'] = color.replace(/\s+/, '').replace(/(rgb)a\((\d+)\,(\d+),(\d+),[^\)]+\)/, '$1($2,$3,$4)');
+        _.each(sides, function (side) {
+            if(this.attrs['border-'+side+'-width']) {
+                if (color) this.attrs['border-' + side + '-color'] = color;
+                if (style) this.attrs['border-' + side + '-style'] = style;
+            }
+        }, this);
       }
      },
     getFields: function(type) {
@@ -253,23 +263,10 @@ if(_.isUndefined(window.vc)) var vc = {atts: {}};
         }
         val.length && data.push({name: pos, val: val});
       }, this);
-      if(data.length == 4) {
-        pluck = _.pluck(data, 'val');
-        if(_.uniq(pluck).length == 1) {
-          this.attrs[type] = pluck[0];
-        } else if(pluck[0] == pluck[2] && pluck[1] == pluck[3]) {
-          this.attrs[type] = pluck[0] + ' ' + pluck[1];
-        } else if(pluck[1] == pluck[3]) {
-          this.attrs[type] = pluck[0] + ' ' + pluck[1] + ' ' + pluck[2];
-        } else {
-          this.attrs[type] = pluck.join(' ');
-        }
-      } else {
-        _.each(data, function(attr){
-          var attr_name = type == 'border-width' ? 'border-' + attr.name + '-width' : type + '-' + attr.name;
-          this.attrs[attr_name] = attr.val;
-        }, this);
-      }
+	  _.each(data, function(attr){
+	    var attr_name = type == 'border-width' ? 'border-' + attr.name + '-width' : type + '-' + attr.name;
+	    this.attrs[attr_name] = attr.val;
+	  }, this);
     },
     getSimplifiedField: function(type) {
       var pos = 'top',

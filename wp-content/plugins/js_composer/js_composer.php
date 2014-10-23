@@ -3,7 +3,7 @@
 Plugin Name: WPBakery Visual Composer
 Plugin URI: http://vc.wpbakery.com
 Description: Drag and drop page builder for WordPress. Take full control over your WordPress site, build any layout you can imagine – no programming knowledge required.
-Version: 4.2.3
+Version: 4.3.4
 Author: Michael M - WPBakery.com
 Author URI: http://wpbakery.com
 */
@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) die( '-1' );
 /**
  * Current visual composer version
  */
-if ( ! defined( 'WPB_VC_VERSION' ) ) define( 'WPB_VC_VERSION', '4.2.3' );
+if ( ! defined( 'WPB_VC_VERSION' ) ) define( 'WPB_VC_VERSION', '4.3.4' );
 /**
  * Vc starts here. Manager sets mode, adds required wp hooks and loads required object of structure
  *
@@ -136,6 +136,7 @@ class Vc_Manager {
 		// Load API
 		require_once $this->path( 'HELPERS_DIR', 'helpers_factory.php' );
 		require_once $this->path( 'HELPERS_DIR', 'helpers.php' );
+		require_once $this->path( 'CORE_DIR', 'interfaces.php' );
 		require_once $this->path( 'CORE_DIR', 'class-wpb-map.php' );
 		require_once $this->path( 'HELPERS_DIR', 'helpers_api.php' );
 		require_once $this->path( 'HELPERS_DIR', 'filters.php' );
@@ -167,7 +168,12 @@ class Vc_Manager {
 	 */
 	public function init() {
 		do_action( 'vc_before_init' );
+
 		$this->setMode();
+		/**
+		 * Set version of VC if required.
+		 */
+		$this->setVersion();
 		// Load required
 		! vc_is_updater_disabled() && vc_updater()->init();
 		/**
@@ -237,7 +243,20 @@ class Vc_Manager {
 			}
 		}
 	}
-
+	/**
+	 * Sets version of the VC in DB as option `vc_version`
+	 *
+	 * @since 4.3.2
+	 * @access protected
+	 * @return void
+	 */
+	protected function setVersion() {
+		$version = get_option('vc_version');
+		if( !is_string($version) || version_compare($version, WPB_VC_VERSION) !== 0 ) {
+			add_action('vc_after_init', array(vc_settings(), 'rebuild'));
+			update_option('vc_version', WPB_VC_VERSION);
+		}
+	}
 	/**
 	 * Get current mode for VC.
 	 *
@@ -459,10 +478,10 @@ class Vc_Manager {
 			require_once $this->path( 'CORE_DIR', 'class-vc-base.php' );
 			$vc = new Vc_Base();
 			// DI Set template editor.
-			require_once $this->path( 'EDITORS_DIR', 'class-vc-templates-editor.php' );
+			require_once $this->path( 'EDITORS_DIR', 'popups/class-vc-templates-editor.php' );
 			$vc->setTemplatesEditor(new Vc_Templates_Editor());
 			// DI Set edit form
-			require_once $this->path( 'EDITORS_DIR', 'class-vc-shortcode-edit-form.php' );
+			require_once $this->path( 'EDITORS_DIR', 'popups/class-vc-shortcode-edit-form.php' );
 			$vc->setEditForm(new Vc_Shortcode_Edit_Form());
 			// DI for third-party plugins manager.
 			require_once $this->path('VENDORS_DIR', 'class-vc-vendors-manager.php');
@@ -589,7 +608,7 @@ class Vc_Manager {
 	 * @return string
 	 */
 	public function assetUrl( $file ) {
-		return plugins_url( preg_replace( '/\s/', '%20', $this->path( 'ASSETS_DIR_NAME', $file ) ), preg_replace( '/\s/', '%20', __FILE__ ) );
+		return preg_replace( '/\s/', '%20', plugins_url( $this->path( 'ASSETS_DIR_NAME', $file ), __FILE__ ) );
 	}
 }
 /**

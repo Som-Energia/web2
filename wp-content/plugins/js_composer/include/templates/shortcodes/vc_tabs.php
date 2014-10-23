@@ -41,7 +41,7 @@ $output .= wpb_widget_title( array( 'title' => $title, 'extraclass' => $element 
 $output .= "\n\t\t\t" . $tabs_nav;
 $output .= "\n\t\t\t" . wpb_js_remove_wpautop( $content );
 if ( 'vc_tour' == $this->shortcode ) {
-	$output .= "\n\t\t\t" . '<div class="wpb_tour_next_prev_nav vc_clearfix"> <span class="wpb_prev_slide"><a href="#prev" title="' . __( 'Previous slide', 'js_composer' ) . '">' . __( 'Previous slide', 'js_composer' ) . '</a></span> <span class="wpb_next_slide"><a href="#next" title="' . __( 'Next slide', 'js_composer' ) . '">' . __( 'Next slide', 'js_composer' ) . '</a></span></div>';
+	$output .= "\n\t\t\t" . '<div class="wpb_tour_next_prev_nav vc_clearfix"> <span class="wpb_prev_slide"><a href="#prev" title="' . __( 'Previous tab', 'js_composer' ) . '">' . __( 'Previous tab', 'js_composer' ) . '</a></span> <span class="wpb_next_slide"><a href="#next" title="' . __( 'Next tab', 'js_composer' ) . '">' . __( 'Next tab', 'js_composer' ) . '</a></span></div>';
 }
 $output .= "\n\t\t" . '</div> ' . $this->endBlockComment( '.wpb_wrapper' );
 $output .= "\n\t" . '</div> ' . $this->endBlockComment( $element );

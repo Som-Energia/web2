@@ -66,8 +66,8 @@
                 that.draw(true);
             });
         },
-        draw: function(redraw) {
-            var w = this.$el.addClass('vc-ready').width(),
+          draw: function(redraw) {
+            var w = this.$el.addClass('vc_ready').width(),
                 border_w = 5,
                 radius;
             if(!w) w = this.$el.parents(':visible').first().width()-2;
@@ -77,7 +77,7 @@
             this.$label.css({"width" : w, "height" : w, "line-height" : w+"px"});
             this.$back.css({"width" : w, "height" : w});
             this.$canvas.attr({"width" : w + "px", "height" : w + "px"});
-            this.$el.addClass('vc-ready');
+            this.$el.addClass('vc_ready');
             this.circle = new ProgressCircle({
                 canvas: this.$canvas.get(0),
                 minRadius: radius,

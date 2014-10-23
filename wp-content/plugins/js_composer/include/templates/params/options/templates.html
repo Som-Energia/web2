@@ -1,6 +1,6 @@
 <script type="text/html" id="vcl-options-field-input">
-    <div class="vc_row-fluid">
-        <div class="vc_span12">
+    <div class="vc_row">
+        <div class="vc_col-sm-12">
             <label class="wpb_element_label">{{ label }}</label>
             <input type="text" name="{{ name }}" value="{{ value[0] }}">
 
@@ -9,8 +9,8 @@
     </div>
 </script>
 <script type="text/html" id="vcl-options-field-select">
-    <div class="vc_row-fluid">
-        <div class="vc_span12">
+    <div class="vc_row">
+        <div class="vc_col-sm-12">
             <label class="wpb_element_label">{{ label }}</label>
             <select name="{{ name }}">
                 <# _.each(options, function(option) { #>
@@ -29,11 +29,11 @@
     </div>
 </script>
 <script type="text/html" id="vcl-options-field-checkbox">
-    <div class="vc_row-fluid">
-        <div class="vc_span12">
+    <div class="vc_row">
+        <div class="vc_col-sm-12">
             <label class="wpb_element_label">{{ label }}</label>
 
-            <div class="vc-options-checkboxes">
+            <div class="vc_options-checkboxes">
                 <# _.each(options, function(option) { #>
                     <label><input type="checkbox" name="{{ name }}" value="{{ option[0] }}"{{ _.indexOf(value,
                         option[0]) > -1 ? ' checked="true"' : '' }}> {{ option[1] }}</label>
@@ -44,11 +44,11 @@
     </div>
 </script>
 <script type="text/html" id="vcl-options-field-boolean">
-    <div class="vc_row-fluid">
-        <div class="vc_span12">
+    <div class="vc_row">
+        <div class="vc_col-sm-12">
             <label class="wpb_element_label">{{ label }}</label>
 
-            <div class="vc-options-checkbox">
+            <div class="vc_options-checkbox">
                 <label><input type="checkbox" name="{{ name }}" value="true"{{ value[0]==='true' ? ' checked="true"' :
                     '' }}> <?php _e('Yes', 'js_composer') ?></label>
             </div>

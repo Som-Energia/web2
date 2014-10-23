@@ -6,6 +6,7 @@
  *
  */
 
+
 /**
  * VC backend editor.
  *
@@ -14,7 +15,7 @@
  *
  * @since 4.2
  */
-class Vc_Backend_Editor {
+class Vc_Backend_Editor implements Vc_Editor_Interface {
 
 	protected $layout;
 
@@ -36,7 +37,7 @@ class Vc_Backend_Editor {
 		add_action( 'admin_print_scripts-post.php', array( &$this, 'printScriptsMessages' ) );
 		add_action( 'admin_print_scripts-post-new.php', array( &$this, 'printScriptsMessages' ) );
 		// Load required vendors classes;
-		visual_composer()->vendorsManager()->load();
+		// visual_composer()->vendorsManager()->load();
 	}
 
 	/**
@@ -49,25 +50,37 @@ class Vc_Backend_Editor {
 	public function render() {
 		$post_types = vc_editor_post_types();
 		foreach ( $post_types as $type ) {
-			add_meta_box( 'wpb_visual_composer', __( 'Visual Composer', "js_composer" ), Array( $this->getLayout(), 'output' ), $type, 'normal', 'high' );
+			add_meta_box( 'wpb_visual_composer', __( 'Visual Composer', "js_composer" ), Array( &$this, 'renderEditor' ), $type, 'normal', 'high' );
 		}
 	}
 
 	/**
-	 * Getter for WPBakeryVisualComposerLayout.
-	 *
-	 * @see WPBakeryVisualComposerLayout
-	 * @since  4.2
-	 * @access public
-	 * @return WPBakeryVisualComposerLayout
+	 * Output html for backend editor meta box.
+	 * @param null $post
 	 */
-	public function getLayout() {
-		require_once vc_path_dir( 'TEMPLATES_DIR', 'backend_editor/layouts.php' );
-		if ( $this->layout === null )
-			$this->layout = new WPBakeryVisualComposerLayout();
-		return $this->layout;
+	public function renderEditor($post = null) {
+		$this->post = $post;
+		$this->post_custom_css = get_post_meta( $post->ID, '_wpb_post_custom_css', true );
+		vc_include_template('editors/backend_editor.tpl.php' , array(
+			'editor' => $this,
+			'post' => $this->post
+		));
+		add_action('admin_footer', array(&$this, 'renderEditorFooter'));
+		do_action('vc_backend_editor_render');
 	}
 
+	/**
+	 * Output required html and js content for VC editor.
+	 *
+	 * Here comes panels, modals and js objects with data for mapped shortcodes.
+	 */
+	public function renderEditorFooter() {
+		vc_include_template('editors/partials/backend_editor_footer.tpl.php' , array(
+			'editor' => $this,
+			'post' => $this->post
+		));
+		do_action('vc_backend_editor_footer_render');
+	}
 	/**
 	 * Enqueue required javascript libraries and css files.
 	 *
@@ -96,26 +109,25 @@ class Vc_Backend_Editor {
 			wp_enqueue_script( 'jquery-ui-draggable' );
 			wp_enqueue_script( 'jquery-ui-accordion' );
 			wp_enqueue_script( 'jquery-ui-autocomplete' );
-
 			wp_enqueue_script( 'farbtastic' );
-
-			//MMM wp_enqueue_script('bootstrap-js');
 			wp_enqueue_script( 'isotope' );
-			wp_enqueue_script( 'wpb_bootstrap_modals_js' );
+			wp_enqueue_script( 'vc_bootstrap_js', vc_asset_url( 'lib/bootstrap3/dist/js/bootstrap.min.js' ), array( 'jquery' ), '3.0.2', true );
 			wp_enqueue_script( 'wpb_scrollTo_js' );
 			wp_enqueue_script( 'wpb_php_js' );
-			// js composer js app {{
-			// wpb_js_composer_js_sortable
 			wp_enqueue_script( 'wpb_js_composer_js_sortable' );
 			wp_enqueue_script( 'wpb_json-js' );
-
-
+			wp_enqueue_style( 'js_composer_settings', vc_asset_url( 'css/js_composer_settings.css' ), false, WPB_VC_VERSION, false );
+			wp_enqueue_script( 'ace-editor' );
+            wp_enqueue_script( 'webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js' ); // Google Web Font CDN
 			wp_enqueue_script( 'wpb_js_composer_js_tools' );
 			wp_enqueue_script( 'wpb_js_composer_js_storage' );
 			wp_enqueue_script( 'wpb_js_composer_js_models' );
 			wp_enqueue_script( 'wpb_js_composer_js_view' );
 			wp_enqueue_script( 'wpb_js_composer_js_custom_views' );
-
+			/**
+			 * Enqueue deprecated
+			 */
+			wp_enqueue_script( 'vc_js_composer_js_backend_deprecated', vc_asset_url('js/backend/deprecated.js'), array('wpb_js_composer_js_view'), WPB_VC_VERSION, true );
 			wp_enqueue_script( 'wpb_js_composer_js_backbone' );
 			wp_enqueue_script( 'wpb_jscomposer_composer_js' );
 			wp_enqueue_script( 'wpb_jscomposer_shortcode_js' );
@@ -175,7 +187,7 @@ class Vc_Backend_Editor {
 		get_currentuserinfo();
 		$data_element = vc_post_param( 'data_element' );
 
-		/** @xvar $settings - get use group access rules */
+		/** @var $settings - get use group access rules */
 		$settings = WPBakeryVisualComposerSettings::get( 'groups_access_rules' );
 		$role = $current_user->roles[0];
 
@@ -190,5 +202,13 @@ class Vc_Backend_Editor {
 			echo $output;
 		}
 		die();
+	}
+	public function showRulesValue() {
+		global $current_user;
+		get_currentuserinfo();
+		/** @var $settings - get use group access rules */
+		$settings = vc_settings()->get( 'groups_access_rules' );
+		$role = is_object($current_user) && isset($current_user->roles[0]) ? $current_user->roles[0] : '';
+		return isset($settings[$role]['show']) ? $settings[$role]['show'] : '';
 	}
 }

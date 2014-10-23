@@ -4,27 +4,91 @@
 	<div id="newslettersm">
 		<div id="contentnewsletter">
 
-<?php /*
-			<div id="mc_embed_signup">
-			<form action="//somenergia.us2.list-manage.com/subscribe/post?u=56d8bf2e8806722821a650fd1&amp;id=455a585b8d" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+	 <?php 
 
-			<div class="mc-field-group_footer" style="color:#b7b7b7;font-size:12px;width: 150px;margin-top: 10px;">¿Quieres estar informado?</div>
-			<div class="mc-field-group_footer"><input type="text" onclick="this.value=''" onfocus="this.value='Nombre *'" value="Nombre *" name="FNAME" class="required" id="mce-FNAME" width="125"></div>
-			<div class="mc-field-group_footer"><input type="text" onclick="this.value=''" onfocus="this.value='Apellidos *'" value="Apellidos *" name="LNAME" class="required" id="mce-LNAME" width="125"></div>
-			<div class="mc-field-group_footer"><input type="email" onclick="this.value=''" onfocus="this.value='Email *'" value="Email *" name="EMAIL" class="required email" id="mce-EMAIL" width="125"></div>
-			<div class="mc-field-group_footer"><input type="submit" value="Suscripción" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-			
-			<div id="mce-responses" class="clear">
-			<div class="response" id="mce-error-response" style="display:none"></div>
-			<div class="response" id="mce-success-response" style="display:none"></div>
-	
-			</div>
-    			<div style="position: absolute; left: -5000px;"><input type="text" name="b_56d8bf2e8806722821a650fd1_455a585b8d" tabindex="-1" value=""></div>
-			</form>
-			</div>
-
-*/?>
-
+				if(ICL_LANGUAGE_CODE=='es'){
+ 						echo'<div id="mc_embed_signup_peu">
+								<form action="//somenergia.us2.list-manage.com/subscribe/post?u=56d8bf2e8806722821a650fd1&amp;id=455a585b8d" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+							 		<div class="mc-field-group_peu">
+										<label for="mce-FNAME">Nombre </label>
+										<input type="text" value="" name="FNAME" class="required" id="mce-FNAME">
+									</div>
+									<div class="mc-field-group_peu">
+										<label for="mce-EMAIL">Correo Electrónico </label>
+										<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+									</div>
+										<div id="mce-responses_peu" class="clear">
+									<div class="response_peu" id="mce-error-response" style="display:none"></div>
+									<div class="response_peu" id="mce-success-response" style="display:none"></div>
+									</div>    
+								    <div style="position: absolute; left: -5000px;"><input type="text" name="b_56d8bf2e8806722821a650fd1_455a585b8d" tabindex="-1" value=""></div>
+								    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" id="mce-boto"></div>
+								</form>
+							</div>
+							';	
+				} 
+				elseif(ICL_LANGUAGE_CODE=='eu'){
+						echo'<div id="mc_embed_signup_peu">
+								<form action="//somenergia.us2.list-manage.com/subscribe/post?u=56d8bf2e8806722821a650fd1&amp;id=a909c2d7ef" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+							 		<div class="mc-field-group_peu">
+										<label for="mce-FNAME">Nombre </label>
+										<input type="text" value="" name="FNAME" class="required" id="mce-FNAME">
+									</div>
+									<div class="mc-field-group_peu">
+										<label for="mce-EMAIL">Correo Electrónico </label>
+										<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+									</div>
+										<div id="mce-responses_peu" class="clear">
+									<div class="response_peu" id="mce-error-response" style="display:none"></div>
+									<div class="response_peu" id="mce-success-response" style="display:none"></div>
+									</div>   
+								    <div style="position: absolute; left: -5000px;"><input type="text" name="b_56d8bf2e8806722821a650fd1_455a585b8d" tabindex="-1" value=""></div>
+								    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" id="mce-boto"></div>
+								</form>
+							</div>';	
+				}
+				elseif(ICL_LANGUAGE_CODE=='gl'){
+						echo'<div id="mc_embed_signup">
+								<form action="//somenergia.us2.list-manage.com/subscribe/post?u=56d8bf2e8806722821a650fd1&amp;id=a41e60db43" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+							 		<div class="mc-field-group_peu">
+										<label for="mce-FNAME">Nombre </label>
+										<input type="text" value="" name="FNAME" class="required" id="mce-FNAME">
+									</div>
+									<div class="mc-field-group_peu">
+										<label for="mce-EMAIL">Correo Electrónico </label>
+										<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+									</div>
+										<div id="mce-responses_peu" class="clear">
+									<div class="response_peu" id="mce-error-response" style="display:none"></div>
+									<div class="response_peu" id="mce-success-response" style="display:none"></div>
+									</div>    
+								    <div style="position: absolute; left: -5000px;"><input type="text" name="b_56d8bf2e8806722821a650fd1_455a585b8d" tabindex="-1" value=""></div>
+								    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" id="mce-boto"></div>
+								</form>
+							</div>';	
+				}		
+				elseif(ICL_LANGUAGE_CODE=='ca'){
+						echo'<div id="mc_embed_signup_peu">
+								<form action="//somenergia.us2.list-manage.com/subscribe/post?u=56d8bf2e8806722821a650fd1&amp;id=b7b42eec0f" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+							 		<div class="mc-field-group_peu">
+										
+										<label for="mce-FNAME"> Nom </label>
+										<input type="text" value="" name="FNAME" class="required" id="mce-FNAME">
+									</div>
+									<div class="mc-field-group_peu">
+										<label for="mce-EMAIL">Correu Electrònic </label>
+										<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+									</div>
+										<div id="mce-responses_peu" class="clear">
+									<div class="response_peu" id="mce-error-response" style="display:none"></div>
+									<div class="response_peu" id="mce-success-response" style="display:none"></div>
+									</div>    
+								    <div style="position: absolute; left: -5000px;"><input type="text" name="b_56d8bf2e8806722821a650fd1_455a585b8d" tabindex="-1" value=""></div>
+								    <div class="clear"><input type="submit" value="Vull rebre informació" name="subscribe" id="mc-embedded-subscribe" class="button" id="mce-boto"></div>
+								</form>
+							</div>';	
+				}		
+	    ?>
 		</div>
 	</div>
 	<div id="footersomenergia">
@@ -106,17 +170,17 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/bower-angular-translate/2.0.1/angular-translate.min.js" type="text/javascript"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js" type="text/javascript"></script>
 
-<script src="http://rawgit.com/Som-Energia/new-api-webforms/master/app/scripts/app.js"></script>
+<script src="//rawgit.com/Som-Energia/new-api-webforms/master/app/scripts/app.js"></script>
 <script src="/wp-content/themes/superior/js/debug.js"></script>
-<script src="http://rawgit.com/Som-Energia/new-api-webforms/master/app/scripts/controllers/main.js"></script>
-<script src="http://rawgit.com/Som-Energia/new-api-webforms/master/app/scripts/controllers/order.js"></script>
-<script src="http://rawgit.com/Som-Energia/new-api-webforms/master/app/scripts/services/prepayment.js"></script>
-<script src="http://rawgit.com/Som-Energia/new-api-webforms/master/app/scripts/services/api.js"></script>
-<script src="http://rawgit.com/Som-Energia/new-api-webforms/master/app/scripts/services/ui.js"></script>
-<script src="http://rawgit.com/Som-Energia/new-api-webforms/master/app/scripts/services/validator.js"></script>
-<script src="http://rawgit.com/Som-Energia/new-api-webforms/master/app/scripts/controllers/prepayment.js"></script>
+<script src="//rawgit.com/Som-Energia/new-api-webforms/master/app/scripts/controllers/main.js"></script>
+<script src="//rawgit.com/Som-Energia/new-api-webforms/master/app/scripts/controllers/order.js"></script>
+<script src="//rawgit.com/Som-Energia/new-api-webforms/master/app/scripts/services/prepayment.js"></script>
+<script src="//rawgit.com/Som-Energia/new-api-webforms/master/app/scripts/services/api.js"></script>
+<script src="//rawgit.com/Som-Energia/new-api-webforms/master/app/scripts/services/ui.js"></script>
+<script src="//rawgit.com/Som-Energia/new-api-webforms/master/app/scripts/services/validator.js"></script>
+<script src="//rawgit.com/Som-Energia/new-api-webforms/master/app/scripts/controllers/prepayment.js"></script>
 
-<script src="http://rawgit.com/Som-Energia/new-api-webforms/master/wp/stats.js" type="text/javascript"></script>
+<script src="//rawgit.com/Som-Energia/new-api-webforms/master/wp/stats.js" type="text/javascript"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" type="text/javascript"></script>
 
 </body>

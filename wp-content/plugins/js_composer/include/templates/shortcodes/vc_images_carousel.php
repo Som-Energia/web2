@@ -45,30 +45,30 @@ if ( $onclick == 'custom_link' ) {
 $images = explode( ',', $images );
 $i = - 1;
 $css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, 'wpb_images_carousel wpb_content_element' . $el_class . ' vc_clearfix', $this->settings['base'], $atts );
-$carousel_id = 'vc-images-carousel-' . WPBakeryShortCode_VC_images_carousel::getCarouselIndex();
+$carousel_id = 'vc_images-carousel-' . WPBakeryShortCode_VC_images_carousel::getCarouselIndex();
 $slider_width = $this->getSliderWidth( $img_size );
 ?>
 <div class="<?php echo apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, $css_class, $this->settings['base'], $atts ) ?>">
 	<div class="wpb_wrapper">
 		<?php echo  wpb_widget_title( array( 'title' => $title, 'extraclass' => 'wpb_gallery_heading' ) ) ?>
-		<div id="<?php echo $carousel_id ?>" data-ride="vc-carousel"
+		<div id="<?php echo $carousel_id ?>" data-ride="vc_carousel"
 			 data-wrap="<?php echo $wrap === 'yes' ? 'true' : 'false' ?>" style="width: <?php echo $slider_width ?>;"
 			 data-interval="<?php echo $autoplay == 'yes' ? $speed : 0 ?>" data-auto-height="yes"
 			 data-mode="<?php echo $mode ?>" data-partial="<?php echo $partial_view === 'yes' ? 'true' : 'false' ?>"
 			 data-per-view="<?php echo $slides_per_view ?>"
-			 data-hide-on-end="<?php echo $autoplay == 'yes' ? 'false' : 'true' ?>" class="vc-slide vc-carousel">
+			 data-hide-on-end="<?php echo $autoplay == 'yes' ? 'false' : 'true' ?>" class="vc_slide vc_images_carousel">
 			<?php if ( $hide_pagination_control !== 'yes' ): ?>
 			<!-- Indicators -->
-			<ol class="vc-carousel-indicators">
+			<ol class="vc_carousel-indicators">
 				<?php for ( $z = 0; $z < count( $images ); $z ++ ): ?>
 				<li data-target="#<?php echo $carousel_id ?>" data-slide-to="<?php echo $z ?>"></li>
 				<?php endfor; ?>
 			</ol>
 			<?php endif; ?>
 			<!-- Wrapper for slides -->
-			<div class="vc-carousel-inner">
-				<div class="vc-carousel-slideline">
-					<div class="vc-carousel-slideline-inner">
+			<div class="vc_carousel-inner">
+				<div class="vc_carousel-slideline">
+					<div class="vc_carousel-slideline-inner">
 						<?php foreach ( $images as $attach_id ): ?>
 						<?php
 						$i ++;
@@ -81,8 +81,8 @@ $slider_width = $this->getSliderWidth( $img_size );
 						}
 						$thumbnail = $post_thumbnail['thumbnail'];
 						?>
-						<div class="vc-item">
-							<div class="vc-inner">
+						<div class="vc_item">
+							<div class="vc_inner">
 								<?php if ( $onclick == 'link_image' ): ?>
 								<?php $p_img_large = $post_thumbnail['p_img_large']; ?>
 								<a class="prettyphoto"
@@ -105,10 +105,10 @@ $slider_width = $this->getSliderWidth( $img_size );
 			</div>
 			<?php if ( $hide_prev_next_buttons !== 'yes' ): ?>
 			<!-- Controls -->
-			<a class="vc-left vc-carousel-control" href="#<?php echo $carousel_id ?>" data-slide="prev">
+			<a class="vc_left vc_carousel-control" href="#<?php echo $carousel_id ?>" data-slide="prev">
 				<span class="icon-prev"></span>
 			</a>
-			<a class="vc-right vc-carousel-control" href="#<?php echo $carousel_id ?>" data-slide="next">
+			<a class="vc_right vc_carousel-control" href="#<?php echo $carousel_id ?>" data-slide="next">
 				<span class="icon-next"></span>
 			</a>
 			<?php endif; ?>

@@ -15,13 +15,26 @@
   text-shadow: 0 1px 1px rgba(255,255,255,.75);
   vertical-align: middle;
   cursor: pointer;
-  .buttonBackground(@btnBackground, @btnBackgroundHighlight);
-  border: 1px solid @btnBorder;
+  .buttonBackground(@vc_btnBackground, @vc_btnBackgroundHighlight);
+  border: 1px solid @vc_btnBorder;
   *border: 0; // Remove the border to prevent IE7's black border on input:focus
-  border-bottom-color: darken(@btnBorder, 10%);
+  border-bottom-color: darken(@vc_btnBorder, 10%);
   .border-radius(2px);
   .ie7-restore-left-whitespace(); // Give IE7 some love
   //.box-shadow(~"inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05)");
+}
+
+.vc_vc_button2 {
+  .vc_btn {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+}
+.vc_vc_button {
+  .vc_btn {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
 }
 
 // Hover state
@@ -125,27 +138,27 @@ span {
   border-color: rgba(0,0,0,.1) rgba(0,0,0,.1) rgba(0,0,0,.1);
 }
 .wpb_btn-primary {
-  .buttonBackground(@btnPrimaryBackground, @btnPrimaryBackgroundHighlight);
+  .buttonBackground(@vc_btnPrimaryBackground, @vc_btnPrimaryBackgroundHighlight);
 }
 // Warning appears are orange
 .wpb_btn-warning {
-  .buttonBackground(@btnWarningBackground, @btnWarningBackgroundHighlight);
+  .buttonBackground(@vc_btnWarningBackground, @vc_btnWarningBackgroundHighlight);
 }
 // Danger and error appear as red
 .wpb_btn-danger {
-  .buttonBackground(@btnDangerBackground, @btnDangerBackgroundHighlight);
+  .buttonBackground(@vc_btnDangerBackground, @vc_btnDangerBackgroundHighlight);
 }
 // Success appears as green
 .wpb_btn-success {
-  .buttonBackground(@btnSuccessBackground, @btnSuccessBackgroundHighlight);
+  .buttonBackground(@vc_btnSuccessBackground, @vc_btnSuccessBackgroundHighlight);
 }
 // Info appears as a neutral blue
 .wpb_btn-info {
-  .buttonBackground(@btnInfoBackground, @btnInfoBackgroundHighlight);
+  .buttonBackground(@vc_btnInfoBackground, @vc_btnInfoBackgroundHighlight);
 }
 // Inverse appears as dark gray
 .wpb_btn-inverse {
-  .buttonBackground(@btnInverseBackground, @btnInverseBackgroundHighlight);
+  .buttonBackground(@vc_btnInverseBackground, @vc_btnInverseBackgroundHighlight);
 }
 
 
@@ -194,54 +207,4 @@ a.wpb_button_a {
   }
 }
 
-i.icon {
-	display: inline-block;
-	width: 16px;
-	height: 16px;
-	line-height: 16px;
-	vertical-align: text-top;
-	margin-left: 5px;
-}
-	.wpb_btn-large i.icon {
-		height: 19px;
-		margin-left: 9px;
-	}
-	.wpb_btn-small i.icon {
-		height: 15px;
-	}
-	.wpb_btn-mini i.icon {
-		display: none;
-	}
-
-.wpb_address_book i.icon, option.wpb_address_book { background:url(../images/icons/address-book.png) no-repeat right center; }
-.wpb_alarm_clock i.icon, option.wpb_alarm_clock { background:url(../images/icons/alarm-clock.png) no-repeat right center; }
-.wpb_anchor i.icon, option.wpb_anchor { background:url(../images/icons/anchor.png) no-repeat right center; }
-.wpb_application_image i.icon, option.wpb_application_image { background:url(../images/icons/application-image.png) no-repeat right center; }
-.wpb_arrow i.icon, option.wpb_arrow { background:url(../images/icons/arrow.png) no-repeat right center; }
-.wpb_asterisk i.icon, option.wpb_asterisk { background:url(../images/icons/asterisk.png) no-repeat right center; }
-.wpb_hammer i.icon, option.wpb_hammer { background:url(../images/icons/auction-hammer.png) no-repeat right center; }
-.wpb_balloon i.icon, option.wpb_balloon { background:url(../images/icons/balloon.png) no-repeat right center; }
-.wpb_balloon_buzz i.icon, option.wpb_balloon_buzz { background:url(../images/icons/balloon-buzz.png) no-repeat right center; }
-.wpb_balloon_facebook i.icon, option.wpb_balloon_facebook { background:url(../images/icons/balloon-facebook.png) no-repeat right center; }
-.wpb_balloon_twitter i.icon, option.wpb_balloon_twitter { background:url(../images/icons/balloon-twitter.png) no-repeat right center; }
-.wpb_battery i.icon, option.wpb_battery { background:url(../images/icons/battery-full.png) no-repeat right center; }
-.wpb_binocular i.icon, option.wpb_binocular { background:url(../images/icons/binocular.png) no-repeat right center; }
-.wpb_document_excel i.icon, option.wpb_document_excel { background:url(../images/icons/blue-document-excel.png) no-repeat right center; }
-.wpb_document_image i.icon, option.wpb_document_image { background:url(../images/icons/blue-document-image.png) no-repeat right center; }
-.wpb_document_music i.icon, option.wpb_document_music { background:url(../images/icons/blue-document-music.png) no-repeat right center; }
-.wpb_document_office i.icon, option.wpb_document_office { background:url(../images/icons/blue-document-office.png) no-repeat right center; }
-.wpb_document_pdf i.icon, option.wpb_document_pdf { background:url(../images/icons/blue-document-pdf.png) no-repeat right center; }
-.wpb_document_powerpoint i.icon, option.wpb_document_powerpoint { background:url(../images/icons/blue-document-powerpoint.png) no-repeat right center; }
-.wpb_document_word i.icon, option.wpb_document_word { background:url(../images/icons/blue-document-word.png) no-repeat right center; }
-.wpb_bookmark i.icon, option.wpb_bookmark { background:url(../images/icons/bookmark.png) no-repeat right center; }
-.wpb_camcorder i.icon, option.wpb_camcorder { background:url(../images/icons/camcorder.png) no-repeat right center; }
-.wpb_camera i.icon, option.wpb_camera { background:url(../images/icons/camera.png) no-repeat right center; }
-.wpb_chart i.icon, option.wpb_chart { background:url(../images/icons/chart.png) no-repeat right center; }
-.wpb_chart_pie i.icon, option.wpb_chart_pie { background:url(../images/icons/chart-pie.png) no-repeat right center; }
-.wpb_clock i.icon, option.wpb_clock { background:url(../images/icons/clock.png) no-repeat right center; }
-.wpb_play i.icon, option.wpb_play { background:url(../images/icons/control.png) no-repeat right center; }
-.wpb_fire i.icon, option.wpb_fire { background:url(../images/icons/fire.png) no-repeat right center; }
-.wpb_heart i.icon, option.wpb_heart { background:url(../images/icons/heart.png) no-repeat right center; }
-.wpb_mail i.icon, option.wpb_mail { background:url(../images/icons/mail.png) no-repeat right center; }
-.wpb_shield i.icon, option.wpb_shield { background:url(../images/icons/plus-shield.png) no-repeat right center; }
-.wpb_video i.icon, option.wpb_video { background:url(../images/icons/video.png) no-repeat right center; }
+@import "../lib/wpb_icon.less";
